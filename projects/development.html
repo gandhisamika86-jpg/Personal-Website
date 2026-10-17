@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Development Projects | Samika Gandhi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  /* SECTION HEAD — minimal */
+  .sh {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 28px var(--pad-x) 14px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--fg-mute);
+    border-top: 1px solid var(--rule);
+  }
+  .sh .lbl { color: var(--fg); font-weight: 500; letter-spacing: 0.1em; }
+  .sh .num { color: var(--fg-mute); }
+
+  /* PROJECTS — image-first 2-column cards */
+  .proj-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    max-width: 1600px;
+    margin: 0 auto
+  }
+  .proj-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--bg);
+    text-decoration: none;
+    color: var(--fg);
+    transition: background 200ms;
+    overflow: hidden;
+  }
+  .proj-card:hover .pc-arr {
+    color: var(--bg);
+    background: var(--fg);
+    border-color: var(--fg);
+    transform: translateX(6px);
+  }
+  .proj-card:hover .pc-media { filter: brightness(1.1); }
+
+  /* Disabled — coming soon */
+  .proj-card.disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+  .proj-card.disabled .pc-arr { color: var(--fg-mute); }
+  .pc-cs-stamp {
+    position: absolute;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(11,11,12,0.82);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    color: var(--fg);
+    border: 1px solid var(--accent);
+    padding: 14px 22px 12px;
+    z-index: 4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    text-align: center;
+  }
+  .pc-cs-stamp .cs-tag {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+  }
+  .pc-cs-stamp .cs-headline {
+    font-family: "Inter Tight", sans-serif;
+    font-weight: 600;
+    font-size: clamp(17px, 1.8vw, 22px);
+    letter-spacing: -0.01em;
+    line-height: 1;
+  }
+  .pc-cs-stamp .cs-line {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--fg-mute);
+    text-transform: uppercase;
+  }
+
+  .pc-media {
+    aspect-ratio: 4 / 3;
+    background: var(--bg-2);
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+    overflow: hidden;
+    transition: filter 200ms;
+  }
+  .pc-media.has-video { aspect-ratio: 4 / 3; }
+  .pc-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    z-index: 1;
+    background: #000;
+  }
+  .pc-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+    z-index: 1;
+    background: #0F1A2E;
+  }
+  .pc-stripes {
+    position: absolute; inset: 0;
+    background-image: repeating-linear-gradient(
+      135deg, transparent 0 14px, rgba(255,255,255,0.025) 14px 15px
+    );
+  }
+  .pc-tag-tl {
+    position: absolute; top: 14px; left: 14px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 4px 8px;
+    background: rgba(11,11,12,0.6);
+    backdrop-filter: blur(4px);
+  }
+  .pc-card-num {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    z-index: 1;
+  }
+  .proj-card:hover .pc-title { color: var(--accent); }
+  .proj-card:hover .pc-tag-tl { background: var(--accent); color: #0a0a0a; }
+
+  .pc-meta {
+    padding: 22px 26px 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .pc-title {
+    font-family: "Inter Tight", sans-serif;
+    font-size: clamp(22px, 2vw, 28px);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin: 0;
+    transition: color 160ms;
+  }
+  .pc-tag {
+    color: var(--fg-dim);
+    font-size: 14px;
+    line-height: 1.4;
+    margin: 0;
+    text-wrap: pretty;
+  }
+  .pc-foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-top: 10px;
+    padding-top: 14px;
+    border-top: 1px solid var(--rule);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .pc-stamp { color: var(--fg-mute); }
+  .pc-arr {
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 6px 12px;
+    font-weight: 600;
+    transition: color 160ms, background 160ms, transform 200ms;
+  }
+
+  .cat-hero {
+    padding: 48px var(--pad-x) 8px;
+  }
+  .cat-hero h1 {
+    font-family: "Inter Tight", sans-serif;
+    font-weight: 700;
+    font-size: clamp(40px, 6vw, 72px);
+    letter-spacing: -0.03em;
+    margin: 0 0 8px;
+  }
+  .cat-hero p {
+    color: var(--fg-dim);
+    font-size: 16px;
+    max-width: 60ch;
+    margin: 0;
+  }
+
+  @media (max-width: 900px) {
+    .proj-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .pc-title { font-size: clamp(22px, 6vw, 28px); }
+    .pc-tag { font-size: 14px; }
+    .pc-foot { font-size: 11px; }
+    .sh { padding-top: 36px; }
+    .sh .lbl { font-size: 13px; }
+    .sh .num { font-size: 10px; }
+  }
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-left">
+      <a class="brand" href="../index.html" style="text-decoration:none; color:inherit;">SAMIKA GANDHI</a>
+    <a class="navlink" href="../index.html">← Back</a>
+      </div>
+    <div></div>
+    <div class="nav-right">
+      <a class="navlink" href="../index.html#skills">Skills</a>
+      <a class="navlink" href="../resume.html">Resume</a>
+      <a class="navlink" href="../contact.html">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<div class="cat-hero">
+  <h1>Development</h1>
+  <p>Design improvements, developing and executing tests.</p>
+</div>
+
+<section>
+<div class="sh">
+  <span class="lbl">Development Projects</span>
+  <span class="num">05 / all</span>
+</div>
+
+<div class="proj-grid">
+
+
+
+  <a class="proj-card" href="lvad-test-plan.html">
+    <div class="pc-media">
+      <img class="pc-img" src="assets/lvad-test-plan/fig1-heartmate3.jpg" alt="Diagram of the HeartMate 3 LVAD placement in the body, showing the pump, system controller, batteries, and modular driveline." style="object-fit: contain; background: var(--bg-2);" />
+      <div class="pc-tag-tl">V/001 · ABBOTT</div>
+    </div>
+    <div class="pc-meta">
+      <h3 class="pc-title">Evaluating Hemocompatibility of Abbott LVAD using 3 Imaging Techniques</h3>
+      <p class="pc-tag">A full imaging & hemocompatibility test plan for Abbott's HeartMate 3 LVAD, from in vitro flow-loop testing through 90-day in vivo validation</p>
+      <div class="pc-foot">
+        <span class="pc-stamp">2026 · Team Project</span>
+        <span class="pc-arr">Read More →</span>
+      </div>
+    </div>
+  </a>
+
+  <a class="proj-card" href="bioshield.html">
+    <div class="pc-media">
+      <img class="pc-img" src="assets/bioshield/hip-implant-biofilm.jpg" alt="3D illustration of a hip implant with a magnified view of biofilm bacteria colonizing the implant surface." style="object-fit: contain; background: var(--bg-2);" />
+      <div class="pc-tag-tl">V/002 · BMEN 343</div>
+    </div>
+    <div class="pc-meta">
+      <h3 class="pc-title">Surface Engineering of Polyethylene for the Reduction of Biofilm Formation in Hip Implants</h3>
+      <p class="pc-tag">Plasma surface treatment of polyethylene, tested to reduce the protein adsorption that drives implant biofilm formation</p>
+      <div class="pc-foot">
+        <span class="pc-stamp">2025 · Team Project</span>
+        <span class="pc-arr">Read More →</span>
+      </div>
+    </div>
+  </a>
+
+  <a class="proj-card" href="fixplate.html">
+    <div class="pc-media">
+      <img class="pc-img" src="assets/fixplate/skull-cover.jpg" alt="Diagram of a mandible fracture with a fixation plate, showing the load, lever arm, and fracture line." style="object-fit: contain; background: var(--bg-2);" />
+      <div class="pc-tag-tl">V/004 · BMEN 361</div>
+    </div>
+    <div class="pc-meta">
+      <h3 class="pc-title">Biomechanical Redesign and Validation of Mandibular Fixation Plates</h3>
+      <p class="pc-tag">Redesigned a two-screw mandible fixation plate and proved a 2.5x improvement in load capacity through testing</p>
+      <div class="pc-foot">
+        <span class="pc-stamp">2025 · Team Project</span>
+        <span class="pc-arr">Read More →</span>
+      </div>
+    </div>
+  </a>
+
+  <a class="proj-card" href="sterilization.html">
+    <div class="pc-media">
+      <img class="pc-img" src="assets/sterilization/logo.png" alt="Illustration of an open autoclave sterilizer." style="object-fit: contain; background: var(--bg-2);" />
+      <div class="pc-tag-tl">V/006 · LAB STUDY</div>
+    </div>
+    <div class="pc-meta">
+      <h3 class="pc-title">Evaluating the Performance of EtO, Autoclave, and UV Sterilization on Stainless Steel and Alumina with Bacterial Bioburden</h3>
+      <p class="pc-tag">Compared autoclave, UV, and ethanol treatments on stainless steel and alumina, using microscopy and bacterial growth analysis to assess results and control limitations.</p>
+      <div class="pc-foot"><span class="pc-stamp">Team Lab Study</span><span class="pc-arr">Read More →</span></div>
+    </div>
+  </a>
+
+  <a class="proj-card" href="cytotox.html">
+    <div class="pc-media">
+      <img class="pc-img" src="assets/cytotox/cover.jpg" alt="Photo of a 96-well plate after XTT staining, showing orange formazan color gradient indicating cell viability." style="object-fit: cover;" />
+      <div class="pc-tag-tl">V/005 · BMEN 344</div>
+    </div>
+    <div class="pc-meta">
+      <h3 class="pc-title">In Vitro Quantification of Biomaterial Cytotoxicity</h3>
+      <p class="pc-tag">Screened 7 candidate biomaterials against L929 fibroblasts using ISO 10993-5 direct contact and XTT extract cytotoxicity assays</p>
+      <div class="pc-foot">
+        <span class="pc-stamp">2025 · Team Project</span>
+        <span class="pc-arr">Read More →</span>
+      </div>
+    </div>
+  </a>
+
+
+
+</div>
+</section>
+
+<div class="foot-min">
+  <span>SAMIKA GANDHI</span>
+  <a href="../index.html" style="color:inherit;">← Back to Projects</a>
+</div>
+
+</body>
+</html>

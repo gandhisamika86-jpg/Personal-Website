@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>SkyGuardian · Los Alamos National Laboratory X Aggies Invent | Samika Gandhi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  .case-hero { padding: 40px var(--pad-x) 24px; }
+  .case-meta {
+    display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--grid-gap);
+    font-family: "JetBrains Mono", monospace; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--fg-mute); margin-bottom: 28px;
+  }
+  .case-meta > div { grid-column: span 3; }
+  .case-meta strong { color: var(--fg); font-weight: 500; display: block; margin-top: 4px; font-size: 13px; letter-spacing: 0.02em; }
+  .case-title {
+    font-family: "Inter Tight", sans-serif; font-weight: 700;
+    font-size: clamp(36px, 6.4vw, 88px); line-height: 0.98;
+    letter-spacing: -0.03em; margin: 0 0 20px; text-wrap: balance;
+  }
+  .case-pitch {
+    display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--grid-gap);
+    border-top: 1px solid var(--rule); padding-top: 18px;
+  }
+  .case-pitch .k { grid-column: span 3; font-family: "JetBrains Mono", monospace; font-size: 11px; color: var(--fg-mute); text-transform: uppercase; letter-spacing: 0.08em; }
+  .case-pitch .v { grid-column: span 9; font-size: clamp(18px, 1.8vw, 24px); line-height: 1.4; text-wrap: pretty; }
+  .case-pitch .v em { font-style: normal; background: var(--accent); color: var(--accent-ink); padding: 0 4px; }
+
+  .case-section { padding: 40px var(--pad-x) 56px; }
+  .case-section.alt { background: var(--bg-2); }
+
+  .sec-break { display: flex; align-items: center; gap: 18px; padding: 40px var(--pad-x) 0; }
+  .sec-break .sec-num {
+    font-family: "Inter Tight", sans-serif; font-weight: 700; font-size: 15px;
+    color: var(--accent-ink); background: var(--accent);
+    width: 34px; height: 34px; flex: 0 0 auto;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .sec-break .sec-label { font-family: "JetBrains Mono", monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--fg-mute); }
+  .sec-break .sec-title { font-family: "Inter Tight", sans-serif; font-weight: 700; font-size: clamp(20px, 2.4vw, 30px); letter-spacing: -0.02em; color: var(--fg); }
+  .sec-break-line { height: 1px; background: var(--rule); margin: 20px var(--pad-x) 0; }
+
+  .case-section p.body { max-width: 74ch; margin: 0; color: var(--fg-dim); font-size: 16px; line-height: 1.75; }
+  .case-section p.body + p.body { margin-top: 16px; }
+
+  .imgframe { overflow: hidden; position: relative; }
+  .imgframe img { display: block; width: 100%; height: auto; }
+  .imgframe .cap {
+    position: absolute; top: 12px; left: 12px;
+    font-family: "JetBrains Mono", monospace; font-size: 12px;
+    text-transform: uppercase; letter-spacing: 0.12em; color: var(--fg);
+    border: 1px solid var(--rule); padding: 6px 11px;
+    background: rgba(11,11,12,0.88); backdrop-filter: blur(6px); z-index: 2;
+  }
+
+  .compare { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 8px; }
+  .cmp { background: var(--bg); padding: 22px; }
+  .cmp .tag { font-family: "JetBrains Mono", monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--fg-mute); margin-bottom: 8px; }
+  .cmp.win .tag { color: var(--accent); }
+  .cmp h4 { font-size: 16px; font-weight: 600; margin: 0 0 10px; letter-spacing: -0.01em; }
+  .cmp ul { margin: 0; padding: 0; list-style: none; color: var(--fg-dim); font-size: 13.5px; line-height: 1.6; }
+  .cmp ul li { padding: 4px 0; }
+  .cmp ul li::before { content: "– "; color: var(--fg-mute); }
+
+  .stat-band { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 8px; }
+  .skill-col { background: var(--bg); padding: 24px 26px; }
+  .skill-col .sk-tag { font-family: "JetBrains Mono", monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 14px; }
+  .skill-col ul { margin: 0; padding: 0 0 0 18px; color: var(--fg-dim); font-size: 14px; line-height: 1.8; }
+  .skill-col li { margin-bottom: 4px; }
+  @media (max-width: 900px) { .skills-grid { grid-template-columns: 1fr; } }
+  .stat { background: var(--bg); padding: 26px 18px; text-align: center; }
+  .stat .v { font-family: "Inter Tight", sans-serif; font-weight: 700; font-size: clamp(24px, 2.8vw, 34px); letter-spacing: -0.03em; color: var(--accent); }
+  .stat .k { font-family: "JetBrains Mono", monospace; font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--fg-mute); margin-top: 10px; line-height: 1.4; }
+
+  /* Side-by-side media + text */
+  .split { display: grid; grid-template-columns: 42% 1fr; gap: 32px; align-items: center; margin-top: 20px; }
+  .split.rev { grid-template-columns: 1fr 42%; }
+  .split.rev .split-media { order: 2; }
+  .split.rev .split-text { order: 1; }
+  .split-text p.body { margin: 0; }
+  .split-text p.body + p.body { margin-top: 12px; }
+
+  @media (max-width: 800px) {
+    .split, .split.rev { grid-template-columns: 1fr; }
+    .split.rev .split-media { order: 1; }
+    .split.rev .split-text { order: 2; }
+  }
+
+  .foot-min { padding: 18px var(--pad-x); border-top: 1px solid var(--rule); display: flex; justify-content: space-between; font-family: "JetBrains Mono", monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--fg-mute); }
+
+  @media (max-width: 900px) {
+    .case-meta > div { grid-column: span 6; }
+    .case-pitch .k, .case-pitch .v { grid-column: span 12; }
+    .compare, .stat-band { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-left"><a class="brand" href="../index.html" style="text-decoration:none; color:inherit;">SAMIKA GANDHI</a><a class="navlink" href="../index.html">← Back</a></div>
+    <div></div>
+    <div class="nav-right">
+      <a class="navlink" href="../index.html#skills">Skills</a>
+      <a class="navlink" href="../resume.html">Resume</a>
+      <a class="navlink" href="../contact.html">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="case-hero">
+  <div class="case-meta">
+    <div>▪ INDEX<strong>D/003</strong></div>
+    <div>▪ YEAR<strong>2025–26 · Team Project</strong></div>
+    <div>▪ CATEGORY<strong>Design</strong></div>
+    <div>▪ RESULT<strong>🏆 3rd Place · $1,500</strong></div>
+  </div>
+  <h1 class="case-title">SkyGuardian. <span style="color: var(--fg-mute); font-weight: 600;">Los Alamos National Laboratory X Aggies Invent</span></h1>
+  <div class="case-pitch">
+    <div class="k">▪ Overview</div>
+    <div class="v">
+      A blended-wing autonomous VTOL drone that safely finds and physically marks <em>unexploded ordnance</em> in known-mined and hard-to-reach terrain, 3rd place for Overall Innovation, $1,500 prize.
+    </div>
+  </div>
+</header>
+
+<div class="deck-preview" style="margin: 0; border-bottom: 1px solid var(--rule); background: var(--bg-2);">
+  <div class="deck-frame">
+    <span class="cap">Presentation preview · Slide <span id="deck-cur">1</span> / <span id="deck-total">14</span></span>
+    <button class="deck-nav deck-prev" type="button" aria-label="Previous slide">‹</button>
+    <button class="deck-nav deck-next" type="button" aria-label="Next slide">›</button>
+    <img id="deck-img" src="assets/skyguardian/slides/slide-01.jpg" alt="SkyGuardian presentation, slide 1 of 14" />
+  </div>
+  <div class="deck-strip" id="deck-strip"></div>
+</div>
+
+<style>
+  .deck-frame { position: relative; width: 100%; aspect-ratio: 16 / 9; max-height: 560px; overflow: hidden; display: flex; align-items: center; justify-content: center; background: var(--bg-2); }
+  .deck-frame img { width: 100%; height: 100%; object-fit: contain; display: block; }
+  .deck-frame .cap { position: absolute; top: 12px; left: 12px; font-family: "JetBrains Mono", monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--fg); border: 1px solid var(--rule); padding: 6px 12px; background: rgba(11,11,12,0.88); backdrop-filter: blur(6px); z-index: 3; }
+  .deck-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border-radius: 50%; background: rgba(11,11,12,0.72); backdrop-filter: blur(6px); border: 1px solid var(--rule); color: var(--fg); font-size: 22px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 3; transition: background 160ms, border-color 160ms; }
+  .deck-nav:hover { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .deck-prev { left: 16px; }
+  .deck-next { right: 16px; }
+  .deck-strip { display: flex; gap: 6px; overflow-x: auto; padding: 12px var(--pad-x); border-top: 1px solid var(--rule); scrollbar-width: thin; }
+  .deck-thumb { flex: 0 0 auto; width: 60px; aspect-ratio: 0.77; border: 1px solid var(--rule); cursor: pointer; opacity: 0.55; transition: opacity 160ms, border-color 160ms; overflow: hidden; background: var(--bg); }
+  .deck-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .deck-thumb.active { opacity: 1; border-color: var(--accent); }
+  .deck-thumb:hover { opacity: 1; }
+</style>
+
+<script>
+  (function() {
+    const total = 14;
+    const img = document.getElementById('deck-img');
+    const cur = document.getElementById('deck-cur');
+    const strip = document.getElementById('deck-strip');
+    let i = 1;
+    for (let n = 1; n <= total; n++) {
+      const t = document.createElement('div');
+      t.className = 'deck-thumb' + (n === 1 ? ' active' : '');
+      t.innerHTML = '<img src="assets/skyguardian/slides/slide-' + String(n).padStart(2,'0') + '.jpg" alt="Slide ' + n + ' thumbnail" loading="lazy" />';
+      t.addEventListener('click', () => go(n));
+      strip.appendChild(t);
+    }
+    function go(n) {
+      i = ((n - 1 + total) % total) + 1;
+      img.src = 'assets/skyguardian/slides/slide-' + String(i).padStart(2,'0') + '.jpg';
+      img.alt = 'SkyGuardian presentation, slide ' + i + ' of ' + total;
+      cur.textContent = i;
+      strip.querySelectorAll('.deck-thumb').forEach((el, idx) => el.classList.toggle('active', idx === i - 1));
+      const active = strip.querySelector('.deck-thumb.active');
+      if (active) active.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    }
+    document.querySelector('.deck-prev').addEventListener('click', () => go(i - 1));
+    document.querySelector('.deck-next').addEventListener('click', () => go(i + 1));
+  })();
+</script>
+
+<!-- SECTION 1: THE PROBLEM -->
+<div class="sec-break">
+  <div class="sec-num">01</div>
+  <div>
+    <div class="sec-label">Section 1</div>
+    <div class="sec-title">The Problem</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section">
+  <p class="body">Unexploded ordnance (UXO) is a massive, ongoing hazard, over 1 million UXOs have been identified in Ukraine so far, 75 million in Laos since the Vietnam War, and UXOs caused an estimated 6,892 casualties globally in 2019 alone. We need a system to safely identify and physically mark the location of UXOs autonomously in known-mined and hard-to-reach areas.</p>
+  <p class="body" style="margin-top: 16px;">Existing detection solutions fall short in three ways: they lack versatility, typically carrying only 1–2 sensors; they're inaccurate, with false alarm rates up to 20%; and they're personnel-intensive, requiring one dedicated UXO detection engineer plus up to seven additional people working in harm's way.</p>
+</section>
+
+<!-- SECTION 2: DESIGNS CONSIDERED -->
+<div class="sec-break">
+  <div class="sec-num">02</div>
+  <div>
+    <div class="sec-label">Section 2</div>
+    <div class="sec-title">Designs Considered</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section alt">
+  <div class="split">
+    <div class="split-media imgframe" style="border: 1px solid var(--rule); background: #fff;">
+      <span class="cap">FIG. · Designs considered</span>
+      <img src="assets/skyguardian/fig-designs-considered.jpg" alt="Comparison illustration of a quadcopter drone and a land-based rover considered before settling on the blended-wing VTOL design." />
+    </div>
+    <div class="split-text">
+      <p class="body">Set four core design requirements up front: identify UXOs with a wide sensor suite, physically mark them with a dual-paint system while transmitting coordinates digitally, transmit data to a ground station in real time with a local backup if connection is lost, and operate fully autonomously with no human input.</p>
+    </div>
+  </div>
+
+  <div class="compare">
+    <div class="cmp">
+      <div class="tag">Considered</div>
+      <h4>Quadcopter Drone</h4>
+      <ul>
+        <li>Less aerodynamic design</li>
+        <li>Lower range</li>
+        <li>Low payload capacity</li>
+        <li>Low stability</li>
+      </ul>
+    </div>
+    <div class="cmp">
+      <div class="tag">Considered</div>
+      <h4>Land-Based Rover</h4>
+      <ul>
+        <li>Weaker signal</li>
+        <li>Greater detonation risk</li>
+      </ul>
+    </div>
+    <div class="cmp win">
+      <div class="tag">Selected</div>
+      <h4>Blended-Wing VTOL</h4>
+      <ul>
+        <li>Longer range from blended wing</li>
+        <li>Deployable sensor payload</li>
+        <li>Safer, avoids accidental triggering</li>
+        <li>Compact, lightweight</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: FINAL DESIGN -->
+<div class="sec-break">
+  <div class="sec-num">03</div>
+  <div>
+    <div class="sec-label">Section 3</div>
+    <div class="sec-title">Final Design</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section">
+  <div class="split rev">
+    <div class="split-media imgframe" style="border: 1px solid var(--rule); background: #fff;">
+      <span class="cap">FIG. · Final design, the SkyGuardian</span>
+      <img src="assets/skyguardian/fig-final-design.jpg" alt="Final design render of the SkyGuardian blended-wing VTOL drone with a deployable sensor payload, alongside a CAD model showing internal payload placement." />
+    </div>
+    <div class="split-text">
+      <p class="body">SkyGuardian added a blended wing to increase range, carries a deployable payload with UXO detection sensors, and stays compact and lightweight while being fundamentally safer than a ground rover, no wheels rolling directly over unstable ground, no risk of accidental triggering from surface contact.</p>
+    </div>
+  </div>
+
+  <div class="stat-band" style="margin-top: 24px;">
+    <div class="stat"><div class="v">5–10 mi</div><div class="k">▪ Operating range (2–3 sq. mi coverage)</div></div>
+    <div class="stat"><div class="v">30 min</div><div class="k">▪ Full scan time per mission</div></div>
+    <div class="stat"><div class="v">35–50 mph</div><div class="k">▪ Transit speed (0–5 mph while surveying)</div></div>
+  </div>
+</section>
+
+<!-- SECTION 4: SKYMAP ALGORITHM -->
+<div class="sec-break">
+  <div class="sec-num">04</div>
+  <div>
+    <div class="sec-label">Section 4</div>
+    <div class="sec-title">SkyMap Algorithm</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section alt">
+  <div class="split">
+    <div class="split-media imgframe" style="border: 1px solid var(--rule); background: #fff;">
+      <span class="cap">FIG. · SkyMap algorithm</span>
+      <img src="assets/skyguardian/fig-skymap-algorithm.jpg" alt="Visualization of the SkyMap algorithm's zone-of-interest layering and the resulting optimal flight path plotted over satellite terrain imagery." />
+    </div>
+    <div class="split-text">
+      <p class="body">Rather than blindly scanning an entire minefield, SkyGuardian runs a custom algorithm, SkyMap, that takes known UXO locations as input and outputs prioritized zones of interest plus an optimal flight path, so the drone spends its limited flight time on the highest-probability areas first.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: DUAL-PAINT SYSTEM -->
+<div class="sec-break">
+  <div class="sec-num">05</div>
+  <div>
+    <div class="sec-label">Section 5</div>
+    <div class="sec-title">Dual-Paint Marking System</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section">
+  <div class="split rev">
+    <div class="split-media imgframe" style="border: 1px solid var(--rule); background: #fff;">
+      <span class="cap">FIG. · Dual-paint system &amp; peristaltic pump</span>
+      <img src="assets/skyguardian/fig-dual-paint.jpg" alt="Diagram of the dual-paint marking system (red for high-urgency, neon orange for lower-urgency) alongside photos of the peristaltic pump hardware used to dispense it." />
+    </div>
+    <div class="split-text">
+      <p class="body">Once a UXO is confirmed, a peristaltic-pump paint dispenser, mounted on the lowered payload, marks it directly on the ground. Red paint flags UXOs in the immediate path of civilians or military personnel; neon-orange marks lower-urgency finds. Both are bright, non-sticky, long-lasting, and easily identifiable from a distance.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6: COMMERCIAL VIABILITY -->
+<div class="sec-break">
+  <div class="sec-num">06</div>
+  <div>
+    <div class="sec-label">Section 6</div>
+    <div class="sec-title">Commercial Viability</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section alt">
+  <p class="body">The U.S. Department of Defense spends roughly $200 million a year on UXO detection alone. At an estimated $25,000 per unit, SkyGuardian can be produced and deployed at a fraction of that cost, while performing the tasks of up to seven personnel and keeping every one of them out of a minefield.</p>
+</section>
+
+<!-- SECTION 7: ABOUT THE COMPETITION -->
+<div class="sec-break">
+  <div class="sec-num">07</div>
+  <div>
+    <div class="sec-label">Section 7</div>
+    <div class="sec-title">About the Competition</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section">
+  <div class="split">
+    <div class="split-text">
+      <p class="body" style="margin: 0;"><strong style="color: var(--fg); font-weight: 600;">Aggies Invent</strong> is Texas A&amp;M's 48-hour intensive engineering design competition, run by the Meloy Engineering Innovation and Entrepreneurship Program. Students self-select into teams, get seeded with a real industry or national-security need statement, and have 48 hours, with mentors and rapid-prototyping access, to research, design, and pitch a working solution to a panel of judges.</p>
+      <p class="body" style="margin-top: 16px;">This edition was sponsored by <strong style="color: var(--fg); font-weight: 600;">Los Alamos National Laboratory</strong>, themed "Tech for Peace: UXO and Safe Practices," with roughly 50 students competing for close to $10,000 in prizes and the attention of LANL's own technical recruiters. SkyGuardian, competing as Team Sky Guardians, placed 3rd overall.</p>
+    </div>
+    <div class="split-media imgframe" style="border: 1px solid var(--rule); background: #fff; display: flex; align-items: center; justify-content: center; padding: 20px;">
+      <img src="assets/skyguardian/aggiesinvent-logo.png" alt="Aggies Invent, 48 Hours of Innovation logo" />
+    </div>
+  </div>
+
+  <div class="prize-banner" style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 24px; padding: 20px 26px; background: var(--accent); color: var(--accent-ink);">
+    <div style="font-size: 30px; line-height: 1;">🏆</div>
+    <div>
+      <div style="font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 19px; letter-spacing: -0.01em;">3rd Place, Overall Innovation, $1,500 Prize</div>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.85; margin-top: 2px;">Aggies Invent × Los Alamos National Laboratory</div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 8: SKILLS -->
+<div class="sec-break">
+  <div class="sec-num">08</div>
+  <div>
+    <div class="sec-label">Section 8</div>
+    <div class="sec-title">Skills</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section alt">
+  <div class="skills-grid">
+    <div class="skill-col">
+      <div class="sk-tag">Technical</div>
+      <ul>
+        <li>UAV/VTOL platform design &amp; CAD</li>
+        <li>Sensor suite integration (LiDAR, magnetometer, GPR)</li>
+        <li>Custom flight-path algorithm design (SkyMap)</li>
+        <li>Mechanical systems design (dual-paint dispenser)</li>
+      </ul>
+    </div>
+    <div class="skill-col">
+      <div class="sk-tag">Soft Skills</div>
+      <ul>
+        <li>Team coordination under a 48-hour deadline</li>
+        <li>Pitching to national laboratory technical recruiters</li>
+        <li>Rapid prototyping &amp; design iteration</li>
+        <li>Cross-disciplinary collaboration (aero, controls, mechanical)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 9: PRESENTATION -->
+<div class="sec-break">
+  <div class="sec-num">09</div>
+  <div>
+    <div class="sec-label">Section 9</div>
+    <div class="sec-title">Presentation &amp; Pitch Video</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section">
+  <p class="body" style="margin-bottom: 22px;">The full pitch deck, problem, design requirements, platform comparison, final design, technical specs, and commercial viability, plus a short pitch video walking through SkyGuardian in action.</p>
+
+  <div class="imgframe" style="border: 1px solid var(--rule); max-width: 900px; background: #000;">
+    <video controls preload="metadata" style="width:100%; height:auto; display:block;" poster="assets/skyguardian/sk-render.jpg">
+      <source src="assets/skyguardian/pitch-video.mp4" type="video/mp4" />
+      Your browser doesn't support embedded video. <a href="assets/skyguardian/pitch-video.mp4">Download the video</a> instead.
+    </video>
+  </div>
+
+  <div style="display: flex; gap: 14px; flex-wrap: wrap; margin-top: 18px;">
+    <a href="assets/skyguardian/SkyGuardian-Pitch-Deck.pdf" target="_blank" rel="noopener" style="display:inline-block; font-family:'JetBrains Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:0.1em; color:var(--accent-ink); background:var(--accent); border:1px solid var(--accent); padding:10px 16px; text-decoration:none;">View Presentation ↗</a>
+    <a href="assets/skyguardian/SkyGuardian-Pitch-Deck.pdf" download style="display:inline-block; font-family:'JetBrains Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:0.1em; color:var(--accent); border:1px solid var(--accent); padding:10px 16px; text-decoration:none;">Download .pdf ↓</a>
+  </div>
+</section>
+
+<footer class="foot-min">
+  <div>© 2026 S. Gandhi · D/003</div>
+  <div><a href="design.html" style="color: var(--fg-mute); text-decoration: none;">← Back to Design</a></div>
+</footer>
+
+</body>
+</html>

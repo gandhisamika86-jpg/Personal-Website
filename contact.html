@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Samika Gandhi | Contact</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+<style>
+  body { font-size: 16px; }
+
+  .nav-inner { padding: 16px var(--pad-x); }
+
+  .contact-head {
+    padding: 56px var(--pad-x) 32px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .contact-head .kicker {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--fg-mute);
+    margin-bottom: 14px;
+  }
+  .contact-head h1 {
+    font-family: "Inter Tight", sans-serif;
+    font-weight: 700;
+    font-size: clamp(56px, 9vw, 140px);
+    letter-spacing: -0.04em;
+    line-height: 0.9;
+    margin: 0;
+    color: var(--fg);
+  }
+  .contact-head h1 .dot { color: var(--accent); }
+
+  .contact-list {
+    padding: 48px var(--pad-x) 64px;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    max-width: 760px;
+    margin: 0 var(--pad-x);
+  }
+  .contact-row {
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 28px 30px;
+    text-decoration: none;
+    transition: background 160ms;
+  }
+  .contact-row:hover { background: var(--bg-2); }
+  .contact-row .cr-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .contact-row .cr-icon {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--fg-mute);
+    border: 1px solid var(--rule);
+    width: 42px; height: 42px;
+    display: flex; align-items: center; justify-content: center;
+    flex: 0 0 auto;
+  }
+  .contact-row .cr-text .cr-label {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--fg-mute);
+    margin-bottom: 4px;
+  }
+  .contact-row .cr-text .cr-value {
+    font-family: "Inter Tight", sans-serif;
+    font-weight: 600;
+    font-size: clamp(17px, 1.8vw, 21px);
+    color: var(--fg);
+    letter-spacing: -0.01em;
+  }
+  .contact-row .cr-arr {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    color: var(--fg-mute);
+    transition: transform 160ms, color 160ms;
+  }
+  .contact-row:hover .cr-arr { color: var(--accent); transform: translateX(4px); }
+
+  .foot-min { padding: 18px var(--pad-x); border-top: 1px solid var(--rule); display: flex; justify-content: space-between; font-family: "JetBrains Mono", monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--fg-mute); }
+
+  @media (max-width: 700px) {
+    .contact-list { margin: 0 20px; }
+    .contact-row { padding: 20px; }
+    .contact-row .cr-left { gap: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-left">
+      <a class="brand" href="index.html" style="text-decoration:none; color:inherit;">SAMIKA GANDHI</a>
+      <a class="navlink" href="index.html">← Back</a>
+    </div>
+    <div></div>
+    <div class="nav-right">
+      <a class="navlink" href="index.html#skills">Skills</a>
+      <a class="navlink" href="resume.html">Resume</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HEAD -->
+<header class="contact-head">
+  <div class="kicker">▪ Get In Touch</div>
+  <h1>Contact<span class="dot">.</span></h1>
+</header>
+
+<!-- CONTACT LIST -->
+<section class="contact-list">
+  <a class="contact-row" href="tel:+13466687074">
+    <div class="cr-left">
+      <div class="cr-icon">TEL</div>
+      <div class="cr-text">
+        <div class="cr-label">▪ Phone</div>
+        <div class="cr-value">(346) 668-7074</div>
+      </div>
+    </div>
+    <span class="cr-arr">→</span>
+  </a>
+  <a class="contact-row" href="mailto:samikagandhi44@gmail.com">
+    <div class="cr-left">
+      <div class="cr-icon">@</div>
+      <div class="cr-text">
+        <div class="cr-label">▪ Email</div>
+        <div class="cr-value">samikagandhi44@gmail.com</div>
+      </div>
+    </div>
+    <span class="cr-arr">→</span>
+  </a>
+  <a class="contact-row" href="https://www.linkedin.com/in/samika-gandhi" target="_blank" rel="noopener">
+    <div class="cr-left">
+      <div class="cr-icon">in</div>
+      <div class="cr-text">
+        <div class="cr-label">▪ LinkedIn</div>
+        <div class="cr-value">linkedin.com/in/samika-gandhi</div>
+      </div>
+    </div>
+    <span class="cr-arr">→</span>
+  </a>
+</section>
+
+<footer class="foot-min">
+  <div>© 2026 S. Gandhi</div>
+  <div><a href="index.html" style="color: var(--fg-mute); text-decoration: none;">← Back to Home</a></div>
+</footer>
+
+</body>
+</html>

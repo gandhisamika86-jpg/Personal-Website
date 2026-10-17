@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Surface Engineering of Polyethylene for Hip Implants | Samika Gandhi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  .case-hero { padding: 40px var(--pad-x) 24px; }
+  .case-meta {
+    display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--grid-gap);
+    font-family: "JetBrains Mono", monospace; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--fg-mute); margin-bottom: 28px;
+  }
+  .case-meta > div { grid-column: span 3; }
+  .case-meta strong { color: var(--fg); font-weight: 500; display: block; margin-top: 4px; font-size: 13px; letter-spacing: 0.02em; }
+  .case-title {
+    font-family: "Inter Tight", sans-serif; font-weight: 700;
+    font-size: clamp(30px, 4.6vw, 60px); line-height: 1.05;
+    letter-spacing: -0.025em; margin: 0 0 20px; text-wrap: balance;
+  }
+  .case-pitch {
+    display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--grid-gap);
+    border-top: 1px solid var(--rule); padding-top: 18px;
+  }
+  .case-pitch .k { grid-column: span 3; font-family: "JetBrains Mono", monospace; font-size: 11px; color: var(--fg-mute); text-transform: uppercase; letter-spacing: 0.08em; }
+  .case-pitch .v { grid-column: span 9; font-size: clamp(19px, 1.9vw, 26px); line-height: 1.4; text-wrap: pretty; font-style: italic; }
+  .case-pitch .v em { font-style: normal; background: var(--accent); color: var(--accent-ink); padding: 0 4px; }
+
+  .case-section { padding: 40px var(--pad-x) 56px; }
+  .case-section.alt { background: var(--bg-2); }
+
+  /* Section breaker (replaces old § cs-head) */
+  .sec-break { display: flex; align-items: center; gap: 18px; padding: 40px var(--pad-x) 0; }
+  .sec-break .sec-num {
+    font-family: "Inter Tight", sans-serif; font-weight: 700; font-size: 15px;
+    color: var(--accent-ink); background: var(--accent);
+    width: 34px; height: 34px; flex: 0 0 auto;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .sec-break .sec-label { font-family: "JetBrains Mono", monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--fg-mute); }
+  .sec-break .sec-title { font-family: "Inter Tight", sans-serif; font-weight: 700; font-size: clamp(20px, 2.4vw, 30px); letter-spacing: -0.02em; color: var(--fg); }
+  .sec-break-line { height: 1px; background: var(--rule); margin: 20px var(--pad-x) 0; }
+
+  .case-section p.body { max-width: 74ch; margin: 0; color: var(--fg-dim); font-size: 16px; line-height: 1.75; }
+  .case-section p.body + p.body { margin-top: 16px; }
+  .imgframe { overflow: hidden; position: relative; }
+  .imgframe img { display: block; width: 100%; height: auto; }
+  .imgframe .cap {
+    position: absolute; top: 12px; left: 12px;
+    font-family: "JetBrains Mono", monospace; font-size: 12px;
+    text-transform: uppercase; letter-spacing: 0.12em; color: var(--fg);
+    border: 1px solid var(--rule); padding: 6px 11px;
+    background: rgba(11,11,12,0.88); backdrop-filter: blur(6px); z-index: 2;
+  }
+
+  /* Poster preview label, moved off the image so it never covers the poster title */
+  .deck-preview-label {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px var(--pad-x);
+    font-family: "JetBrains Mono", monospace; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.1em; color: var(--fg-mute);
+    border-bottom: 1px solid var(--rule); background: var(--bg-2);
+  }
+  .deck-preview-label strong { color: var(--fg); font-weight: 500; }
+
+  /* Expanded method blocks */
+  .method-block { border: 1px solid var(--rule); margin-top: 22px; }
+  .method-block-head {
+    padding: 18px 24px; border-bottom: 1px solid var(--rule); background: var(--bg-2);
+    display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px;
+  }
+  .method-block-head h4 { font-size: 19px; font-weight: 700; margin: 0; letter-spacing: -0.01em; }
+  .method-block-head .tag { font-family: "JetBrains Mono", monospace; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); }
+  .method-block-body { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--rule); }
+  .method-col { background: var(--bg); padding: 20px 22px; }
+  .method-col .mc-label { font-family: "JetBrains Mono", monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--fg-mute); margin-bottom: 10px; }
+  .method-col p { margin: 0; color: var(--fg-dim); font-size: 14px; line-height: 1.65; }
+
+  .stat-band { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 8px; }
+  .skill-col { background: var(--bg); padding: 24px 26px; }
+  .skill-col .sk-tag { font-family: "JetBrains Mono", monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 14px; }
+  .skill-col ul { margin: 0; padding: 0 0 0 18px; color: var(--fg-dim); font-size: 14px; line-height: 1.8; }
+  .skill-col li { margin-bottom: 4px; }
+  @media (max-width: 900px) { .skills-grid { grid-template-columns: 1fr; } }
+  .stat { background: var(--bg); padding: 26px 18px; }
+  .stat .v { font-family: "Inter Tight", sans-serif; font-weight: 700; font-size: clamp(26px, 2.8vw, 36px); letter-spacing: -0.03em; }
+  .stat .k { font-family: "JetBrains Mono", monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--fg-mute); margin-top: 8px; line-height: 1.4; }
+  .foot-min { padding: 18px var(--pad-x); border-top: 1px solid var(--rule); display: flex; justify-content: space-between; font-family: "JetBrains Mono", monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--fg-mute); }
+  @media (max-width: 900px) {
+    .case-meta > div { grid-column: span 6; }
+    .case-pitch .k, .case-pitch .v { grid-column: span 12; }
+    .method-block-body { grid-template-columns: 1fr; }
+    .stat-band { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-left"><a class="brand" href="../index.html" style="text-decoration:none; color:inherit;">SAMIKA GANDHI</a><a class="navlink" href="../index.html">← Back</a></div>
+    <div></div>
+    <div class="nav-right">
+      <a class="navlink" href="../index.html#skills">Skills</a>
+      <a class="navlink" href="../resume.html">Resume</a>
+      <a class="navlink" href="../contact.html">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="case-hero">
+  <div class="case-meta">
+    <div>▪ INDEX<strong>V/002</strong></div>
+    <div>▪ YEAR<strong>2025 · Team Project</strong></div>
+    <div>▪ CATEGORY<strong>Development</strong></div>
+    <div>▪ COURSE<strong>BMEN 343 Materials Lab</strong></div>
+  </div>
+  <h1 class="case-title">Surface Engineering of Polyethylene for the Reduction of Biofilm Formation in Hip Implants.</h1>
+  <div class="case-pitch">
+    <div class="k">▪ Overview</div>
+    <div class="v">
+      Does modifying a hip implant's <em>surface chemistry</em>without a single drug or coating, change its relationship with bacteria at the molecular level?
+    </div>
+  </div>
+</header>
+
+<div class="deck-preview-label">
+  <span>Poster Preview</span>
+  <strong>Page <span id="deck-cur">1</span> / <span id="deck-total">1</span></strong>
+</div>
+<div class="deck-preview" style="margin: 0; border-bottom: 1px solid var(--rule); background: var(--bg-2);">
+  <div class="deck-frame">
+    <img id="deck-img" src="assets/bioshield/slides/slide-01.jpg" alt="BioShield research poster" />
+  </div>
+</div>
+
+<style>
+  .deck-frame { position: relative; width: 100%; aspect-ratio: 16/9; max-height: 560px; overflow: hidden; display: flex; align-items: center; justify-content: center; background: var(--bg-2); }
+  .deck-frame img { width: 100%; height: 100%; object-fit: contain; display: block; }
+</style>
+
+<!-- SECTION 1: AIM -->
+<div class="sec-break">
+  <div class="sec-num">01</div>
+  <div>
+    <div class="sec-label">Section 1</div>
+    <div class="sec-title">Aim</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section">
+  <p class="body">Biofilms are responsible for roughly 65% of microbial infections and 80% of chronic infections associated with medical implants. Polyethylene (PE), a material widely used in hip and joint implants, is especially prone to this: its high hydrophobicity promotes protein adsorption, which gives bacteria something to grab onto and start colonizing.</p>
+  <p class="body">The aim of this project was to test whether plasma surface treatment, a purely physical modification, no drugs or coatings involved, could make PE more hydrophilic and, in turn, reduce the protein adsorption that kicks off biofilm formation.</p>
+</section>
+
+<!-- SECTION 2: METHODS -->
+<div class="sec-break">
+  <div class="sec-num">02</div>
+  <div>
+    <div class="sec-label">Section 2</div>
+    <div class="sec-title">Methods</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section alt">
+  <p class="body">Six PE samples were split into two groups, three plasma-treated, three left untreated, and run through four tests to characterize the surface change and its downstream effect on protein adsorption.</p>
+
+  <div class="method-block">
+    <div class="method-block-head">
+      <h4>FTIR Spectroscopy</h4>
+      <span class="tag">Chemistry check</span>
+    </div>
+    <div class="method-block-body">
+      <div class="method-col">
+        <div class="mc-label">Justification</div>
+        <p>Fourier Transform Infrared spectroscopy identifies the functional groups present on a sample's surface. The goal here was to see whether plasma treatment added new polar functional groups, the chemical signature that would explain a hydrophilicity shift, and confirm whether the change was a true surface-chemistry effect versus a bulk-material change.</p>
+      </div>
+      <div class="method-col">
+        <div class="mc-label">Procedure</div>
+        <p>Spectra were collected for both untreated and plasma-treated samples across the standard IR range, and the two sets were directly overlaid and compared. A shift or emergence of new absorbance peaks (particularly in the polar functional group region) would indicate successful chemical modification of the surface.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="method-block">
+    <div class="method-block-head">
+      <h4>Static Contact Angle</h4>
+      <span class="tag">Wettability, static</span>
+    </div>
+    <div class="method-block-body">
+      <div class="method-col">
+        <div class="mc-label">Justification</div>
+        <p>The static contact angle of a water droplet is the most direct, standard readout of a surface's hydrophobicity or hydrophilicity, a contact angle below 90° classifies the sample as hydrophilic. This is the baseline test that tells you whether plasma treatment moved the needle at all.</p>
+      </div>
+      <div class="method-col">
+        <div class="mc-label">Procedure</div>
+        <p>A droplet of water was placed on each sample and the resting contact angle was measured with a goniometer, comparing plasma-treated against untreated groups. Measurements were repeated across all samples in each group and reported as mean ± standard deviation, then evaluated for statistical significance with a t-test at α = 0.05.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="method-block">
+    <div class="method-block-head">
+      <h4>Dynamic Contact Angle</h4>
+      <span class="tag">Wettability, dynamic</span>
+    </div>
+    <div class="method-block-body">
+      <div class="method-col">
+        <div class="mc-label">Justification</div>
+        <p>A single static measurement only captures wettability at one instant. Tracking contact angle as it changes over time reveals surface hysteresis, how the surface behaves under more realistic, dynamic wetting conditions rather than a single snapshot, which matters for a device that will sit in a wet physiological environment.</p>
+      </div>
+      <div class="method-col">
+        <div class="mc-label">Procedure</div>
+        <p>Contact angle was measured from 0 to 30 seconds at 5-second intervals for each sample, generating a time-course for both the treated and untreated groups. The trend across intervals was compared to see whether treated samples stayed consistently more hydrophilic over time, or converged back toward the untreated baseline.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="method-block">
+    <div class="method-block-head">
+      <h4>Bradford Assay</h4>
+      <span class="tag">Protein adsorption</span>
+    </div>
+    <div class="method-block-body">
+      <div class="method-col">
+        <div class="mc-label">Justification</div>
+        <p>Contact angle tells you about surface energy, but not what actually happens with proteins, the real precursor to bacterial attachment. The Bradford assay directly quantifies protein (BSA) adsorption: stronger dye retention corresponds to greater protein binding, which was the study's real endpoint of interest.</p>
+      </div>
+      <div class="method-col">
+        <div class="mc-label">Procedure</div>
+        <p>A standard BSA dilution curve was generated from known concentrations to calibrate the assay. Treated and untreated samples were then incubated with protein, developed with Bradford's reagent, and read at 595 nm absorbance. Protein concentration was back-calculated from the standard curve and compared between groups using mean ± standard deviation and a t-test at α = 0.05.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: RESULTS -->
+<div class="sec-break">
+  <div class="sec-num">03</div>
+  <div>
+    <div class="sec-label">Section 3</div>
+    <div class="sec-title">Results</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section">
+  <div class="imgframe" style="max-width: 640px; border: 1px solid var(--rule); margin-bottom: 24px;">
+    <span class="cap">FIG. 3–4 · Contact angle results</span>
+    <img src="assets/bioshield/cover.jpg" alt="Bar charts comparing static and dynamic contact angle of untreated vs. plasma-treated polyethylene." />
+  </div>
+  <p class="body">Plasma treatment significantly dropped the contact angle in both static (83.8° → 60.0°) and dynamic (94.3° → 73.1°) conditions, both statistically significant (p = 0.041 and p = 0.021). The surface genuinely became more hydrophilic. FTIR spectra, however, stayed essentially unchanged before and after treatment, confirming that plasma is a true surface effect, it doesn't alter the bulk material.</p>
+  <p class="body">The Bradford assay told a more complicated story: protein concentration dropped ~11.7% after treatment (p = 0.006), real, but modest. Plasma treatment made the surface measurably more hydrophilic without coming close to eliminating protein adsorption.</p>
+</section>
+
+<div class="stat-band">
+  <div class="stat"><div class="v">59.99°</div><div class="k">▪ Static contact angle, treated (from 83.82°)</div></div>
+  <div class="stat"><div class="v">73.07°</div><div class="k">▪ Dynamic contact angle, treated (from 94.26°)</div></div>
+  <div class="stat"><div class="v">−11.7%</div><div class="k">▪ Protein adsorption change (Bradford assay)</div></div>
+</div>
+
+<!-- SECTION 4: TAKEAWAY -->
+<div class="sec-break">
+  <div class="sec-num">04</div>
+  <div>
+    <div class="sec-label">Section 4</div>
+    <div class="sec-title">Takeaway</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section alt">
+  <p class="body">Plasma treatment works, it's a real, statistically significant, drug-free way to increase PE hydrophilicity. But hydrophilicity alone isn't the full biofilm story: modest surface energy changes weren't enough to meaningfully block protein adsorption, meaning plasma treatment alone likely isn't sufficient as a stand-alone anti-biofilm strategy. It's a piece of the puzzle, not the whole solution, durable, longer-lasting surface modifications would likely be needed alongside it.</p>
+</section>
+
+<!-- SECTION 5: FULL POSTER -->
+<div class="sec-break">
+  <div class="sec-num">05</div>
+  <div>
+    <div class="sec-label">Section 5</div>
+    <div class="sec-title">Full Poster</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section">
+  <p class="body" style="margin-bottom: 22px;">The complete research poster, introduction, current market solutions, methods, results, and full statistical analysis.</p>
+  <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+    <a href="assets/bioshield/BioShield-Poster.pdf" target="_blank" rel="noopener" style="display:inline-block; font-family:'JetBrains Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:0.1em; color:var(--accent-ink); background:var(--accent); border:1px solid var(--accent); padding:10px 16px; text-decoration:none;">View Full Poster ↗</a>
+    <a href="assets/bioshield/BioShield-Poster.pdf" download style="display:inline-block; font-family:'JetBrains Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:0.1em; color:var(--accent); border:1px solid var(--accent); padding:10px 16px; text-decoration:none;">Download .pdf ↓</a>
+  </div>
+</section>
+
+<footer class="foot-min">
+  <div>© 2026 S. Gandhi · V/002</div>
+  <div><a href="development.html" style="color: var(--fg-mute); text-decoration: none;">← Back to Development</a></div>
+</footer>
+
+</body>
+</html>

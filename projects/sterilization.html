@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Evaluating the Performance of EtO, Autoclave, and UV Sterilization on Stainless Steel and Alumina with Bacterial Bioburden | Samika Gandhi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  .case-hero { padding: 40px var(--pad-x) 24px; }
+  .case-meta {
+    display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--grid-gap);
+    font-family: "JetBrains Mono", monospace; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--fg-mute); margin-bottom: 28px;
+  }
+  .case-meta > div { grid-column: span 3; }
+  .case-meta strong { color: var(--fg); font-weight: 500; display: block; margin-top: 4px; font-size: 13px; letter-spacing: 0.02em; }
+  .case-title {
+    font-family: "Inter Tight", sans-serif; font-weight: 700;
+    font-size: clamp(28px, 4.4vw, 56px); line-height: 1.06;
+    letter-spacing: -0.025em; margin: 0 0 20px; text-wrap: balance;
+  }
+  .case-pitch {
+    display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--grid-gap);
+    border-top: 1px solid var(--rule); padding-top: 18px;
+  }
+  .case-pitch .k { grid-column: span 3; font-family: "JetBrains Mono", monospace; font-size: 11px; color: var(--fg-mute); text-transform: uppercase; letter-spacing: 0.08em; }
+  .case-pitch .v { grid-column: span 9; font-size: clamp(18px, 1.8vw, 24px); line-height: 1.4; text-wrap: pretty; }
+  .case-pitch .v em { font-style: normal; background: var(--accent); color: var(--accent-ink); padding: 0 4px; }
+
+  .case-section { padding: 40px var(--pad-x) 56px; }
+  .case-section.alt { background: var(--bg-2); }
+
+  .sec-break { display: flex; align-items: center; gap: 18px; padding: 40px var(--pad-x) 0; }
+  .sec-break .sec-num {
+    font-family: "Inter Tight", sans-serif; font-weight: 700; font-size: 15px;
+    color: var(--accent-ink); background: var(--accent);
+    width: 34px; height: 34px; flex: 0 0 auto;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .sec-break .sec-label { font-family: "JetBrains Mono", monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--fg-mute); }
+  .sec-break .sec-title { font-family: "Inter Tight", sans-serif; font-weight: 700; font-size: clamp(20px, 2.4vw, 30px); letter-spacing: -0.02em; color: var(--fg); }
+  .sec-break-line { height: 1px; background: var(--rule); margin: 20px var(--pad-x) 0; }
+
+  .case-section p.body { max-width: 74ch; margin: 0; color: var(--fg-dim); font-size: 16px; line-height: 1.75; }
+  .case-section p.body + p.body { margin-top: 16px; }
+  .imgframe { overflow: hidden; position: relative; }
+  .imgframe img { display: block; width: 100%; height: auto; }
+  .imgframe .cap {
+    position: absolute; top: 12px; left: 12px;
+    font-family: "JetBrains Mono", monospace; font-size: 12px;
+    text-transform: uppercase; letter-spacing: 0.12em; color: var(--fg);
+    border: 1px solid var(--rule); padding: 6px 11px;
+    background: rgba(11,11,12,0.88); backdrop-filter: blur(6px); z-index: 2;
+  }
+
+  .step-list { display: flex; flex-direction: column; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 8px; }
+  .step { background: var(--bg); padding: 20px 24px; display: grid; grid-template-columns: 44px 1fr; gap: 18px; align-items: start; }
+  .step-num { font-family: "Inter Tight", sans-serif; font-weight: 700; font-size: 18px; color: var(--accent); }
+  .step h4 { font-family: "JetBrains Mono", monospace; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--fg-mute); margin: 0 0 6px; font-weight: 500; }
+  .step p { margin: 0; color: var(--fg-dim); font-size: 14.5px; line-height: 1.65; }
+
+  .method-block { border: 1px solid var(--rule); margin-top: 22px; }
+  .method-block-head { padding: 16px 22px; border-bottom: 1px solid var(--rule); background: var(--bg-2); display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; }
+  .method-block-head h4 { font-size: 17px; font-weight: 700; margin: 0; letter-spacing: -0.01em; }
+  .method-block-head .tag { font-family: "JetBrains Mono", monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); }
+  .method-block-body { padding: 18px 22px; }
+  .method-block-body p { margin: 0; color: var(--fg-dim); font-size: 14px; line-height: 1.65; }
+
+  table.data-table { width: 100%; border-collapse: collapse; margin-top: 8px; border: 1px solid var(--rule); }
+  table.data-table th, table.data-table td { text-align: left; padding: 11px 16px; border-bottom: 1px solid var(--rule); font-size: 13.5px; }
+  table.data-table th { font-family: "JetBrains Mono", monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--fg-mute); font-weight: 500; background: var(--bg-2); }
+  table.data-table td { color: var(--fg-dim); }
+  table.data-table td.rank1 { color: var(--accent); font-weight: 600; }
+  table.data-table tr:last-child td { border-bottom: none; }
+
+  .stat-band { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--rule); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+  .stat { background: var(--bg); padding: 22px 16px; }
+  .stat .v { font-family: "Inter Tight", sans-serif; font-weight: 700; font-size: clamp(20px, 2.2vw, 28px); letter-spacing: -0.03em; }
+  .stat .k { font-family: "JetBrains Mono", monospace; font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--fg-mute); margin-top: 8px; line-height: 1.4; }
+
+  .two-up { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; margin-top: 24px; }
+  .split { display: grid; grid-template-columns: 1fr 460px; gap: 32px; align-items: center; margin-top: 20px; }
+
+  .foot-min { padding: 18px var(--pad-x); border-top: 1px solid var(--rule); display: flex; justify-content: space-between; font-family: "JetBrains Mono", monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--fg-mute); }
+
+  @media (max-width: 900px) {
+    .case-meta > div { grid-column: span 6; }
+    .case-pitch .k, .case-pitch .v { grid-column: span 12; }
+    .stat-band { grid-template-columns: repeat(2, 1fr); }
+    .two-up { grid-template-columns: 1fr; }
+    .split { grid-template-columns: 1fr; }
+    table.data-table { font-size: 12px; }
+    table.data-table th, table.data-table td { padding: 8px 10px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-left"><a class="brand" href="../index.html" style="text-decoration:none; color:inherit;">SAMIKA GANDHI</a><a class="navlink" href="development.html">← Back</a></div>
+    <div></div>
+    <div class="nav-right">
+      <a class="navlink" href="../index.html#skills">Skills</a>
+      <a class="navlink" href="../resume.html">Resume</a>
+      <a class="navlink" href="../contact.html">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<style>
+.section-nav { display:flex; flex-wrap:wrap; gap:10px 20px; padding:18px var(--pad-x); border-block:1px solid var(--rule); }
+.section-nav a { color:var(--fg-dim); font-family:"JetBrains Mono",monospace; font-size:11px; text-decoration:none; }
+.section-nav a:hover { color:var(--accent); }
+section[id],div[id].sec-break { scroll-margin-top:90px; }
+.figure-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; margin-top:24px; }
+figure { margin:0; min-width:0; } figure img { display:block; width:100%; height:auto; border:1px solid var(--rule); }
+figcaption { color:var(--fg-dim); font-size:13px; line-height:1.5; padding-top:10px; }
+.table-scroll { overflow-x:auto; margin-top:24px; }
+.finding { border-left:3px solid var(--accent); padding:20px 24px; margin-top:24px; background:var(--bg-2); }
+.finding p { margin:0; color:var(--fg-dim); line-height:1.7; }
+@media(max-width:640px) { .figure-grid { grid-template-columns:1fr; } .step { grid-template-columns:28px 1fr; padding:18px 14px; gap:12px; } .deck-frame .cap { font-size:9px; } }
+</style><header class="case-hero" id="overview">
+<div class="case-meta">
+<div>▪ INDEX<strong>V/006</strong></div><div>▪ PROJECT<strong>Team Lab Study</strong></div>
+<div>▪ CATEGORY<strong>Development</strong></div><div>▪ FOCUS<strong>Biomaterial Sterilization</strong></div>
+</div>
+<h1 class="case-title">Evaluating the Performance of EtO, Autoclave, and UV Sterilization on Stainless Steel and Alumina with Bacterial Bioburden</h1>
+<div class="case-pitch"><div class="k">▪ Overview</div><div class="v">Compared autoclave, UV radiation, and 70% ethanol treatments on stainless steel 316L and alumina using <em>microscopy and bacterial growth measurements</em>. The study highlighted how insufficient bacterial loading in positive controls can prevent a reliable assessment of treatment effectiveness.</div></div>
+<p style="color:var(--fg-mute);font-size:13px;margin-top:22px;">Team: Areeba Ali, Marie Strittmatter, and Samika Gandhi.</p>
+</header>
+<nav class="section-nav" aria-label="Project sections"><a href="#overview">Overview</a><a href="#report">Report</a><a href="#aim">Aim</a><a href="#problem">Problem Statement</a><a href="#method">Method</a><a href="#analysis">Analysis</a><a href="#results">Results</a></nav>
+<div class="sec-break" id="report"><div class="sec-num">01</div><div><div class="sec-label">Section 1</div><h2 class="sec-title" style="margin:0;">Full Lab Report</h2></div></div><div class="sec-break-line"></div><section class="case-section"><p class="body">Explore the original five-page report, including the experimental protocol, microscopy images, statistical comparisons, discussion, and references.</p><div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:22px;"><a href="assets/sterilization/Sterilization-Lab-Report.pdf" target="_blank" rel="noopener" style="background:var(--accent);color:var(--accent-ink);padding:12px 18px;text-decoration:none;">View Full Report ↗</a><a href="assets/sterilization/Sterilization-Lab-Report.pdf" download style="color:var(--accent);border:1px solid var(--accent);padding:12px 18px;text-decoration:none;">Download PDF ↓</a></div></section>
+<div class="deck-preview" style="margin: 0; border-bottom: 1px solid var(--rule); background: var(--bg-2);">
+  <div class="deck-frame">
+    <span class="cap">Report preview · Page <span id="deck-cur">1</span> / <span id="deck-total">5</span></span>
+    <button class="deck-nav deck-prev" type="button" aria-label="Previous page">‹</button>
+    <button class="deck-nav deck-next" type="button" aria-label="Next page">›</button>
+    <img id="deck-img" src="assets/sterilization/slides/slide-01.jpg" alt="Sterilization lab report, page 1 of 5" />
+  </div>
+  <div class="deck-strip" id="deck-strip"></div>
+</div>
+
+<style>
+  .deck-frame { position: relative; width: 100%; aspect-ratio: 16/9; max-height: 560px; overflow: hidden; display: flex; align-items: center; justify-content: center; background: var(--bg-2); }
+  .deck-frame img { width: auto; height: 100%; max-width: 100%; object-fit: contain; display: block; }
+  .deck-frame .cap { position: absolute; top: 12px; left: 12px; font-family: "JetBrains Mono", monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--fg); border: 1px solid var(--rule); padding: 6px 12px; background: rgba(11,11,12,0.88); backdrop-filter: blur(6px); z-index: 3; }
+  .deck-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border-radius: 50%; background: rgba(11,11,12,0.72); backdrop-filter: blur(6px); border: 1px solid var(--rule); color: var(--fg); font-size: 22px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 3; transition: background 160ms, border-color 160ms; }
+  .deck-nav:hover { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .deck-prev { left: 16px; } .deck-next { right: 16px; }
+  .deck-strip { display: flex; gap: 6px; overflow-x: auto; padding: 12px var(--pad-x); border-top: 1px solid var(--rule); scrollbar-width: thin; }
+  .deck-thumb { flex: 0 0 auto; width: 60px; aspect-ratio: 0.77; border: 1px solid var(--rule); cursor: pointer; opacity: 0.55; transition: opacity 160ms, border-color 160ms; overflow: hidden; background: var(--bg); }
+  .deck-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .deck-thumb.active { opacity: 1; border-color: var(--accent); }
+  .deck-thumb:hover { opacity: 1; }
+</style>
+
+<script>
+  (function() {
+    const total = 5;
+    const img = document.getElementById('deck-img');
+    const cur = document.getElementById('deck-cur');
+    const strip = document.getElementById('deck-strip');
+    let i = 1;
+    for (let n = 1; n <= total; n++) {
+      const t = document.createElement('button');
+      t.type = 'button';
+      t.setAttribute('aria-label', 'View report page ' + n);
+      t.className = 'deck-thumb' + (n === 1 ? ' active' : '');
+      t.innerHTML = '<img src="assets/sterilization/slides/slide-' + String(n).padStart(2,'0') + '.jpg" alt="Page ' + n + ' thumbnail" loading="lazy" />';
+      t.addEventListener('click', () => go(n));
+      strip.appendChild(t);
+    }
+    function go(n) {
+      i = ((n - 1 + total) % total) + 1;
+      img.src = 'assets/sterilization/slides/slide-' + String(i).padStart(2,'0') + '.jpg';
+      cur.textContent = i;
+      img.alt = "Sterilization lab report, page " + i + " of " + total;
+      strip.querySelectorAll('.deck-thumb').forEach((el, idx) => el.classList.toggle('active', idx === i - 1));
+      const active = strip.querySelector('.deck-thumb.active');
+      if (active) active.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    }
+    document.querySelector('.deck-prev').addEventListener('click', () => go(i - 1));
+    document.querySelector('.deck-next').addEventListener('click', () => go(i + 1));
+  })();
+</script>
+
+<div class="sec-break" id="aim"><div class="sec-num">02</div><div><div class="sec-label">Section 2</div><h2 class="sec-title" style="margin:0;">Aim</h2></div></div><div class="sec-break-line"></div><section class="case-section"><p class="body">Evaluate the relative effectiveness of autoclaving, UV radiation, and ethanol treatment at reducing viable E. coli on stainless steel 316L and alumina. Compare treatments using qualitative surface imaging and quantitative absorbance measurements, and examine whether the material influences the observed response.</p></section>
+<div class="sec-break" id="problem"><div class="sec-num">03</div><div><div class="sec-label">Section 3</div><h2 class="sec-title" style="margin:0;">Problem Statement</h2></div></div><div class="sec-break-line"></div><section class="case-section alt"><p class="body">Selecting a sterilization method for a biomaterial requires evidence that the treatment reduces viable contamination on the relevant surface. This experiment compared three treatment conditions across two model biomaterials rather than assuming that one approach would perform equally well on both.</p><p class="body">A meaningful comparison also depends on the controls: inoculated, untreated samples must demonstrate bacterial growth, while uninoculated samples establish the background signal. Without that separation, a low post-treatment signal cannot establish whether bacteria were removed or whether sufficient contamination was ever present.</p></section>
+<div class="sec-break" id="method"><div class="sec-num">04</div><div><div class="sec-label">Section 4</div><h2 class="sec-title" style="margin:0;">Method</h2></div></div><div class="sec-break-line"></div><section class="case-section"><p class="body">The report describes 22 samples: three replicates for each of two materials under each of three treatments (18 treated samples), plus one inoculated positive control and one uninoculated negative control per material (four controls).</p><div class="step-list" style="margin-top:24px;"><div class="step"><div class="step-num">1</div><div><h3 style="margin:0 0 8px;font-size:17px;">Establish a baseline and inoculate</h3><p>Captured baseline optical images. Prepared E. coli at a target concentration of 1 × 10⁶ bacteria/mL, inoculated 20 samples, and allowed 30 minutes for adhesion. One uninoculated sample of each material served as a negative control.</p></div></div><div class="step"><div class="step-num">2</div><div><h3 style="margin:0 0 8px;font-size:17px;">Apply three treatment conditions</h3><p>Autoclave: 121°C at 15 psi for 30 minutes. UV: 40 μW/cm² for 1 hour, approximately 144 mJ/cm² total dose. Ethanol: 70% for 20 minutes, followed by three PBS rinses. Inoculated, untreated samples served as positive controls.</p></div></div><div class="step"><div class="step-num">3</div><div><h3 style="margin:0 0 8px;font-size:17px;">Measure growth and image the surfaces</h3><p>Compared pre-inoculation, post-inoculation, and post-treatment optical images. Measured TSB turbidity as absorbance at 600 nm. For fluorescence imaging, incubated samples with 2 μg/mL BioTracker Bacterial FtsZ Live Cell Dye for 30 minutes in the dark, rinsed twice with PBS, and imaged at 488 nm excitation and 510 nm emission.</p></div></div></div></section>
+<div class="sec-break" id="analysis"><div class="sec-num">05</div><div><div class="sec-label">Section 5</div><h2 class="sec-title" style="margin:0;">Analysis</h2></div></div><div class="sec-break-line"></div><section class="case-section alt"><p class="body">The report used two-sample t-tests assuming equal variances, with a significance threshold of p &lt; 0.05. None of the reported comparisons reached statistical significance. These are the comparisons reported in the lab report; they do not establish that the three treatments are equivalent.</p><div class="table-scroll"><table class="data-table"><caption style="text-align:left;color:var(--fg-dim);padding-bottom:12px;">Reported two-sample t-test comparisons</caption><thead><tr><th scope="col">Comparison</th><th scope="col">p-value</th><th scope="col">Significant at p &lt; 0.05?</th></tr></thead><tbody><tr><td>Alumina vs. stainless steel</td><td>0.313</td><td>No</td></tr><tr><td>UV vs. positive control</td><td>0.154</td><td>No</td></tr><tr><td>UV vs. negative control</td><td>0.409</td><td>No</td></tr><tr><td>Ethanol vs. positive control</td><td>0.158</td><td>No</td></tr><tr><td>Ethanol vs. negative control</td><td>0.773</td><td>No</td></tr><tr><td>Autoclave vs. positive control</td><td>0.154</td><td>No</td></tr><tr><td>Autoclave vs. negative control</td><td>0.415</td><td>No</td></tr></tbody></table></div><figure style="max-width:760px;margin-top:28px;"><img src="assets/sterilization/absorbance-summary.png" loading="lazy" alt="Original report chart of absorbance at 600 nm for ethanol, autoclave, UV, positive control, and negative control, comparing stainless steel and alumina." /><figcaption>Original report Figure 4. Absorbance summary with the error bars shown in the source report. Low and overlapping control signals limit interpretation.</figcaption></figure><p class="body">Fluorescence images of alumina from the Wednesday lab group were also reviewed. The report describes small differences in cloudiness, speckling, and contrast, but does not interpret these as evidence of different bacterial presence or sterilization effectiveness.</p></section>
+<div class="sec-break" id="results"><div class="sec-num">06</div><div><div class="sec-label">Section 6</div><h2 class="sec-title" style="margin:0;">Results</h2></div></div><div class="sec-break-line"></div><section class="case-section"><p class="body">The study was inconclusive. Positive controls did not show the expected high absorbance or visible turbidity, indicating insufficient or inconsistent bacterial loading. As a result, the experiment could not reliably rank the sterilization methods or establish their effectiveness on either material.</p><div class="figure-grid"><figure><img src="assets/sterilization/alumina-autoclave.png" loading="lazy" alt="Fluorescence image of alumina following autoclave treatment, reproduced from report Figure 1." /><figcaption>Figure 1. Alumina after autoclave treatment. Source: Wednesday group images reproduced in the lab report.</figcaption></figure><figure><img src="assets/sterilization/alumina-ethanol.png" loading="lazy" alt="Fluorescence image of alumina following ethanol treatment, reproduced from report Figure 2." /><figcaption>Figure 2. Alumina after ethanol treatment. Source: Wednesday group images reproduced in the lab report.</figcaption></figure><figure><img src="assets/sterilization/alumina-uv.png" loading="lazy" alt="Fluorescence image of alumina following uv treatment, reproduced from report Figure 3." /><figcaption>Figure 3. Alumina after uv treatment. Source: Wednesday group images reproduced in the lab report.</figcaption></figure></div><div class="finding"><p><strong style="color:var(--fg);">Key takeaway:</strong> No statistically significant difference is not evidence of equal sterilization performance. The positive-control signal must first demonstrate a viable bacterial challenge.</p></div><p class="body">The report identifies possible contributors including an overly diluted bacterial preparation, handling variability, and a shortened culture period of 24 hours rather than the planned 48 hours. These were proposed explanations, not confirmed causes.</p><p class="body">A follow-up study should first verify bacterial growth and control separation, then repeat the treatment comparison with consistent sample handling and sufficient culture time. The report also proposes surface cleaning to reduce interference, particularly before UV exposure; that additional step would need to be defined and evaluated separately.</p></section>
+<footer class="foot-min"><div>© 2026 S. Gandhi · V/006</div><a href="development.html" style="color:var(--fg-mute);text-decoration:none;">← Back to Development</a></footer></body></html>

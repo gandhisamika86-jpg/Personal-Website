@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Summer 2026 · Lifecycle Engineering | Samika Gandhi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  .case-hero { padding: 40px var(--pad-x) 24px; }
+  .case-meta {
+    display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--grid-gap);
+    font-family: "JetBrains Mono", monospace; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--fg-mute); margin-bottom: 28px;
+  }
+  .case-meta > div { grid-column: span 3; }
+  .case-meta strong { color: var(--fg); font-weight: 500; display: block; margin-top: 4px; font-size: 13px; letter-spacing: 0.02em; }
+  .case-title {
+    font-family: "Inter Tight", sans-serif; font-weight: 700;
+    font-size: clamp(32px, 5vw, 68px); line-height: 1.02;
+    letter-spacing: -0.03em; margin: 0; text-wrap: balance;
+  }
+  .main-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: "JetBrains Mono", monospace; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--accent-ink); background: var(--accent);
+    padding: 6px 12px; margin-bottom: 18px;
+  }
+
+  /* Section breaker */
+  .sec-break {
+    display: flex; align-items: center; gap: 18px;
+    padding: 40px var(--pad-x) 0;
+  }
+  .sec-break .sec-num {
+    font-family: "Inter Tight", sans-serif; font-weight: 700;
+    font-size: 15px; color: var(--accent-ink); background: var(--accent);
+    width: 34px; height: 34px; flex: 0 0 auto;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .sec-break .sec-label {
+    font-family: "JetBrains Mono", monospace; font-size: 12px;
+    text-transform: uppercase; letter-spacing: 0.12em; color: var(--fg-mute);
+  }
+  .sec-break .sec-title {
+    font-family: "Inter Tight", sans-serif; font-weight: 700;
+    font-size: clamp(22px, 2.6vw, 32px); letter-spacing: -0.02em; color: var(--fg);
+  }
+  .sec-break-line { height: 1px; background: var(--rule); margin: 20px var(--pad-x) 0; }
+
+  .case-section { padding: 40px var(--pad-x) 56px; }
+  .case-section.alt { background: var(--bg-2); }
+  .case-section p.body { max-width: 74ch; margin: 0; color: var(--fg-dim); font-size: 16px; line-height: 1.75; }
+  .case-section p.body + p.body { margin-top: 18px; }
+
+  /* Horizontal timeline */
+  .htimeline { width: 100%; padding: 8px var(--pad-x) 0; box-sizing: border-box; }
+  .htimeline svg { width: 100%; height: auto; display: block; max-width: 1500px; margin: 0 auto; }
+  .htimeline-mobile { display: none; }
+
+  /* Descriptive steps below timeline */
+  .imgframe { overflow: hidden; position: relative; min-width: 0; }
+  .imgframe img { display: block; width: 100%; height: auto; }
+  .imgframe .cap {
+    position: absolute; top: 10px; left: 10px;
+    font-family: "JetBrains Mono", monospace; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.1em; color: var(--fg);
+    border: 1px solid var(--rule); padding: 5px 10px;
+    background: rgba(11,11,12,0.88); backdrop-filter: blur(6px); z-index: 2;
+  }
+  .linx-imgs { min-width: 0; }
+  .linx-imgs > div { min-width: 0; }
+  .linx-imgs img { max-height: 420px; object-fit: contain; margin: 0 auto; }
+
+  .desc-steps { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 44px; }
+  .desc-step { background: var(--bg); padding: 22px 24px; display: grid; grid-template-columns: 60px 1fr; gap: 16px; align-items: start; border-bottom: none; }
+  .desc-step .ds-num {
+    font-family: "Inter Tight", sans-serif; font-weight: 700; font-size: 34px;
+    color: var(--accent); letter-spacing: -0.03em; line-height: 1;
+  }
+  .desc-step .ds-tag {
+    font-family: "JetBrains Mono", monospace; font-size: 10.5px; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--fg-mute); display: block; margin-top: 6px;
+  }
+  .desc-step h4 { font-size: 19px; font-weight: 600; margin: 0 0 10px; letter-spacing: -0.01em; color: var(--fg); }
+  .desc-step p { margin: 0; color: var(--fg-dim); font-size: 15.5px; line-height: 1.75; max-width: 68ch; }
+
+  .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+  .tag-pill { font-family: "JetBrains Mono", monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--fg-dim); border: 1px solid var(--rule); padding: 6px 12px; }
+
+  /* Other project block */
+  .other-block { margin-top: 44px; padding-top: 36px; border-top: 1px solid var(--rule); }
+  .other-block:first-of-type { margin-top: 0; padding-top: 0; border-top: none; }
+  .other-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; flex-wrap: wrap; gap: 8px; }
+  .other-head h4 { font-size: 21px; font-weight: 600; margin: 0; letter-spacing: -0.01em; }
+  .other-head .tag { font-family: "JetBrains Mono", monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); }
+  .other-summary { color: var(--fg-dim); font-size: 15px; line-height: 1.7; max-width: 74ch; margin: 8px 0 0; }
+
+  .mini-steps { display: flex; flex-direction: column; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 20px; }
+  .mini-step { background: var(--bg); padding: 20px 24px; display: grid; grid-template-columns: 44px 1fr; gap: 16px; align-items: start; }
+  .mini-step .m-num { font-family: "Inter Tight", sans-serif; font-weight: 700; font-size: 18px; color: var(--accent); }
+  .mini-step h5 { font-family: "JetBrains Mono", monospace; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--fg-mute); margin: 0 0 6px; font-weight: 500; }
+  .mini-step p { margin: 0; color: var(--fg-dim); font-size: 14.5px; line-height: 1.65; }
+
+  .foot-min { padding: 18px var(--pad-x); border-top: 1px solid var(--rule); display: flex; justify-content: space-between; font-family: "JetBrains Mono", monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--fg-mute); }
+
+  /* Responsive side-by-side media + text */
+  .split-linx { display: grid; grid-template-columns: 1fr 320px; gap: 32px; align-items: center; }
+
+  @media (max-width: 900px) {
+    .split-linx { grid-template-columns: 1fr; }
+    .linx-imgs { grid-template-columns: 1fr !important; max-width: 480px; margin-left: auto; margin-right: auto; }
+    .case-meta > div { grid-column: span 6; }
+    .desc-steps { grid-template-columns: 1fr; }
+    .desc-step { grid-template-columns: 48px 1fr; }
+    .desc-step .ds-num { font-size: 26px; }
+    .mini-step { grid-template-columns: 32px 1fr; padding: 16px; }
+    .htimeline { display: none; }
+    .htimeline-mobile { display: block; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-left"><a class="brand" href="../index.html" style="text-decoration:none; color:inherit;">SAMIKA GANDHI</a><a class="navlink" href="../index.html">← Back</a></div>
+    <div></div>
+    <div class="nav-right">
+      <a class="navlink" href="../index.html#skills">Skills</a>
+      <a class="navlink" href="../resume.html">Resume</a>
+      <a class="navlink" href="../contact.html">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="case-hero">
+  <div class="case-meta">
+    <div>▪ INDEX<strong>Q/001</strong></div>
+    <div>▪ DATES<strong>May – Aug 2026</strong></div>
+    <div>▪ CATEGORY<strong>Quality</strong></div>
+    <div>▪ COMPANY<strong>J&amp;J MedTech · Cincinnati, OH</strong></div>
+  </div>
+  <span class="main-badge">★ Main Project, This Internship</span>
+  <h1 class="case-title">Summer 2026 · Lifecycle Engineering.</h1>
+</header>
+
+<!-- SECTION 1 BREAKER -->
+<div class="sec-break">
+  <div class="sec-num">01</div>
+  <div>
+    <div class="sec-label">Section 1</div>
+    <div class="sec-title">Esophageal Implant, Quality System Integration</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section">
+  <p class="body">The product had been acquired from Torax Medical, a separate company with its own engineering history, its own FMEAs, and its own way of documenting risk. Bringing it under J&amp;J's quality system meant more than paperwork, the risk documentation had to reflect one coherent, defensible system, not two companies' worth of independent assumptions stitched together. This device is also Class III, the FDA's highest scrutiny tier, reserved for products that support or sustain human life, which raised the stakes on getting every step right.</p>
+
+  <!-- HORIZONTAL TIMELINE (desktop) -->
+  <div class="htimeline">
+    <svg viewBox="0 0 1500 480" fill="none">
+      <rect x="60" y="208" width="1380" height="40" fill="var(--accent)"/>
+
+      <line x1="140" y1="120" x2="140" y2="208" stroke="var(--accent)" stroke-width="2"/>
+      <polygon points="140,208 132,190 148,190" fill="var(--accent)"/>
+      <text x="140" y="60" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" fill="var(--fg-mute)" letter-spacing="1">STEP 01</text>
+      <text x="140" y="88" text-anchor="middle" font-family="Inter Tight, sans-serif" font-weight="600" font-size="18" fill="var(--fg)">Map FMEAs</text>
+      <text x="140" y="107" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="12.5" fill="var(--fg-dim)">J&amp;J vs. Torax</text>
+
+      <line x1="345" y1="248" x2="345" y2="340" stroke="var(--accent)" stroke-width="2"/>
+      <polygon points="345,248 337,266 353,266" fill="var(--accent)"/>
+      <text x="345" y="370" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" fill="var(--fg-mute)" letter-spacing="1">STEP 02</text>
+      <text x="345" y="398" text-anchor="middle" font-family="Inter Tight, sans-serif" font-weight="600" font-size="18" fill="var(--fg)">Learn the Product</text>
+      <text x="345" y="417" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="12.5" fill="var(--fg-dim)">CAD, complaints, video</text>
+
+      <line x1="550" y1="120" x2="550" y2="208" stroke="var(--accent)" stroke-width="2"/>
+      <polygon points="550,208 542,190 558,190" fill="var(--accent)"/>
+      <text x="550" y="60" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" fill="var(--fg-mute)" letter-spacing="1">STEP 03</text>
+      <text x="550" y="88" text-anchor="middle" font-family="Inter Tight, sans-serif" font-weight="600" font-size="18" fill="var(--fg)">Fill in Known</text>
+
+      <line x1="755" y1="248" x2="755" y2="340" stroke="var(--accent)" stroke-width="2"/>
+      <polygon points="755,248 747,266 763,266" fill="var(--accent)"/>
+      <text x="755" y="370" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" fill="var(--fg-mute)" letter-spacing="1">STEP 04</text>
+      <text x="755" y="398" text-anchor="middle" font-family="Inter Tight, sans-serif" font-weight="600" font-size="18" fill="var(--fg)">Solve Unknown</text>
+      <text x="755" y="417" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="12.5" fill="var(--fg-dim)">Six Sigma vs. Torax</text>
+
+      <line x1="960" y1="120" x2="960" y2="208" stroke="var(--accent)" stroke-width="2"/>
+      <polygon points="960,208 952,190 968,190" fill="var(--accent)"/>
+      <text x="960" y="60" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" fill="var(--fg-mute)" letter-spacing="1">STEP 05</text>
+      <text x="960" y="88" text-anchor="middle" font-family="Inter Tight, sans-serif" font-weight="600" font-size="18" fill="var(--fg)">Collaborate</text>
+
+      <line x1="1165" y1="248" x2="1165" y2="340" stroke="var(--accent)" stroke-width="2"/>
+      <polygon points="1165,248 1157,266 1173,266" fill="var(--accent)"/>
+      <text x="1165" y="370" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" fill="var(--fg-mute)" letter-spacing="1">STEP 06</text>
+      <text x="1165" y="398" text-anchor="middle" font-family="Inter Tight, sans-serif" font-weight="600" font-size="18" fill="var(--fg)">Get Approval</text>
+
+      <line x1="1370" y1="120" x2="1370" y2="208" stroke="var(--accent)" stroke-width="2"/>
+      <polygon points="1370,208 1362,190 1378,190" fill="var(--accent)"/>
+      <text x="1370" y="60" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" fill="var(--fg-mute)" letter-spacing="1">STEP 07</text>
+      <text x="1370" y="88" text-anchor="middle" font-family="Inter Tight, sans-serif" font-weight="600" font-size="18" fill="var(--fg)">FDA Submission</text>
+
+      <text x="140" y="234" text-anchor="middle" font-family="Inter Tight, sans-serif" font-weight="700" font-size="16" fill="var(--accent-ink)">01</text>
+      <text x="345" y="234" text-anchor="middle" font-family="Inter Tight, sans-serif" font-weight="700" font-size="16" fill="var(--accent-ink)">02</text>
+      <text x="550" y="234" text-anchor="middle" font-family="Inter Tight, sans-serif" font-weight="700" font-size="16" fill="var(--accent-ink)">03</text>
+      <text x="755" y="234" text-anchor="middle" font-family="Inter Tight, sans-serif" font-weight="700" font-size="16" fill="var(--accent-ink)">04</text>
+      <text x="960" y="234" text-anchor="middle" font-family="Inter Tight, sans-serif" font-weight="700" font-size="16" fill="var(--accent-ink)">05</text>
+      <text x="1165" y="234" text-anchor="middle" font-family="Inter Tight, sans-serif" font-weight="700" font-size="16" fill="var(--accent-ink)">06</text>
+      <text x="1370" y="234" text-anchor="middle" font-family="Inter Tight, sans-serif" font-weight="700" font-size="16" fill="var(--accent-ink)">07</text>
+    </svg>
+  </div>
+
+  <!-- DETAILED STEP WRITE-UPS -->
+  <div class="desc-steps">
+    <div class="desc-step">
+      <div><div class="ds-num">01</div><span class="ds-tag">Step 1</span></div>
+      <div>
+        <h4>Map What Changed Between the Two FMEAs</h4>
+        <p>Started by pulling both sets of risk documentation side by side: J&amp;J's own FMEA framework, and the original FMEAs Torax Medical had built for the device before the acquisition. The two companies didn't structure risk the same way, so the first task was purely comparative, going line by line to map exactly where the frameworks diverged, which failure modes were captured differently, and what had meaningfully changed in the years since Torax first wrote theirs.</p>
+      </div>
+    </div>
+    <div class="desc-step">
+      <div><div class="ds-num">02</div><span class="ds-tag">Step 2</span></div>
+      <div>
+        <h4>Learn the Product, Completely</h4>
+        <p>Before touching a single risk line, I had to actually understand the device inside and out, not just what the FMEA said about it. That meant working through CAD drawings to understand the physical design, reading through years of customer complaints to see how the device actually failed in the field, watching surgical implantation videos to understand the clinical procedure itself, and reviewing DVT (design verification testing) reports to see what had already been proven and what hadn't. The goal was to know the product well enough that I could sanity-check the paperwork, not just transcribe it.</p>
+      </div>
+    </div>
+    <div class="desc-step">
+      <div><div class="ds-num">03</div><span class="ds-tag">Step 3</span></div>
+      <div>
+        <h4>Fill in What I Knew</h4>
+        <p>With that grounding in place, I started building out the merged FMEA, filling in every risk, failure mode, and control I could confidently document based on the product knowledge and history I'd just spent time absorbing. This was the more straightforward half of the work: applying what was already knowable and getting it correctly documented in J&amp;J's format.</p>
+      </div>
+    </div>
+    <div class="desc-step">
+      <div><div class="ds-num">04</div><span class="ds-tag">Step 4</span></div>
+      <div>
+        <h4>Solve What I Didn't Know</h4>
+        <p>The harder half was everything that wasn't already answered, including something as fundamental as how to actually run some of the required risk calculations. There isn't one universal method here: the Six Sigma approach and Torax's own original approach calculate and weight risk differently, and each comes with real tradeoffs in rigor, assumptions, and how conservative the output is. I had to understand the pros and cons of both before choosing, and ultimately went with whichever method produced the highest level of patient safety, not the one that was fastest or most convenient to apply.</p>
+      </div>
+    </div>
+    <div class="desc-step">
+      <div><div class="ds-num">05</div><span class="ds-tag">Step 5</span></div>
+      <div>
+        <h4>Collaborate Cross-Functionally</h4>
+        <p>A risk mitigation isn't real until it's backed by evidence, so the next phase was almost entirely cross-functional. I worked directly with packaging, commercial education, marketing, R&amp;D, and other teams to track down and attach the actual supporting documentation behind each FMEA line, proof that a labeled risk had a real, verifiable mitigation step behind it, not just a claim.</p>
+      </div>
+    </div>
+    <div class="desc-step">
+      <div><div class="ds-num">06</div><span class="ds-tag">Step 6</span></div>
+      <div>
+        <h4>Leadership &amp; Regulatory Approval</h4>
+        <p>Once the merged FMEA was complete and every risk mitigation was documented and traceable back to its source, the full package went through internal leadership review, followed by regulatory approval, before being finalized as the product's official quality system.</p>
+      </div>
+    </div>
+    <div class="desc-step">
+      <div><div class="ds-num">07</div><span class="ds-tag">Step 7 · Next</span></div>
+      <div>
+        <h4>FDA Submission</h4>
+        <p>Because this is a Class III device, the next step beyond internal approval is formal submission to the FDA, the highest scrutiny tier in the regulatory process, reserved for devices that support or sustain human life.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="tag-row">
+    <span class="tag-pill">AFMEA / DFMEA / PFMEA</span>
+    <span class="tag-pill">M&amp;A Quality Integration</span>
+    <span class="tag-pill">Six Sigma Risk Methods</span>
+    <span class="tag-pill">Cross-functional Collaboration</span>
+    <span class="tag-pill">Class III / FDA Submission</span>
+  </div>
+
+  <div class="linx-imgs" style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 32px;">
+    <div class="imgframe" style="border: 1px solid var(--rule); background: #fff;">
+      <span class="cap">Product LINX</span>
+      <img src="assets/quality-jnj/linx-device-solo.jpg" alt="LINX Reflux Management System device, a ring of interlinked titanium beads with magnetic cores." />
+    </div>
+    <div class="imgframe" style="border: 1px solid var(--rule); background: #fff;">
+      <span class="cap">Placement Around the Esophagus</span>
+      <img src="assets/quality-jnj/linx-esophagus.jpg" alt="Diagram showing the LINX device placed around the esophagus at the junction with the stomach, before and during food passage." />
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2 BREAKER -->
+<div class="sec-break">
+  <div class="sec-num">02</div>
+  <div>
+    <div class="sec-label">Section 2</div>
+    <div class="sec-title">Other Projects, Same Internship</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section alt">
+
+  <div class="other-block">
+    <div class="other-head">
+      <h4>Tissue Sealer Performance Trials</h4>
+      <span class="tag">Root cause investigation</span>
+    </div>
+    <p class="other-summary">A 300-trigger performance study on porcine tissue, run to get to the bottom of a customer complaint trend on a tissue sealer device.</p>
+
+    <div class="mini-steps">
+      <div class="mini-step">
+        <div class="m-num">1</div>
+        <div>
+          <h5>Step 1</h5>
+          <p>Identified and understood the customer complaint trend, what was actually being reported, and where in the process it was likely originating.</p>
+        </div>
+      </div>
+      <div class="mini-step">
+        <div class="m-num">2</div>
+        <div>
+          <h5>Step 2</h5>
+          <p>Defined what we were actually measuring and the acceptance criteria for Cpk, set the LSL and USL, and established clear pass/fail benchmarks before any testing began.</p>
+        </div>
+      </div>
+      <div class="mini-step">
+        <div class="m-num">3</div>
+        <div>
+          <h5>Step 3</h5>
+          <p>Developed the test protocol: number of operators, sample size, trials per operator, test conditions, which tissue to use, a training manual so different operators could run it consistently, and the datasheet to capture it all.</p>
+        </div>
+      </div>
+      <div class="mini-step">
+        <div class="m-num">4</div>
+        <div>
+          <h5>Step 4</h5>
+          <p>Had operators execute the protocol, then ran the full statistical analysis in Minitab, establishing a Cp/Cpk of 1.5 and eliminating the trigger mechanism as the root cause.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="other-block">
+    <div class="other-head">
+      <h4>Internal Audit, 6 Labs</h4>
+      <span class="tag">Compliance</span>
+    </div>
+    <p class="other-summary">Facilitated an internal audit across 6 labs, identifying 4 nonconformances and recommending corrective actions to close compliance gaps and prevent recurrence.</p>
+  </div>
+</section>
+
+<footer class="foot-min">
+  <div>© 2026 S. Gandhi · Q/001</div>
+  <div><a href="quality.html" style="color: var(--fg-mute); text-decoration: none;">← Back to Quality</a></div>
+</footer>
+
+</body>
+</html>

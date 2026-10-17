@@ -1,0 +1,635 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Evaluating Hemocompatibility of Abbott LVAD | Samika Gandhi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  .case-hero { padding: 40px var(--pad-x) 24px; }
+
+  .case-meta {
+    display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--grid-gap);
+    font-family: "JetBrains Mono", monospace; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--fg-mute); margin-bottom: 28px;
+  }
+  .case-meta > div { grid-column: span 3; }
+  .case-meta strong { color: var(--fg); font-weight: 500; display: block; margin-top: 4px; font-size: 13px; letter-spacing: 0.02em; }
+  .case-title {
+    font-family: "Inter Tight", sans-serif; font-weight: 700;
+    font-size: clamp(30px, 4.6vw, 62px); line-height: 1.04;
+    letter-spacing: -0.025em; margin: 0 0 20px; text-wrap: balance;
+  }
+  .case-pitch {
+    display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--grid-gap);
+    border-top: 1px solid var(--rule); padding-top: 18px;
+  }
+  .case-pitch .k { grid-column: span 3; font-family: "JetBrains Mono", monospace; font-size: 11px; color: var(--fg-mute); text-transform: uppercase; letter-spacing: 0.08em; }
+  .case-pitch .v { grid-column: span 9; font-size: clamp(18px, 1.7vw, 23px); line-height: 1.4; text-wrap: pretty; }
+  .case-pitch .v em { font-style: normal; background: var(--accent); color: var(--accent-ink); padding: 0 4px; }
+
+  .case-section { padding: 40px var(--pad-x) 56px; }
+  .case-section.alt { background: var(--bg-2); }
+
+  /* Section breaker (replaces old § cs-head) */
+  .sec-break { display: flex; align-items: center; gap: 18px; padding: 40px var(--pad-x) 0; }
+  .sec-break .sec-num {
+    font-family: "Inter Tight", sans-serif; font-weight: 700; font-size: 15px;
+    color: var(--accent-ink); background: var(--accent);
+    width: 34px; height: 34px; flex: 0 0 auto;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .sec-break .sec-label { font-family: "JetBrains Mono", monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--fg-mute); }
+  .sec-break .sec-title { font-family: "Inter Tight", sans-serif; font-weight: 700; font-size: clamp(20px, 2.4vw, 30px); letter-spacing: -0.02em; color: var(--fg); }
+  .sec-break-line { height: 1px; background: var(--rule); margin: 20px var(--pad-x) 0; }
+
+  .case-section p.body { max-width: 74ch; margin: 0; color: var(--fg-dim); font-size: 16px; line-height: 1.75; }
+  .case-section p.body + p.body { margin-top: 16px; }
+
+  .imgframe { overflow: hidden; position: relative; }
+  .imgframe img { display: block; width: 100%; height: auto; }
+  .imgframe .cap {
+    position: absolute; top: 12px; left: 12px;
+    font-family: "JetBrains Mono", monospace; font-size: 12px;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--fg);
+    border: 1px solid var(--rule); padding: 6px 11px;
+    background: rgba(11,11,12,0.88); backdrop-filter: blur(6px);
+    z-index: 2;
+  }
+
+  /* Phase timeline blocks */
+  .phase-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 8px; }
+  .phase { background: var(--bg); padding: 22px; }
+  .phase .tag { font-family: "JetBrains Mono", monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 8px; }
+  .phase h4 { font-size: 16px; font-weight: 600; margin: 0 0 10px; letter-spacing: -0.01em; }
+  .phase ul { margin: 0; padding: 0; list-style: none; color: var(--fg-dim); font-size: 13.5px; line-height: 1.6; }
+  .phase ul li { padding: 4px 0; }
+  .phase ul li::before { content: "– "; color: var(--fg-mute); }
+
+  /* Expanded technique blocks */
+  .tech-block { border: 1px solid var(--rule); margin-top: 22px; }
+  .tech-block-head {
+    padding: 18px 24px; border-bottom: 1px solid var(--rule); background: var(--bg-2);
+    display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px;
+  }
+  .tech-block-head h4 { font-size: 20px; font-weight: 700; margin: 0; letter-spacing: -0.01em; }
+  .tech-block-head .tag { font-family: "JetBrains Mono", monospace; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); }
+  .tech-block-body { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); }
+  .tech-col { background: var(--bg); padding: 20px 22px; }
+  .tech-col .tc-label { font-family: "JetBrains Mono", monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--fg-mute); margin-bottom: 10px; }
+  .tech-col p { margin: 0; color: var(--fg-dim); font-size: 13.5px; line-height: 1.65; }
+  .tech-col ul { margin: 0; padding: 0 0 0 16px; color: var(--fg-dim); font-size: 13.5px; line-height: 1.65; }
+  .tech-col li { margin-bottom: 4px; }
+
+  /* Stat band */
+  .stat-band { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: var(--rule); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+  .stat { background: var(--bg); padding: 22px 18px; }
+  .stat .v { font-family: "Inter Tight", sans-serif; font-weight: 700; font-size: clamp(24px, 2.6vw, 32px); letter-spacing: -0.03em; }
+  .stat .k { font-family: "JetBrains Mono", monospace; font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--fg-mute); margin-top: 8px; line-height: 1.4; }
+
+  /* Data management grid */
+  .dm-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 8px; }
+  .dm { background: var(--bg); padding: 22px; }
+  .dm .tag { font-family: "JetBrains Mono", monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 8px; }
+  .dm h4 { font-size: 15.5px; font-weight: 600; margin: 0 0 10px; letter-spacing: -0.005em; }
+  .dm p { margin: 0; color: var(--fg-dim); font-size: 13px; line-height: 1.6; }
+
+  /* Standards table */
+  .std-table { width: 100%; border-collapse: collapse; margin-top: 8px; border: 1px solid var(--rule); }
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 8px; }
+  .skill-col { background: var(--bg); padding: 24px 26px; }
+  .skill-col .sk-tag { font-family: "JetBrains Mono", monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 14px; }
+  .skill-col ul { margin: 0; padding: 0 0 0 18px; color: var(--fg-dim); font-size: 14px; line-height: 1.8; }
+  .skill-col li { margin-bottom: 4px; }
+  @media (max-width: 900px) { .skills-grid { grid-template-columns: 1fr; } }
+  .std-table th, .std-table td { text-align: left; padding: 14px 20px; border-bottom: 1px solid var(--rule); font-size: 14px; }
+  .std-table th { font-family: "JetBrains Mono", monospace; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--fg-mute); font-weight: 500; background: var(--bg-2); }
+  .std-table td { color: var(--fg-dim); }
+  .std-table td.std-code { color: var(--fg); font-weight: 600; font-family: "JetBrains Mono", monospace; font-size: 13px; }
+  .std-table tr:last-child td { border-bottom: none; }
+
+  .foot-min { padding: 18px var(--pad-x); border-top: 1px solid var(--rule); display: flex; justify-content: space-between; font-family: "JetBrains Mono", monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--fg-mute); }
+
+  @media (max-width: 900px) {
+    .case-meta > div { grid-column: span 6; }
+    .case-pitch .k, .case-pitch .v { grid-column: span 12; }
+    .phase-grid, .tech-block-body, .dm-grid { grid-template-columns: 1fr; }
+    .stat-band { grid-template-columns: repeat(2, 1fr); }
+    .std-table { font-size: 12.5px; }
+    .std-table th, .std-table td { padding: 10px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-left">
+      <a class="brand" href="../index.html" style="text-decoration:none; color:inherit;">SAMIKA GANDHI</a>
+    <a class="navlink" href="../index.html">← Back</a>
+      </div>
+    <div></div>
+    <div class="nav-right">
+      <a class="navlink" href="../index.html#skills">Skills</a>
+      <a class="navlink" href="../resume.html">Resume</a>
+      <a class="navlink" href="../contact.html">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="case-hero">
+  <div class="case-meta">
+    <div>▪ INDEX<strong>V/001</strong></div>
+    <div>▪ YEAR<strong>2026 · Team Project</strong></div>
+    <div>▪ CATEGORY<strong>Development</strong></div>
+    <div>▪ SPONSOR<strong>Abbott Cardiovascular</strong></div>
+  </div>
+  <h1 class="case-title">Evaluating Hemocompatibility of Abbott LVAD using 3 Imaging Techniques.</h1>
+
+  <div class="case-pitch">
+    <div class="k">▪ Overview</div>
+    <div class="v">
+      A full imaging plan to assess hemocompatibility of Abbott's <em>HeartMate 3 LVAD</em> using SEM, Brightfield Microscopy, and CT, from in vitro flow-loop testing through 90-day in vivo validation.
+    </div>
+  </div>
+</header>
+
+<!-- PRESENTATION PREVIEW CAROUSEL -->
+<div class="deck-preview" style="margin: 0; border-bottom: 1px solid var(--rule); background: var(--bg-2);">
+  <div class="deck-frame">
+    <span class="cap">Report preview · Page <span id="deck-cur">1</span> / <span id="deck-total">22</span></span>
+    <button class="deck-nav deck-prev" type="button" aria-label="Previous page">‹</button>
+    <button class="deck-nav deck-next" type="button" aria-label="Next page">›</button>
+    <img id="deck-img" src="assets/lvad-test-plan/slides/slide-01.jpg" alt="HemoScan test plan report, page 1 of 22" />
+  </div>
+  <div class="deck-strip" id="deck-strip"></div>
+</div>
+
+<style>
+  .deck-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    max-height: 560px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-2);
+  }
+  .deck-frame img { width: auto; height: 100%; max-width: 100%; object-fit: contain; display: block; }
+  .deck-frame .cap {
+    position: absolute; top: 12px; left: 12px;
+    font-family: "JetBrains Mono", monospace; font-size: 12px;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--fg); border: 1px solid var(--rule); padding: 6px 12px;
+    background: rgba(11,11,12,0.88); backdrop-filter: blur(6px);
+    z-index: 3;
+  }
+  .deck-nav {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 44px; height: 44px; border-radius: 50%;
+    background: rgba(11,11,12,0.72); backdrop-filter: blur(6px);
+    border: 1px solid var(--rule); color: var(--fg);
+    font-size: 22px; line-height: 1; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 3; transition: background 160ms, border-color 160ms;
+  }
+  .deck-nav:hover { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .deck-prev { left: 16px; }
+  .deck-next { right: 16px; }
+  .deck-strip {
+    display: flex; gap: 6px; overflow-x: auto;
+    padding: 12px var(--pad-x);
+    border-top: 1px solid var(--rule);
+    scrollbar-width: thin;
+  }
+  .deck-thumb {
+    flex: 0 0 auto; width: 64px; aspect-ratio: 0.77;
+    border: 1px solid var(--rule); cursor: pointer;
+    opacity: 0.55; transition: opacity 160ms, border-color 160ms;
+    overflow: hidden; background: var(--bg);
+  }
+  .deck-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .deck-thumb.active { opacity: 1; border-color: var(--accent); }
+  .deck-thumb:hover { opacity: 1; }
+  @media (max-width: 720px) {
+    .deck-nav { width: 36px; height: 36px; font-size: 18px; }
+    .deck-thumb { width: 48px; }
+  }
+</style>
+
+<script>
+  (function() {
+    const total = 22;
+    const img = document.getElementById('deck-img');
+    const cur = document.getElementById('deck-cur');
+    const strip = document.getElementById('deck-strip');
+    let i = 1;
+
+    for (let n = 1; n <= total; n++) {
+      const t = document.createElement('div');
+      t.className = 'deck-thumb' + (n === 1 ? ' active' : '');
+      t.innerHTML = '<img src="assets/lvad-test-plan/slides/slide-' + String(n).padStart(2,'0') + '.jpg" alt="Page ' + n + ' thumbnail" loading="lazy" />';
+      t.addEventListener('click', () => go(n));
+      strip.appendChild(t);
+    }
+
+    function go(n) {
+      i = ((n - 1 + total) % total) + 1;
+      img.src = 'assets/lvad-test-plan/slides/slide-' + String(i).padStart(2,'0') + '.jpg';
+      img.alt = 'HemoScan test plan report, page ' + i + ' of ' + total;
+      cur.textContent = i;
+      strip.querySelectorAll('.deck-thumb').forEach((el, idx) => el.classList.toggle('active', idx === i - 1));
+      const active = strip.querySelector('.deck-thumb.active');
+      if (active) active.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    }
+
+    document.querySelector('.deck-prev').addEventListener('click', () => go(i - 1));
+    document.querySelector('.deck-next').addEventListener('click', () => go(i + 1));
+  })();
+</script>
+
+<!-- SECTION 1: AIM -->
+<div class="sec-break">
+  <div class="sec-num">01</div>
+  <div>
+    <div class="sec-label">Section 1</div>
+    <div class="sec-title">Aim</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section">
+  <p class="body">The HeartMate 3 is a magnetic-levitation LVAD that diverts blood from a failing left ventricle and pumps it into the aorta via an inflow cannula, magnetic rotor, and outflow graft. Because the pump surface stays in constant contact with blood, its biggest risk isn't mechanical failure, it's what the blood does when it touches the device: hemolysis, clotting, and inflammation, any of which can lead to stroke, bleeding, or device failure.</p>
+  <p class="body">The aim of this project was to design a complete preclinical imaging and testing plan, grounded in ISO 10993-4 and ASTM standards, that quantitatively proves the HeartMate 3 is hemocompatible before it's allowed to progress from bench testing to animal trials to human patients.</p>
+
+  <div class="imgframe" style="max-width: 480px; margin-top: 28px; border: 1px solid var(--rule);">
+    <span class="cap">FIG. 01 · Device placement</span>
+    <img src="assets/lvad-test-plan/fig1-heartmate3.jpg" alt="Diagram of the HeartMate 3 LVAD placement in the body, showing the pump, system controller, batteries, and modular driveline." />
+  </div>
+</section>
+
+<!-- SECTION 2: PROCESS -->
+<div class="sec-break">
+  <div class="sec-num">02</div>
+  <div>
+    <div class="sec-label">Section 2</div>
+    <div class="sec-title">Process</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section alt">
+  <p class="body">Structured the plan as three sequential phases, so hemocompatibility could be checkpointed at each stage before committing to the next, more expensive and higher-stakes one.</p>
+
+  <div class="phase-grid">
+    <div class="phase">
+      <div class="tag">Phase 1 · Weeks 1–2</div>
+      <h4>Protocol Setup</h4>
+      <ul>
+        <li>Define imaging modalities: brightfield, SEM, micro-CT</li>
+        <li>Lock hemocompatibility endpoints per ISO 10993-4</li>
+        <li>Standardize blood handling &amp; fixation SOPs</li>
+        <li>Validate calibration &amp; acquisition reproducibility</li>
+      </ul>
+    </div>
+    <div class="phase">
+      <div class="tag">Phase 2 · Weeks 3–8</div>
+      <h4>In Vitro Testing</h4>
+      <ul>
+        <li>Rabbit blood flow-loop, 37°C, 4.5 L/min, 6 hrs</li>
+        <li>Paired against an FDA-cleared comparator device</li>
+        <li>Brightfield smears every 30 min</li>
+        <li>SEM + micro-CT on the device post-exposure</li>
+      </ul>
+    </div>
+    <div class="phase">
+      <div class="tag">Phase 3 · Months 3–8</div>
+      <h4>In Vivo Validation</h4>
+      <ul>
+        <li>90-day ovine implant (n = 10, Dorset sheep)</li>
+        <li>Cardiac CT at baseline, 1 mo, 3 mo</li>
+        <li>Weekly bloodwork throughout</li>
+        <li>Explant histology (H&amp;E) + SEM at endpoint</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="imgframe" style="max-width: 700px; margin-top: 28px; border: 1px solid var(--rule); background: var(--bg);">
+    <span class="cap">FIG. 03 · Full study timeline</span>
+    <img src="assets/lvad-test-plan/fig3-timeline.jpg" alt="Timeline diagram showing the three-phase imaging workflow for LVAD hemocompatibility and performance evaluation." />
+  </div>
+</section>
+
+<!-- SECTION 3: IMAGING TECHNIQUES -->
+<div class="sec-break">
+  <div class="sec-num">03</div>
+  <div>
+    <div class="sec-label">Section 3</div>
+    <div class="sec-title">Imaging Techniques</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section">
+  <p class="body" style="margin-bottom: 8px;">Four imaging modalities, chosen so each one covers a different scale, from single cells to the whole device in 3D. For each, the justification, acquisition protocol, and acceptance criteria were locked before any testing began.</p>
+
+  <div class="imgframe" style="max-width: 640px; margin: 24px 0 8px; border: 1px solid var(--rule); background: var(--bg);">
+    <span class="cap">FIG. 02 · Mock circulatory loop</span>
+    <img src="assets/lvad-test-plan/fig2-mock-loop.jpg" alt="Diagram of the mock circulatory loop used to simulate left ventricle pressure-volume conditions for micro-CT testing." />
+  </div>
+
+  <!-- BRIGHTFIELD -->
+  <div class="tech-block">
+    <div class="tech-block-head">
+      <h4>Brightfield Microscopy</h4>
+      <span class="tag">Cellular scale</span>
+    </div>
+    <div class="tech-block-body">
+      <div class="tech-col">
+        <div class="tc-label">Justification</div>
+        <p>Provides rapid assessment of RBC morphology, platelet aggregation, and WBC activation in blood samples collected during flow-loop testing, the earliest possible signal of mechanically induced hemolysis or cellular activation. Aligned with ASTM F1841 (flow-loop testing) and ASTM F756 (hemolysis assessment criteria).</p>
+      </div>
+      <div class="tech-col">
+        <div class="tc-label">Acquisition</div>
+        <p>At baseline and every 30 minutes, 3 samples per loop are collected and prepared as Wright-Giemsa-stained blood smears. Imaged at 40x and 100x (oil immersion) under constant illumination, exposure, and aperture. 5 non-overlapping fields per smear, random sampling, captured at 2048×2048 px in uncompressed format.</p>
+      </div>
+      <div class="tech-col">
+        <div class="tc-label">Acceptance Criteria</div>
+        <ul>
+          <li>Plasma free hemoglobin &lt; 20 mg/dL</li>
+          <li>NIH &lt; 0.01 g/100 L</li>
+          <li>RBC abnormal morphology &lt; 5% per field</li>
+          <li>No significant WBC clustering (p &gt; 0.05)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEM -->
+  <div class="tech-block">
+    <div class="tech-block-head">
+      <h4>SEM (Scanning Electron Microscopy)</h4>
+      <span class="tag">Surface scale</span>
+    </div>
+    <div class="tech-block-body">
+      <div class="tech-col">
+        <div class="tc-label">Justification</div>
+        <p>Characterizes blood-device interactions directly on the LVAD's blood-contacting surfaces after flow-loop exposure. SEM's nanometer-scale resolution enables direct visualization of platelet adhesion, activation morphology, leukocyte attachment, and early fibrous deposition, the mechanistic root of clotting risk that can't be resolved with light microscopy. Supports thrombogenicity testing under ISO 10993-4.</p>
+      </div>
+      <div class="tech-col">
+        <div class="tc-label">Acquisition</div>
+        <p>After 6 hours of flow-loop exposure, the device is disassembled and blood-contacting surfaces are fixed in 2.5% glutaraldehyde for 24 hrs at 4°C, PBS-rinsed, then dehydrated through a graded ethanol series (30–100%), critical point dried, and sputter-coated with 5–10 nm gold. Imaged at 5–10 kV, 500x–5000x magnification, 8–10 mm working distance.</p>
+      </div>
+      <div class="tech-col">
+        <div class="tc-label">Acceptance Criteria</div>
+        <ul>
+          <li>&lt; 5% platelet surface coverage</li>
+          <li>&lt; 10% surface occlusion</li>
+          <li>Non-activated platelet morphology (no pseudopodia)</li>
+          <li>No significant leukocyte increase vs. control</li>
+          <li>Minimal fibrin deposition</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- MICRO-CT -->
+  <div class="tech-block">
+    <div class="tech-block-head">
+      <h4>Micro-CT</h4>
+      <span class="tag">Device scale</span>
+    </div>
+    <div class="tech-block-body">
+      <div class="tech-col">
+        <div class="tc-label">Justification</div>
+        <p>Resolves up to 50 micrometers, critical for something as spatially complex as clot formation. Unlike surface imaging, micro-CT builds a full 3D reconstruction of the device, turning scattered clot observations into a single spatial map of where thrombus actually forms, with quantifiable area/volume metrics from radiopaque contrast. Non-destructive, so the sample survives testing.</p>
+      </div>
+      <div class="tech-col">
+        <div class="tc-label">Acquisition</div>
+        <p>A mock circulatory loop (per ASTM F1841) simulates the left-ventricle pressure-volume environment at 37°C, 5–6 L/min flow, 120/80 mmHg, 50–150 Pa shear stress. Radiopaque contrast agents (iodine, gold, or barium sulfate) are introduced and the LVAD is run at varying speeds for ~4 hrs. Imaging uses a high-resolution X-ray system, 5–20 µm voxels, 40–70 kVp, 100–200 µA, full 360° rotation, reconstructed via filtered back projection.</p>
+      </div>
+      <div class="tech-col">
+        <div class="tc-label">Acceptance Criteria</div>
+        <ul>
+          <li>Surface coverage &lt; 10% (ISO 10993-4)</li>
+          <li>Hemolysis index 0–2% (ASTM F756)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- CARDIAC CT -->
+  <div class="tech-block">
+    <div class="tech-block-head">
+      <h4>Cardiac CT Angiography</h4>
+      <span class="tag">Whole-body, in vivo</span>
+    </div>
+    <div class="tech-block-body">
+      <div class="tech-col">
+        <div class="tc-label">Justification</div>
+        <p>Provides high-resolution, three-dimensional, non-invasive visualization of device geometry and vasculature in the living animal, detecting thrombus via contrast filling defects, and identifying graft kinking, malpositioning, or obstruction without ever opening the animal back up. Also used pre-implant to map anatomy. ECG-gated to minimize cardiac motion artifact; aligns with ISO 14708-5.</p>
+      </div>
+      <div class="tech-col">
+        <div class="tc-label">Acquisition</div>
+        <p>192-slice multidetector CT. A pre-implant scan maps baseline anatomy; follow-up imaging at baseline, 1 week, 1 month, and 3 months, under anesthesia with ECG gating. Tube voltage 100–120 kVp, current 200–400 mA with automatic exposure control, slice thickness 0.5–0.75 mm, low pitch/fast gantry rotation. IV contrast at 3–5 mL/s, 1–2 mL/kg via central venous catheter, followed by saline; 3D reconstructions generated for analysis.</p>
+      </div>
+      <div class="tech-col">
+        <div class="tc-label">Acceptance Criteria</div>
+        <ul>
+          <li>No detectable filling defects (cannula, graft)</li>
+          <li>Graft maintains &gt; 95% of diameter</li>
+          <li>Cannula within 15° of ventricular long axis, ≥ 1.5 cm from septum</li>
+          <li>Pump flow within normal 2–5 L/min range</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: SUCCESS CRITERIA -->
+<div class="sec-break">
+  <div class="sec-num">04</div>
+  <div>
+    <div class="sec-label">Section 4</div>
+    <div class="sec-title">Success Criteria</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section alt">
+  <p class="body">Every imaging modality ties back to a hard numeric threshold, pulled from ISO 10993-4 and ASTM F756, so "looks fine under the microscope" is never the bar. The device has to clear these numbers to advance to the next phase.</p>
+</section>
+
+<div class="stat-band">
+  <div class="stat"><div class="v">&lt; 2%</div><div class="k">▪ Hemolysis (non-hemolytic range, ASTM F756)</div></div>
+  <div class="stat"><div class="v">&lt; 5%</div><div class="k">▪ Platelet surface coverage (SEM)</div></div>
+  <div class="stat"><div class="v">&lt; 10%</div><div class="k">▪ Thrombus / device surface occlusion</div></div>
+  <div class="stat"><div class="v">&lt; 5%</div><div class="k">▪ Abnormal RBC morphology per field</div></div>
+  <div class="stat"><div class="v">p &gt; 0.05</div><div class="k">▪ No significant WBC clustering vs. control</div></div>
+</div>
+
+<section class="case-section">
+  <p class="body">In vivo, the graft also has to hold &gt;95% of its diameter throughout the 90-day study, and the inflow cannula must stay within 15° of the ventricular long axis to avoid suction events. For context: the U.S. LVAD market runs $190K–220K per patient in the first year, with the device itself costing $80K–100K, so a rigorous, phased imaging plan isn't just a safety requirement, it's what keeps a very expensive therapy from failing after implantation.</p>
+</section>
+
+<!-- SECTION 5: DATA MANAGEMENT PLAN -->
+<div class="sec-break">
+  <div class="sec-num">05</div>
+  <div>
+    <div class="sec-label">Section 5</div>
+    <div class="sec-title">Data Management Plan</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section alt">
+  <p class="body" style="margin-bottom: 8px;">Every image, dataset, and analysis pipeline in this study needed to be traceable, secure, and reproducible, not just for internal rigor, but because this data ultimately supports an FDA submission.</p>
+
+  <div class="dm-grid">
+    <div class="dm">
+      <div class="tag">Collection &amp; storage</div>
+      <h4>Capture &amp; Transfer</h4>
+      <p>Brightfield and SEM images captured on EVOS and Field Emission SEM microscopes, transferred via encrypted LAN to Abbott's enterprise servers. CT volumetric data (DICOM) exported directly via encrypted PACS integration, retaining raw projection data, reconstructed volumes, and segmentation files.</p>
+    </div>
+    <div class="dm">
+      <div class="tag">Access &amp; security</div>
+      <h4>Role-Based Control</h4>
+      <p>All data lives on FDA-compliant enterprise servers under 21 CFR Part 11. Access is role-based with secure login, multi-factor authentication, and full audit trails on every access, modification, and analysis action.</p>
+    </div>
+    <div class="dm">
+      <div class="tag">Naming &amp; metadata</div>
+      <h4>Standardized Records</h4>
+      <p>Files follow Technique_Sample.No_UniqueID naming for full traceability. Metadata captures date, operator ID, protocol number, magnification/pixel size, stain/dye, implant name and location, plus scanner model, kVp/mA, voxel size, and contrast parameters for CT.</p>
+    </div>
+    <div class="dm">
+      <div class="tag">Breach &amp; IP protocol</div>
+      <h4>Incident Response</h4>
+      <p>A breach triggers immediate access restriction, InfoSec/IT investigation, credential revocation, and a full audit log review. No data is ever stored on external or removable devices. All contributors sign NDAs; no personal-device photography is permitted.</p>
+    </div>
+    <div class="dm">
+      <div class="tag">Retention</div>
+      <h4>10-Year Minimum</h4>
+      <p>Data is retained per Good Laboratory Practice for a minimum of 10 years post-PMA on validated enterprise servers with redundant backups, then securely destroyed with verification audits at the end of the retention period.</p>
+    </div>
+    <div class="dm">
+      <div class="tag">Analysis integrity</div>
+      <h4>Locked Pipelines</h4>
+      <p>Acquisition settings stay locked within each imaging batch. Blind scoring reduces bias, and at least 10% of samples undergo independent secondary review before results are compared against predefined success criteria.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6: STANDARDS FOLLOWED -->
+<div class="sec-break">
+  <div class="sec-num">06</div>
+  <div>
+    <div class="sec-label">Section 6</div>
+    <div class="sec-title">Standards Followed</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section alt">
+  <table class="std-table">
+    <tr>
+      <th>Standard</th>
+      <th>Governs</th>
+    </tr>
+    <tr>
+      <td class="std-code">ISO 10993-4</td>
+      <td>Selection of tests for interactions with blood, hemolysis, thrombosis, platelet activation, complement activation</td>
+    </tr>
+    <tr>
+      <td class="std-code">ASTM F756</td>
+      <td>Hemolytic properties of materials; defines non-hemolytic / slightly hemolytic / hemolytic thresholds</td>
+    </tr>
+    <tr>
+      <td class="std-code">ASTM F1841</td>
+      <td>In vitro flow-loop assessment of hemolysis for continuous-flow blood pumps</td>
+    </tr>
+    <tr>
+      <td class="std-code">ISO 14708-5</td>
+      <td>Safety and performance requirements for active implantable circulatory support devices</td>
+    </tr>
+    <tr>
+      <td class="std-code">21 CFR Part 58</td>
+      <td>Good Laboratory Practice for nonclinical laboratory studies (animal care, facilities, data integrity)</td>
+    </tr>
+    <tr>
+      <td class="std-code">21 CFR Part 11</td>
+      <td>Electronic records and signatures, data storage, access control, and audit trail requirements</td>
+    </tr>
+    <tr>
+      <td class="std-code">FDA Animal Studies Guidance</td>
+      <td>General considerations for animal studies evaluating medical devices, including histology requirements for embolism-prone devices</td>
+    </tr>
+  </table>
+</section>
+
+<!-- SECTION 7: SKILLS -->
+<div class="sec-break">
+  <div class="sec-num">07</div>
+  <div>
+    <div class="sec-label">Section 7</div>
+    <div class="sec-title">Skills</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section alt">
+  <div class="skills-grid">
+    <div class="skill-col">
+      <div class="sk-tag">Technical</div>
+      <ul>
+        <li>Imaging protocol design (SEM, brightfield, micro-CT)</li>
+        <li>ISO 10993-4 &amp; ASTM standards application</li>
+        <li>Statistical acceptance-criteria design</li>
+        <li>Regulatory data management planning</li>
+      </ul>
+    </div>
+    <div class="skill-col">
+      <div class="sk-tag">Soft Skills</div>
+      <ul>
+        <li>Technical writing for a regulatory audience</li>
+        <li>Translating standards into actionable protocols</li>
+        <li>Attention to detail under high regulatory stakes</li>
+        <li>Cross-disciplinary research synthesis</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 8: FULL REPORT -->
+<div class="sec-break">
+  <div class="sec-num">08</div>
+  <div>
+    <div class="sec-label">Section 8</div>
+    <div class="sec-title">Full Report</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section">
+  <p class="body" style="margin-bottom: 22px;">The complete 22-page test plan, imaging goals, detailed protocols for each modality, data management plan, and full study timeline.</p>
+  <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+    <a href="assets/lvad-test-plan/LVAD-Imaging-Test-Plan.pdf" target="_blank" rel="noopener" style="display:inline-block; font-family:'JetBrains Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:0.1em; color:var(--accent-ink); background:var(--accent); border:1px solid var(--accent); padding:10px 16px; text-decoration:none;">View Full Report ↗</a>
+    <a href="assets/lvad-test-plan/LVAD-Imaging-Test-Plan.pdf" download style="display:inline-block; font-family:'JetBrains Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:0.1em; color:var(--accent); border:1px solid var(--accent); padding:10px 16px; text-decoration:none;">Download .pdf ↓</a>
+  </div>
+</section>
+
+<footer class="foot-min">
+  <div>© 2026 S. Gandhi · V/001</div>
+  <div><a href="development.html" style="color: var(--fg-mute); text-decoration: none;">← Back to Development</a></div>
+</footer>
+
+</body>
+</html>

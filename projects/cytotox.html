@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>In Vitro Quantification of Biomaterial Cytotoxicity | Samika Gandhi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  .case-hero { padding: 40px var(--pad-x) 24px; }
+  .case-meta {
+    display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--grid-gap);
+    font-family: "JetBrains Mono", monospace; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--fg-mute); margin-bottom: 28px;
+  }
+  .case-meta > div { grid-column: span 3; }
+  .case-meta strong { color: var(--fg); font-weight: 500; display: block; margin-top: 4px; font-size: 13px; letter-spacing: 0.02em; }
+  .case-title {
+    font-family: "Inter Tight", sans-serif; font-weight: 700;
+    font-size: clamp(28px, 4.4vw, 56px); line-height: 1.06;
+    letter-spacing: -0.025em; margin: 0 0 20px; text-wrap: balance;
+  }
+  .case-pitch {
+    display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--grid-gap);
+    border-top: 1px solid var(--rule); padding-top: 18px;
+  }
+  .case-pitch .k { grid-column: span 3; font-family: "JetBrains Mono", monospace; font-size: 11px; color: var(--fg-mute); text-transform: uppercase; letter-spacing: 0.08em; }
+  .case-pitch .v { grid-column: span 9; font-size: clamp(18px, 1.8vw, 24px); line-height: 1.4; text-wrap: pretty; }
+  .case-pitch .v em { font-style: normal; background: var(--accent); color: var(--accent-ink); padding: 0 4px; }
+
+  .case-section { padding: 40px var(--pad-x) 56px; }
+  .case-section.alt { background: var(--bg-2); }
+
+  .sec-break { display: flex; align-items: center; gap: 18px; padding: 40px var(--pad-x) 0; }
+  .sec-break .sec-num {
+    font-family: "Inter Tight", sans-serif; font-weight: 700; font-size: 15px;
+    color: var(--accent-ink); background: var(--accent);
+    width: 34px; height: 34px; flex: 0 0 auto;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .sec-break .sec-label { font-family: "JetBrains Mono", monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--fg-mute); }
+  .sec-break .sec-title { font-family: "Inter Tight", sans-serif; font-weight: 700; font-size: clamp(20px, 2.4vw, 30px); letter-spacing: -0.02em; color: var(--fg); }
+  .sec-break-line { height: 1px; background: var(--rule); margin: 20px var(--pad-x) 0; }
+
+  .case-section p.body { max-width: 74ch; margin: 0; color: var(--fg-dim); font-size: 16px; line-height: 1.75; }
+  .case-section p.body + p.body { margin-top: 16px; }
+  .imgframe { overflow: hidden; position: relative; }
+  .imgframe img { display: block; width: 100%; height: auto; }
+  .imgframe .cap {
+    position: absolute; top: 12px; left: 12px;
+    font-family: "JetBrains Mono", monospace; font-size: 12px;
+    text-transform: uppercase; letter-spacing: 0.12em; color: var(--fg);
+    border: 1px solid var(--rule); padding: 6px 11px;
+    background: rgba(11,11,12,0.88); backdrop-filter: blur(6px); z-index: 2;
+  }
+
+  .step-list { display: flex; flex-direction: column; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 8px; }
+  .step { background: var(--bg); padding: 20px 24px; display: grid; grid-template-columns: 44px 1fr; gap: 18px; align-items: start; }
+  .step-num { font-family: "Inter Tight", sans-serif; font-weight: 700; font-size: 18px; color: var(--accent); }
+  .step h4 { font-family: "JetBrains Mono", monospace; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--fg-mute); margin: 0 0 6px; font-weight: 500; }
+  .step p { margin: 0; color: var(--fg-dim); font-size: 14.5px; line-height: 1.65; }
+
+  .method-block { border: 1px solid var(--rule); margin-top: 22px; }
+  .method-block-head { padding: 16px 22px; border-bottom: 1px solid var(--rule); background: var(--bg-2); display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; }
+  .method-block-head h4 { font-size: 17px; font-weight: 700; margin: 0; letter-spacing: -0.01em; }
+  .method-block-head .tag { font-family: "JetBrains Mono", monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); }
+  .method-block-body { padding: 18px 22px; }
+  .method-block-body p { margin: 0; color: var(--fg-dim); font-size: 14px; line-height: 1.65; }
+
+  table.data-table { width: 100%; border-collapse: collapse; margin-top: 8px; border: 1px solid var(--rule); }
+  table.data-table th, table.data-table td { text-align: left; padding: 11px 16px; border-bottom: 1px solid var(--rule); font-size: 13.5px; }
+  table.data-table th { font-family: "JetBrains Mono", monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--fg-mute); font-weight: 500; background: var(--bg-2); }
+  table.data-table td { color: var(--fg-dim); }
+  table.data-table td.rank1 { color: var(--accent); font-weight: 600; }
+  table.data-table tr:last-child td { border-bottom: none; }
+
+  .stat-band { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--rule); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+  .stat { background: var(--bg); padding: 22px 16px; }
+  .stat .v { font-family: "Inter Tight", sans-serif; font-weight: 700; font-size: clamp(20px, 2.2vw, 28px); letter-spacing: -0.03em; }
+  .stat .k { font-family: "JetBrains Mono", monospace; font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--fg-mute); margin-top: 8px; line-height: 1.4; }
+
+  .two-up { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; margin-top: 24px; }
+  .split { display: grid; grid-template-columns: 1fr 460px; gap: 32px; align-items: center; margin-top: 20px; }
+
+  .foot-min { padding: 18px var(--pad-x); border-top: 1px solid var(--rule); display: flex; justify-content: space-between; font-family: "JetBrains Mono", monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--fg-mute); }
+
+  @media (max-width: 900px) {
+    .case-meta > div { grid-column: span 6; }
+    .case-pitch .k, .case-pitch .v { grid-column: span 12; }
+    .stat-band { grid-template-columns: repeat(2, 1fr); }
+    .two-up { grid-template-columns: 1fr; }
+    .split { grid-template-columns: 1fr; }
+    table.data-table { font-size: 12px; }
+    table.data-table th, table.data-table td { padding: 8px 10px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-left"><a class="brand" href="../index.html" style="text-decoration:none; color:inherit;">SAMIKA GANDHI</a><a class="navlink" href="../index.html">← Back</a></div>
+    <div></div>
+    <div class="nav-right">
+      <a class="navlink" href="../index.html#skills">Skills</a>
+      <a class="navlink" href="../resume.html">Resume</a>
+      <a class="navlink" href="../contact.html">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="case-hero">
+  <div class="case-meta">
+    <div>▪ INDEX<strong>V/005</strong></div>
+    <div>▪ YEAR<strong>2025 · Team Project</strong></div>
+    <div>▪ CATEGORY<strong>Development</strong></div>
+    <div>▪ COURSE<strong>BMEN 344 Cell &amp; Tissue Lab</strong></div>
+  </div>
+  <h1 class="case-title">In Vitro Quantification of Biomaterial Cytotoxicity.</h1>
+  <div class="case-pitch">
+    <div class="k">▪ Overview</div>
+    <div class="v">
+      A comparative in vitro cytotoxicity study screening seven candidate biomaterials against <em>L929 murine fibroblasts</em>, combining qualitative direct-contact scoring with quantitative XTT extract assays to determine which materials are safe for further biomedical development.
+    </div>
+  </div>
+</header>
+
+<div class="deck-preview" style="margin: 0; border-bottom: 1px solid var(--rule); background: var(--bg-2);">
+  <div class="deck-frame">
+    <span class="cap">Report preview · Page <span id="deck-cur">1</span> / <span id="deck-total">11</span></span>
+    <button class="deck-nav deck-prev" type="button" aria-label="Previous page">‹</button>
+    <button class="deck-nav deck-next" type="button" aria-label="Next page">›</button>
+    <img id="deck-img" src="assets/cytotox/slides/slide-01.jpg" alt="Cytotoxicity report, page 1 of 11" />
+  </div>
+  <div class="deck-strip" id="deck-strip"></div>
+</div>
+
+<style>
+  .deck-frame { position: relative; width: 100%; aspect-ratio: 16/9; max-height: 560px; overflow: hidden; display: flex; align-items: center; justify-content: center; background: var(--bg-2); }
+  .deck-frame img { width: auto; height: 100%; max-width: 100%; object-fit: contain; display: block; }
+  .deck-frame .cap { position: absolute; top: 12px; left: 12px; font-family: "JetBrains Mono", monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--fg); border: 1px solid var(--rule); padding: 6px 12px; background: rgba(11,11,12,0.88); backdrop-filter: blur(6px); z-index: 3; }
+  .deck-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border-radius: 50%; background: rgba(11,11,12,0.72); backdrop-filter: blur(6px); border: 1px solid var(--rule); color: var(--fg); font-size: 22px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 3; transition: background 160ms, border-color 160ms; }
+  .deck-nav:hover { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .deck-prev { left: 16px; } .deck-next { right: 16px; }
+  .deck-strip { display: flex; gap: 6px; overflow-x: auto; padding: 12px var(--pad-x); border-top: 1px solid var(--rule); scrollbar-width: thin; }
+  .deck-thumb { flex: 0 0 auto; width: 60px; aspect-ratio: 0.77; border: 1px solid var(--rule); cursor: pointer; opacity: 0.55; transition: opacity 160ms, border-color 160ms; overflow: hidden; background: var(--bg); }
+  .deck-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .deck-thumb.active { opacity: 1; border-color: var(--accent); }
+  .deck-thumb:hover { opacity: 1; }
+</style>
+
+<script>
+  (function() {
+    const total = 11;
+    const img = document.getElementById('deck-img');
+    const cur = document.getElementById('deck-cur');
+    const strip = document.getElementById('deck-strip');
+    let i = 1;
+    for (let n = 1; n <= total; n++) {
+      const t = document.createElement('div');
+      t.className = 'deck-thumb' + (n === 1 ? ' active' : '');
+      t.innerHTML = '<img src="assets/cytotox/slides/slide-' + String(n).padStart(2,'0') + '.jpg" alt="Page ' + n + ' thumbnail" loading="lazy" />';
+      t.addEventListener('click', () => go(n));
+      strip.appendChild(t);
+    }
+    function go(n) {
+      i = ((n - 1 + total) % total) + 1;
+      img.src = 'assets/cytotox/slides/slide-' + String(i).padStart(2,'0') + '.jpg';
+      cur.textContent = i;
+      strip.querySelectorAll('.deck-thumb').forEach((el, idx) => el.classList.toggle('active', idx === i - 1));
+      const active = strip.querySelector('.deck-thumb.active');
+      if (active) active.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    }
+    document.querySelector('.deck-prev').addEventListener('click', () => go(i - 1));
+    document.querySelector('.deck-next').addEventListener('click', () => go(i + 1));
+  })();
+</script>
+
+<!-- SECTION 1: AIM -->
+<div class="sec-break">
+  <div class="sec-num">01</div>
+  <div>
+    <div class="sec-label">Section 1</div>
+    <div class="sec-title">Aim</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section">
+  <p class="body">The aim of this project was to determine which of seven candidate materials, copper, high-density polyethylene (HDPE), alumina (Al₂O₃), stainless steel 316L, acrylonitrile butadiene styrene (ABS), and two team-selected materials, are cytocompatible with L929 murine fibroblasts, using both qualitative and quantitative in vitro cytotoxicity methods defined by ISO 10993-5.</p>
+</section>
+
+<!-- SECTION 2: PROBLEM STATEMENT -->
+<div class="sec-break">
+  <div class="sec-num">02</div>
+  <div>
+    <div class="sec-label">Section 2</div>
+    <div class="sec-title">Problem Statement</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section alt">
+  <p class="body">Before any material can be used in a medical device, its biocompatibility has to be established. A cytotoxic material can trigger inflammation, impair healing, or cause cell death once it's in contact with living tissue, and finding that out after implantation is far too late. ISO 10993-5 defines standardized in vitro screening methods specifically so that unsafe materials can be ruled out early, before they ever reach the cost and risk of animal or human testing.</p>
+  <p class="body">This project applied two of those methods, direct contact and extract-based (XTT) cytotoxicity testing, to five standard reference biomaterials plus two materials of the team's choosing (nitrile gloves and KimWipes), to determine relative cytotoxicity and identify which candidates are actually safe to build on.</p>
+</section>
+
+<!-- SECTION 3: APPROACH -->
+<div class="sec-break">
+  <div class="sec-num">03</div>
+  <div>
+    <div class="sec-label">Section 3</div>
+    <div class="sec-title">Approach</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section">
+  <div class="split">
+    <p class="body" style="margin: 0;">L929 murine fibroblasts were seeded into a 24-well plate, with each material tested in triplicate alongside a copper negative control and an HDPE positive control. Materials were sized to a fixed extraction ratio (6 cm²/mL) per ISO 10993-5 and 10993-12, then incubated with the cells for one week before evaluation across three lab sessions.</p>
+    <div class="imgframe" style="border: 1px solid var(--rule); background: #fff;">
+      <span class="cap">FIG. 1 · 24-well plate schematic</span>
+      <img src="assets/cytotox/fig1-plate-schematic.jpg" alt="Schematic of the 24-well plate showing material placement: copper, HDPE, alumina, stainless steel 316L, ABS, blank control, and two team-selected materials." />
+    </div>
+  </div>
+
+  <div class="step-list">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div>
+        <h4>Day 1</h4>
+        <p>Seeded the 24-well plate with L929 fibroblasts and placed sterilized samples of each material into triplicate wells, copper (negative control), HDPE (positive control), alumina, stainless steel 316L, ABS, plus two team-selected materials (nitrile glove, KimWipe), then incubated for one week.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div>
+        <h4>Day 2</h4>
+        <p>Removed materials from the 24-well plate and imaged each well to qualitatively assess cell morphology and confluency (direct contact method). In parallel, aliquoted extract from each well into a shared 96-well plate to prepare for the XTT assay.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div>
+        <h4>Day 3</h4>
+        <p>Added the XTT labeling mixture to the 96-well plate, incubated 2 hours, then read spectrophotometric absorbance at 450 nm (formazan product) and 660 nm (reference). Absorbance is directly proportional to viable cell metabolism, and inversely proportional to cytotoxicity.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="split" style="margin-top: 24px;">
+    <p class="body" style="margin: 0;">The color gradient across the 96-well plate after XTT staining tells the story visually, orange formazan product develops in wells with viable, metabolically active cells, while wells with cytotoxic materials stay clear. This gradient became the first qualitative signal, well before the absorbance readings were even taken.</p>
+    <div class="imgframe" style="border: 1px solid var(--rule); background: #fff;">
+      <span class="cap">FIG. 3 · 96-well plate after XTT staining</span>
+      <img src="assets/cytotox/fig3-xtt-plate.jpg" alt="Photo of the 96-well plate after XTT staining, showing orange formazan color gradient from viable to non-viable wells." />
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: ANALYSIS -->
+<div class="sec-break">
+  <div class="sec-num">04</div>
+  <div>
+    <div class="sec-label">Section 4</div>
+    <div class="sec-title">Analysis</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section alt">
+  <p class="body" style="margin-bottom: 8px;">Two separate statistical approaches were used, matched to the type of data each method produced.</p>
+
+  <div class="split">
+    <div class="method-block" style="margin-top: 0;">
+      <div class="method-block-head">
+        <h4>Kruskal-Wallis + Dunn's Test</h4>
+        <span class="tag">Qualitative scores</span>
+      </div>
+      <div class="method-block-body">
+        <p>Direct-contact cytotoxicity scores (0–3 scale, per ISO 10993-5) are nominal/ordinal data across more than two groups, so a Kruskal-Wallis test was used rather than a parametric ANOVA. The result, H = 18.71, p = 0.0047, confirmed significant differences in qualitative cytotoxicity between materials. Dunn's test was then run as a post-hoc to identify exactly which pairs of materials differed significantly from each other.</p>
+      </div>
+    </div>
+    <div class="imgframe" style="border: 1px solid var(--rule); background: #fff;">
+      <span class="cap">FIG. · Dunn's Test significance matrix</span>
+      <img src="assets/cytotox/fig-heatmap.jpg" alt="Heatmap of Dunn's test p-values comparing cytotoxicity scores between all material pairs." />
+    </div>
+  </div>
+
+  <div class="method-block">
+    <div class="method-block-head">
+      <h4>One-Way ANOVA + Tukey HSD</h4>
+      <span class="tag">Quantitative absorbance</span>
+    </div>
+    <div class="method-block-body">
+      <p>XTT absorbance is continuous, quantitative data, so a one-way ANOVA was used to test for overall differences in viability across materials (F = 7.57, p = 0.0009, highly significant). A Tukey HSD post-hoc test then compared every material directly against the HDPE control: no significant difference from HDPE is evidence a material is biocompatible; a significant difference, especially with lower absorbance, is evidence it's cytotoxic.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: RESULTS -->
+<div class="sec-break">
+  <div class="sec-num">05</div>
+  <div>
+    <div class="sec-label">Section 5</div>
+    <div class="sec-title">Results</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section">
+  <p class="body">Qualitative and quantitative results agreed closely. SS316L, Al₂O₃, and HDPE scored non-cytotoxic (0) across all trials and posted the highest XTT absorbance values, meaning highest cell viability. The team-selected nitrile glove performed just as well, essentially matching the HDPE control. ABS showed mild-to-moderate cytotoxicity, and KimWipe (Material Y) was the clear outlier: a cytotoxicity score of 3 (severely cytotoxic) and the lowest absorbance of any material tested.</p>
+
+  <table class="data-table" style="margin-top: 24px; max-width: 500px;">
+    <tr><th>Rank</th><th>Material</th><th>Avg. Absorbance</th><th>Interpretation</th></tr>
+    <tr><td>1</td><td>SS316L</td><td>1.367</td><td>Highest viability</td></tr>
+    <tr><td>2</td><td>Al₂O₃</td><td>1.225</td><td>High</td></tr>
+    <tr><td>3</td><td>HDPE</td><td>1.037</td><td>Moderate / high</td></tr>
+    <tr><td>4</td><td>Material X (glove)</td><td>1.017</td><td>Moderate</td></tr>
+    <tr><td>5</td><td>Copper</td><td>1.016</td><td>Moderate</td></tr>
+    <tr><td>6</td><td>ABS</td><td>0.536</td><td>Low</td></tr>
+    <tr><td>7</td><td>Material Y (KimWipe)</td><td>0.396</td><td>Low, most cytotoxic</td></tr>
+  </table>
+
+  <div class="two-up">
+    <div class="imgframe" style="border: 1px solid var(--rule); background: #fff;">
+      <span class="cap">FIG. · L929 fibroblast viability via XTT assay</span>
+      <img src="assets/cytotox/fig-barchart.jpg" alt="Bar chart of L929 fibroblast viability (absorbance at 450nm) across all seven tested materials, with statistical significance markers." />
+    </div>
+  </div>
+
+  <div class="two-up">
+    <div class="imgframe" style="border: 1px solid var(--rule); background: #fff;">
+      <span class="cap">FIG. 2 · 24-well plate</span>
+      <img src="assets/cytotox/fig2-24well-plate.jpg" alt="Photo of the 24-well cell culture plate before material extraction into the 96-well plate." />
+    </div>
+    <div class="imgframe" style="border: 1px solid var(--rule); background: #fff;">
+      <span class="cap">FIG. 4 · 96-well plate, lidded</span>
+      <img src="assets/cytotox/fig4-xtt-plate-lid.jpg" alt="Photo of the 96-well plate after XTT incubation, shown with lid on prior to absorbance reading." />
+    </div>
+  </div>
+</section>
+
+<div class="stat-band">
+  <div class="stat"><div class="v">p = 0.0047</div><div class="k">▪ Kruskal-Wallis, qualitative scores</div></div>
+  <div class="stat"><div class="v">p = 0.0009</div><div class="k">▪ One-way ANOVA, XTT absorbance</div></div>
+  <div class="stat"><div class="v">1.367</div><div class="k">▪ Highest viability (SS316L, abs. @450nm)</div></div>
+  <div class="stat"><div class="v">0.396</div><div class="k">▪ Lowest viability (KimWipe, most cytotoxic)</div></div>
+</div>
+
+<section class="case-section alt">
+  <p class="body">Copper was the one notable discrepancy: it scored moderately cytotoxic (2) qualitatively, but its XTT absorbance was statistically indistinguishable from several viable materials. That mismatch is a useful reminder that qualitative scoring is inherently subjective, based on visually comparing color and cell morphology against a reference chart, while the XTT assay measures actual metabolic activity directly, making it the more objective and reproducible of the two methods.</p>
+  <p class="body"><strong style="color: var(--fg); font-weight: 600;">Conclusion:</strong> SS316L, Al₂O₃, and HDPE are the strongest candidates for further biomedical development given their high cell viability and non-cytotoxic scoring. KimWipe material should be avoided entirely in any cell-contacting application, and ABS should be treated with caution pending further testing.</p>
+</section>
+
+<!-- SECTION 6: FULL REPORT -->
+<div class="sec-break">
+  <div class="sec-num">06</div>
+  <div>
+    <div class="sec-label">Section 6</div>
+    <div class="sec-title">Full Report</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section">
+  <p class="body" style="margin-bottom: 22px;">The complete lab notebook and post-lab analysis, day-by-day observations, statistical code, and full discussion of the XTT assay chemistry.</p>
+  <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+    <a href="assets/cytotox/CytoTox-Combined.pdf" target="_blank" rel="noopener" style="display:inline-block; font-family:'JetBrains Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:0.1em; color:var(--accent-ink); background:var(--accent); border:1px solid var(--accent); padding:10px 16px; text-decoration:none;">View Full Report ↗</a>
+    <a href="assets/cytotox/CytoTox-Combined.pdf" download style="display:inline-block; font-family:'JetBrains Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:0.1em; color:var(--accent); border:1px solid var(--accent); padding:10px 16px; text-decoration:none;">Download .pdf ↓</a>
+  </div>
+</section>
+
+<footer class="foot-min">
+  <div>© 2026 S. Gandhi · V/005</div>
+  <div><a href="development.html" style="color: var(--fg-mute); text-decoration: none;">← Back to Development</a></div>
+</footer>
+
+</body>
+</html>

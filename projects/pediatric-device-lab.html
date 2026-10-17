@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Research @ Pediatric Device Lab (PI | Dr. Haridas) | Samika Gandhi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  .case-hero { padding: 40px var(--pad-x) 24px; }
+  .case-meta {
+    display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--grid-gap);
+    font-family: "JetBrains Mono", monospace; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--fg-mute); margin-bottom: 28px;
+  }
+  .case-meta > div { grid-column: span 3; }
+  .case-meta strong { color: var(--fg); font-weight: 500; display: block; margin-top: 4px; font-size: 13px; letter-spacing: 0.02em; }
+  .case-title {
+    font-family: "Inter Tight", sans-serif; font-weight: 700;
+    font-size: clamp(28px, 4.2vw, 54px); line-height: 1.08;
+    letter-spacing: -0.025em; margin: 0 0 20px; text-wrap: balance;
+  }
+  .case-pitch {
+    display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--grid-gap);
+    border-top: 1px solid var(--rule); padding-top: 18px;
+  }
+  .case-pitch .k { grid-column: span 3; font-family: "JetBrains Mono", monospace; font-size: 11px; color: var(--fg-mute); text-transform: uppercase; letter-spacing: 0.08em; }
+  .case-pitch .v { grid-column: span 9; font-size: clamp(18px, 1.8vw, 24px); line-height: 1.4; text-wrap: pretty; }
+  .case-pitch .v em { font-style: normal; background: var(--accent); color: var(--accent-ink); padding: 0 4px; }
+
+  .case-section { padding: 40px var(--pad-x) 56px; }
+  .case-section.alt { background: var(--bg-2); }
+
+  .sec-break { display: flex; align-items: center; gap: 18px; padding: 40px var(--pad-x) 0; }
+  .sec-break .sec-num {
+    font-family: "Inter Tight", sans-serif; font-weight: 700; font-size: 15px;
+    color: var(--accent-ink); background: var(--accent);
+    width: 34px; height: 34px; flex: 0 0 auto;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .sec-break .sec-label { font-family: "JetBrains Mono", monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--fg-mute); }
+  .sec-break .sec-title { font-family: "Inter Tight", sans-serif; font-weight: 700; font-size: clamp(20px, 2.4vw, 30px); letter-spacing: -0.02em; color: var(--fg); }
+  .sec-break-line { height: 1px; background: var(--rule); margin: 20px var(--pad-x) 0; }
+
+  .case-section p.body { max-width: 74ch; margin: 0; color: var(--fg-dim); font-size: 16px; line-height: 1.75; }
+  .case-section p.body + p.body { margin-top: 16px; }
+
+  .imgframe { overflow: hidden; position: relative; }
+  .imgframe img { display: block; width: 100%; height: auto; }
+  .imgframe .cap {
+    position: absolute; top: 12px; left: 12px;
+    font-family: "JetBrains Mono", monospace; font-size: 12px;
+    text-transform: uppercase; letter-spacing: 0.12em; color: var(--fg);
+    border: 1px solid var(--rule); padding: 6px 11px;
+    background: rgba(11,11,12,0.88); backdrop-filter: blur(6px); z-index: 2;
+  }
+
+  .split { display: grid; grid-template-columns: 1fr 420px; gap: 32px; align-items: center; margin-top: 20px; }
+  @media (max-width: 900px) { .split { grid-template-columns: 1fr; } }
+
+  /* Solution comparison cards */
+  .solution-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 24px; }
+  .solution-card { border: 1px solid var(--rule); }
+  .solution-head { padding: 16px 20px; border-bottom: 1px solid var(--rule); background: var(--bg-2); }
+  .solution-head h4 { font-size: 17px; font-weight: 700; margin: 0; letter-spacing: -0.01em; }
+  .solution-head .tag { font-family: "JetBrains Mono", monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); }
+  .solution-body { padding: 18px 20px; }
+  .solution-body p { margin: 0; color: var(--fg-dim); font-size: 13.5px; line-height: 1.65; }
+  .gap-list { margin: 12px 0 0; padding-left: 18px; color: var(--fg-dim); font-size: 13px; line-height: 1.6; }
+  .gap-list li { margin-bottom: 4px; }
+  .gap-label { font-family: "JetBrains Mono", monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: #ff6b5c; margin-top: 14px; display: block; }
+
+  /* Requirement list */
+  .req-list { display: flex; flex-direction: column; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 24px; }
+  .req-item { background: var(--bg); padding: 20px 24px; }
+  .req-item .req-num { font-family: "JetBrains Mono", monospace; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 8px; }
+  .req-item h4 { font-size: 16px; font-weight: 600; margin: 0; letter-spacing: -0.01em; color: var(--fg); }
+  .req-item ul { margin: 10px 0 0; padding-left: 20px; color: var(--fg-dim); font-size: 14.5px; line-height: 1.65; }
+  .req-item li { margin-bottom: 4px; }
+
+  /* Status banner */
+  .status-banner {
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+    margin-top: 24px; padding: 20px 26px; background: var(--accent); color: var(--accent-ink);
+  }
+  .status-banner .sb-emoji { font-size: 26px; line-height: 1; }
+  .status-banner .sb-text { font-family: "Inter Tight", sans-serif; font-weight: 700; font-size: 18px; letter-spacing: -0.01em; }
+  .status-banner .sb-sub { font-family: "JetBrains Mono", monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.85; margin-top: 2px; }
+
+  .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+  .tag-pill { font-family: "JetBrains Mono", monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--fg-dim); border: 1px solid var(--rule); padding: 6px 12px; }
+
+  .foot-min { padding: 18px var(--pad-x); border-top: 1px solid var(--rule); display: flex; justify-content: space-between; font-family: "JetBrains Mono", monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--fg-mute); }
+
+  @media (max-width: 900px) {
+    .case-meta > div { grid-column: span 6; }
+    .case-pitch .k, .case-pitch .v { grid-column: span 12; }
+    .solution-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-left"><a class="brand" href="../index.html" style="text-decoration:none; color:inherit;">SAMIKA GANDHI</a><a class="navlink" href="../index.html">← Back</a></div>
+    <div></div>
+    <div class="nav-right">
+      <a class="navlink" href="../index.html#skills">Skills</a>
+      <a class="navlink" href="../resume.html">Resume</a>
+      <a class="navlink" href="../contact.html">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="case-hero">
+  <div class="case-meta">
+    <div>▪ INDEX<strong>D/006</strong></div>
+    <div>▪ YEAR<strong>2026–27</strong></div>
+    <div>▪ CATEGORY<strong>Design</strong></div>
+    <div>▪ PI<strong>Dr. Haridas · Texas A&amp;M</strong></div>
+  </div>
+  <h1 class="case-title">Research @ Pediatric Device Lab (PI,  Dr. Haridas).</h1>
+  <div class="case-pitch">
+    <div class="k">▪ Overview</div>
+    <div class="v">
+      Building a <em>fetal cardiac test bed</em> to simulate a novel patented catheter treatment for Hypoplastic Left Heart Syndrome (HLHS).
+    </div>
+  </div>
+</header>
+
+<div class="imgframe" style="margin: 0; height: 300px; overflow: hidden; border-bottom: 1px solid var(--rule); background: #fff; display:flex; align-items:center; justify-content:center;">
+  <img src="assets/pediatric-lab/card-cover.jpg" alt="Diagram of transabdominal ultrasound-guided fetal cardiac catheter procedure, showing needle placement through the maternal abdominal wall." style="width:56%; height:auto; display:block;" />
+</div>
+
+<!-- SECTION 1: PROBLEM STATEMENT -->
+<div class="sec-break">
+  <div class="sec-num">01</div>
+  <div>
+    <div class="sec-label">Section 1</div>
+    <div class="sec-title">Problem Statement</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section">
+  <div class="split">
+    <div>
+      <p class="body">Hypoplastic Left Heart Syndrome (HLHS) is a severe congenital defect in which the left side of the heart, the ventricle, aortic valve, and aorta, is critically underdeveloped. In a normal heart, the left ventricle pumps oxygenated blood to the body; in HLHS, that side can't do the job, so the right side of the heart is forced to support circulation to both the lungs and the body through compensating structures like the ductus arteriosus and foramen ovale.</p>
+      <p class="body" style="margin-top: 16px;">Fetal intervention, treating the heart before birth, while it's still developing, offers the best chance of changing that trajectory. But testing a new fetal cardiac catheter safely and rigorously requires something that doesn't really exist off the shelf: a realistic, physical stand-in for a developing fetal heart.</p>
+    </div>
+    <div class="imgframe" style="border: 1px solid var(--rule); background: #fff;">
+      <span class="cap">FIG. · What is HLHS</span>
+      <img src="assets/pediatric-lab/hlhs.jpg" alt="Diagram comparing a normal heart to Hypoplastic Left Heart Syndrome, labeling the aorta, ductus arteriosus, pulmonary artery, and foramen ovale." />
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: CURRENT SOLUTIONS -->
+<div class="sec-break">
+  <div class="sec-num">02</div>
+  <div>
+    <div class="sec-label">Section 2</div>
+    <div class="sec-title">Current Solutions</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section alt">
+  <p class="body">Two fetal catheter interventions currently exist to try to alter the course of HLHS before birth, both promising, and both still held back by the same fundamental gap: no purpose-built device or way to validate the procedure works before using it on a real fetus.</p>
+
+  <div class="solution-grid">
+    <div class="solution-card">
+      <div class="solution-head">
+        <div class="tag">Weeks 20–29</div>
+        <h4>Fetal Aortic Valvuloplasty (FAV)</h4>
+      </div>
+      <div class="imgframe" style="border-bottom: 1px solid var(--rule); background: #fff;">
+        <img src="assets/pediatric-lab/fav.jpg" alt="Diagram of fetal aortic valvuloplasty, showing percutaneous catheter placement and balloon dilation of the aortic valve." />
+      </div>
+      <div class="solution-body">
+        <p>A balloon catheter is guided percutaneously to relieve left ventricular outflow tract obstruction, aiming to halt the progression of myocardial damage before it becomes irreversible.</p>
+        <span class="gap-label">Gaps</span>
+        <ul class="gap-list">
+          <li>Requires a strictly linear trajectory from outside the mother to the aortic valve</li>
+          <li>No way to evaluate procedure success without withdrawing the whole device</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="solution-card">
+      <div class="solution-head">
+        <div class="tag">~ Week 28</div>
+        <h4>Fetal Atrial Septoplasty (FAS)</h4>
+      </div>
+      <div class="imgframe" style="border-bottom: 1px solid var(--rule); background: #fff;">
+        <img src="assets/pediatric-lab/fas.jpg" alt="Diagram of fetal atrial septoplasty, showing cannula placement across the atrial septum and balloon septoplasty or stenting." />
+      </div>
+      <div class="solution-body">
+        <p>An 18–19 gauge cannula is placed across the atrial septum under ultrasound guidance to perform balloon septoplasty or stenting, relieving left atrial and pulmonary hypertension to allow normal lung development.</p>
+        <span class="gap-label">Gaps</span>
+        <ul class="gap-list">
+          <li>Tissue recoil limits how large the atrial septal channel can be made</li>
+          <li>Every balloon and stent used is off-label, nothing is purpose-built for this application, raising real risk to both fetus and mother</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: TASK -->
+<div class="sec-break">
+  <div class="sec-num">03</div>
+  <div>
+    <div class="sec-label">Section 3</div>
+    <div class="sec-title">Task</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section">
+  <p class="body">Closing those gaps starts with being able to test a new device before it ever touches a real patient. The core task is building a fetal test bed capable of the following:</p>
+
+  <div class="req-list">
+    <div class="req-item">
+      <div class="req-num">Requirement 01</div>
+      <h4>Represent fetal cardiac geometries across a range of gestational ages</h4>
+    </div>
+    <div class="req-item">
+      <div class="req-num">Requirement 02</div>
+      <h4>Allow simulation of device operational steps</h4>
+      <ul>
+        <li>Simulate the device-relevant mechanics of the tissues involved</li>
+      </ul>
+    </div>
+    <div class="req-item">
+      <div class="req-num">Requirement 03</div>
+      <h4>Allow simulation of changes in cardiac flows and pressures resulting from device use</h4>
+    </div>
+    <div class="req-item">
+      <div class="req-num">Requirement 04</div>
+      <h4>Allow simulation of transabdominal ultrasound guidance</h4>
+      <p style="margin-top: 10px; color: var(--fg-dim); font-size: 14.5px; line-height: 1.65;">To test a novel, patented catheter designed to treat HLHS in the fetus. The catheter aims to increase the chances of survival for Fetal Aortic Valvuloplasty (FAV) and Fetal Atrial Septoplasty.</p>
+    </div>
+  </div>
+
+  <div class="status-banner">
+    <div class="sb-emoji">🕒</div>
+    <div>
+      <div class="sb-text">Status: In Progress</div>
+      <div class="sb-sub">Expected completion, May 2027</div>
+    </div>
+  </div>
+
+  <div class="tag-row">
+    <span class="tag-pill">Fetal Cardiac Modeling</span>
+    <span class="tag-pill">Tissue-Mimicking Materials</span>
+    <span class="tag-pill">Ultrasound Guidance Simulation</span>
+    <span class="tag-pill">Catheter-Based Intervention</span>
+  </div>
+</section>
+
+<footer class="foot-min">
+  <div>© 2026 S. Gandhi · D/006</div>
+  <div><a href="design.html" style="color: var(--fg-mute); text-decoration: none;">← Back to Design</a></div>
+</footer>
+
+</body>
+</html>

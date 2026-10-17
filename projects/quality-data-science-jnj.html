@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Spring 2025 · Non-Product Software | Samika Gandhi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  .case-hero { padding: 40px var(--pad-x) 24px; }
+  .case-meta {
+    display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--grid-gap);
+    font-family: "JetBrains Mono", monospace; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--fg-mute); margin-bottom: 28px;
+  }
+  .case-meta > div { grid-column: span 3; }
+  .case-meta strong { color: var(--fg); font-weight: 500; display: block; margin-top: 4px; font-size: 13px; letter-spacing: 0.02em; }
+  .case-title {
+    font-family: "Inter Tight", sans-serif; font-weight: 700;
+    font-size: clamp(32px, 5vw, 68px); line-height: 1.02;
+    letter-spacing: -0.03em; margin: 0 0 20px; text-wrap: balance;
+  }
+  .case-pitch {
+    display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--grid-gap);
+    border-top: 1px solid var(--rule); padding-top: 18px;
+  }
+  .case-pitch .k { grid-column: span 3; font-family: "JetBrains Mono", monospace; font-size: 11px; color: var(--fg-mute); text-transform: uppercase; letter-spacing: 0.08em; }
+  .case-pitch .v { grid-column: span 9; font-size: clamp(18px, 1.7vw, 23px); line-height: 1.4; text-wrap: pretty; }
+  .case-pitch .v em { font-style: normal; background: var(--accent); color: var(--accent-ink); padding: 0 4px; }
+
+  .case-section { padding: 40px var(--pad-x) 56px; }
+  .case-section.alt { background: var(--bg-2); }
+
+  .sec-break { display: flex; align-items: center; gap: 18px; padding: 40px var(--pad-x) 0; }
+  .sec-break .sec-num {
+    font-family: "Inter Tight", sans-serif; font-weight: 700; font-size: 15px;
+    color: var(--accent-ink); background: var(--accent);
+    width: 34px; height: 34px; flex: 0 0 auto;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .sec-break .sec-label { font-family: "JetBrains Mono", monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--fg-mute); }
+  .sec-break .sec-title { font-family: "Inter Tight", sans-serif; font-weight: 700; font-size: clamp(20px, 2.4vw, 30px); letter-spacing: -0.02em; color: var(--fg); }
+  .sec-break-line { height: 1px; background: var(--rule); margin: 20px var(--pad-x) 0; }
+
+  .case-section p.body { max-width: 74ch; margin: 0; color: var(--fg-dim); font-size: 16px; line-height: 1.75; }
+  .case-section p.body + p.body { margin-top: 16px; }
+
+  .imgframe { overflow: hidden; position: relative; }
+  .imgframe img { display: block; width: 100%; height: auto; }
+  .imgframe .cap {
+    position: absolute; top: 12px; left: 12px;
+    font-family: "JetBrains Mono", monospace; font-size: 12px;
+    text-transform: uppercase; letter-spacing: 0.12em; color: var(--fg);
+    border: 1px solid var(--rule); padding: 6px 11px;
+    background: rgba(11,11,12,0.88); backdrop-filter: blur(6px); z-index: 2;
+  }
+
+  /* Detailed numbered initiative blocks */
+  .desc-steps { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 12px; }
+  .desc-step { background: var(--bg); padding: 22px 24px; display: grid; grid-template-columns: 60px 1fr; gap: 16px; align-items: start; border-bottom: none; }
+  .desc-step:last-child { border-bottom: none; padding-bottom: 0; }
+  .desc-step .ds-num {
+    font-family: "Inter Tight", sans-serif; font-weight: 700; font-size: 34px;
+    color: var(--accent); letter-spacing: -0.03em; line-height: 1;
+  }
+  .desc-step .ds-tag {
+    font-family: "JetBrains Mono", monospace; font-size: 10.5px; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--fg-mute); display: block; margin-top: 6px;
+  }
+  .desc-step h4 { font-size: 19px; font-weight: 600; margin: 0 0 10px; letter-spacing: -0.01em; color: var(--fg); }
+  .desc-step p { margin: 0; color: var(--fg-dim); font-size: 15.5px; line-height: 1.75; max-width: 68ch; }
+  .desc-step p + p { margin-top: 10px; }
+
+  .stat-band { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--rule); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+  .stat { background: var(--bg); padding: 26px 18px; text-align: center; }
+  .stat .v { font-family: "Inter Tight", sans-serif; font-weight: 700; font-size: clamp(22px, 2.6vw, 32px); letter-spacing: -0.03em; }
+  .stat .v .hl { background: var(--accent); color: var(--accent-ink); padding: 1px 8px; }
+  .stat .k { font-family: "JetBrains Mono", monospace; font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--fg-mute); margin-top: 10px; line-height: 1.4; }
+
+  .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+  .tag-pill { font-family: "JetBrains Mono", monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--fg-dim); border: 1px solid var(--rule); padding: 6px 12px; }
+
+  .foot-min { padding: 18px var(--pad-x); border-top: 1px solid var(--rule); display: flex; justify-content: space-between; font-family: "JetBrains Mono", monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--fg-mute); }
+
+  .tool-logos { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 32px; }
+  .tool-logos img { max-height: 200px; object-fit: contain; margin: 0 auto; }
+
+  @media (max-width: 900px) {
+    .tool-logos { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; }
+    .case-meta > div { grid-column: span 6; }
+    .case-pitch .k, .case-pitch .v { grid-column: span 12; }
+    .desc-steps { grid-template-columns: 1fr; }
+    .desc-step { grid-template-columns: 48px 1fr; }
+    .desc-step .ds-num { font-size: 26px; }
+    .stat-band { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-left"><a class="brand" href="../index.html" style="text-decoration:none; color:inherit;">SAMIKA GANDHI</a><a class="navlink" href="../index.html">← Back</a></div>
+    <div></div>
+    <div class="nav-right">
+      <a class="navlink" href="../index.html#skills">Skills</a>
+      <a class="navlink" href="../resume.html">Resume</a>
+      <a class="navlink" href="../contact.html">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="case-hero">
+  <div class="case-meta">
+    <div>▪ INDEX<strong>Q/003</strong></div>
+    <div>▪ DATES<strong>Jan – May 2025</strong></div>
+    <div>▪ CATEGORY<strong>Quality</strong></div>
+    <div>▪ COMPANY<strong>J&amp;J MedTech · Cincinnati, OH</strong></div>
+  </div>
+  <h1 class="case-title">Spring 2025 · Non-Product Software.</h1>
+  <div class="case-pitch">
+    <div class="k">▪ Overview</div>
+    <div class="v">
+      Turned a manual, tribal-knowledge quality process into a <em>self-running system</em>automating 260 hours of work and giving leadership real-time visibility into software health.
+    </div>
+  </div>
+</header>
+
+<div class="imgframe" style="margin: 0; height: 340px; overflow: hidden; border-bottom: 1px solid var(--rule); background: #fff; display:flex; align-items:center; justify-content:center;">
+  <span class="cap">Johnson &amp; Johnson MedTech</span>
+  <img src="assets/quality-jnj/jnj-logo.png" alt="Johnson &amp; Johnson MedTech logo" style="width:34%; height:auto; display:block;" />
+</div>
+
+<!-- SECTION 1: THE LANDSCAPE -->
+<div class="sec-break">
+  <div class="sec-num">01</div>
+  <div>
+    <div class="sec-label">Section 1</div>
+    <div class="sec-title">The Landscape</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section">
+  <p class="body">Non-product software (NPS), the internal tools, scripts, and systems that support manufacturing and quality processes without being part of the medical device itself, still falls squarely under ISO 13485. That means every NPS tool needs an owner, documented design inputs, a test strategy, and a paper trail, whether it's a two-line script or a full internal application. Going into this co-op, that entire ownership and tracking process ran manually: a hidden layer of quality risk that nobody had a clean way to see, let alone report on.</p>
+
+  <div class="tool-logos">
+    <div class="imgframe" style="border: 1px solid var(--rule); background: #fff; display: flex; align-items: center; justify-content: center; padding: 32px;">
+      <img src="assets/quality-jnj/powerbi-logo.png" alt="Microsoft Power BI logo" style="width: 65%; height: auto;" />
+    </div>
+    <div class="imgframe" style="border: 1px solid var(--rule); background: #fff; display: flex; align-items: center; justify-content: center; padding: 32px;">
+      <img src="assets/quality-jnj/power-automate-logo.png" alt="Microsoft Power Automate logo" style="width: 80%; height: auto;" />
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: KEY INITIATIVES -->
+<div class="sec-break">
+  <div class="sec-num">02</div>
+  <div>
+    <div class="sec-label">Section 2</div>
+    <div class="sec-title">Key Initiatives</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section alt">
+  <div class="desc-steps">
+    <div class="desc-step">
+      <div><div class="ds-num">01</div><span class="ds-tag">Automation</span></div>
+      <div>
+        <h4>Automating NPS Ownership, End to End</h4>
+        <p>The process of assigning, tracking, and re-certifying ownership of every NPS tool in the system was entirely manual, emails, spreadsheets, and institutional memory. I rebuilt that workflow in Power Automate, so ownership assignment, renewal reminders, and status tracking all run themselves. The result: 260 hours of manual effort eliminated, and, just as importantly, the whole workflow now runs in a way that's inherently ISO 13485 compliant, since every action is logged and traceable by design instead of relying on someone remembering to document it.</p>
+      </div>
+    </div>
+    <div class="desc-step">
+      <div><div class="ds-num">02</div><span class="ds-tag">Analytics</span></div>
+      <div>
+        <h4>Giving Leadership Eyes on Software Health</h4>
+        <p>Before this, there was no single place to see how NPS tools across the org were actually performing, leadership decisions on new product initiatives were being made without real visibility into the software risk underneath them. I designed and built 3 Power BI dashboards tracking 11 KPIs spanning ownership status, re-certification timelines, and usage patterns, turning a blind spot into a live, at-a-glance view that speeds up how fast leadership can actually make a call.</p>
+      </div>
+    </div>
+    <div class="desc-step">
+      <div><div class="ds-num">03</div><span class="ds-tag">Documentation</span></div>
+      <div>
+        <h4>Writing the Rules the Automation Runs On</h4>
+        <p>Automation is only as trustworthy as the documentation behind it. I authored new NPS design inputs, unit-test strategies, acceptance criteria, and contingency plans from the ground up, the technical backbone that makes the automated workflows defensible in an audit, not just convenient. Having real contingency planning in place ahead of time reduced anticipated system downtime during an NPS failure by roughly 25%.</p>
+      </div>
+    </div>
+    <div class="desc-step">
+      <div><div class="ds-num">04</div><span class="ds-tag">Compliance</span></div>
+      <div>
+        <h4>Keeping Every Piece Audit-Ready</h4>
+        <p>None of this mattered if it couldn't survive an audit. Every automated workflow and every dashboard was built and documented to stay fully traceable under ISO 13485 quality system requirements, so the systems doing the work could also prove, on demand, that the work was done correctly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: IMPACT -->
+<div class="sec-break">
+  <div class="sec-num">03</div>
+  <div>
+    <div class="sec-label">Section 3</div>
+    <div class="sec-title">Impact</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section">
+  <p class="body">This co-op was ultimately about turning a manual, error-prone quality process into a system that runs itself, and reports on its own health without being asked.</p>
+</section>
+
+<div class="stat-band">
+  <div class="stat"><div class="v hl">260 hrs</div><div class="k">▪ Manual effort eliminated via automation</div></div>
+  <div class="stat"><div class="v hl">3</div><div class="k">▪ Power BI dashboards built</div></div>
+  <div class="stat"><div class="v hl">11</div><div class="k">▪ KPIs tracked across dashboards</div></div>
+  <div class="stat"><div class="v hl">−25%</div><div class="k">▪ Anticipated downtime during NPS failure</div></div>
+</div>
+
+<section class="case-section alt">
+  <p class="body">This role sat right at the intersection of quality systems and data engineering, using Power Automate and Power BI to make compliance and decision-making faster, while authoring the underlying design documentation that keeps every automated system audit-ready under ISO 13485.</p>
+  <div class="tag-row">
+    <span class="tag-pill">Power Automate</span>
+    <span class="tag-pill">Power BI</span>
+    <span class="tag-pill">ISO 13485</span>
+    <span class="tag-pill">KPI Design</span>
+    <span class="tag-pill">Design Inputs</span>
+  </div>
+</section>
+
+<footer class="foot-min">
+  <div>© 2026 S. Gandhi · Q/003</div>
+  <div><a href="quality.html" style="color: var(--fg-mute); text-decoration: none;">← Back to Quality</a></div>
+</footer>
+
+</body>
+</html>

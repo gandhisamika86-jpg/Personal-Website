@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>The Control Kit · Sling Health TAMU | Samika Gandhi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  .case-hero { padding: 40px var(--pad-x) 24px; }
+  .case-meta {
+    display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--grid-gap);
+    font-family: "JetBrains Mono", monospace; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--fg-mute); margin-bottom: 28px;
+  }
+  .case-meta > div { grid-column: span 3; }
+  .case-meta strong { color: var(--fg); font-weight: 500; display: block; margin-top: 4px; font-size: 13px; letter-spacing: 0.02em; }
+  .case-title {
+    font-family: "Inter Tight", sans-serif; font-weight: 700;
+    font-size: clamp(40px, 7vw, 96px); line-height: 0.95;
+    letter-spacing: -0.03em; margin: 0 0 20px; text-wrap: balance;
+  }
+  .case-pitch {
+    display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--grid-gap);
+    border-top: 1px solid var(--rule); padding-top: 18px;
+  }
+  .case-pitch .k { grid-column: span 3; font-family: "JetBrains Mono", monospace; font-size: 11px; color: var(--fg-mute); text-transform: uppercase; letter-spacing: 0.08em; }
+  .case-pitch .v { grid-column: span 9; font-size: clamp(18px, 1.8vw, 24px); line-height: 1.4; text-wrap: pretty; }
+  .case-pitch .v em { font-style: normal; background: var(--accent); color: var(--accent-ink); padding: 0 4px; }
+
+  .case-section { padding: 40px var(--pad-x) 56px; }
+  .case-section.alt { background: var(--bg-2); }
+
+  .sec-break { display: flex; align-items: center; gap: 18px; padding: 40px var(--pad-x) 0; }
+  .sec-break .sec-num {
+    font-family: "Inter Tight", sans-serif; font-weight: 700; font-size: 15px;
+    color: var(--accent-ink); background: var(--accent);
+    width: 34px; height: 34px; flex: 0 0 auto;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .sec-break .sec-label { font-family: "JetBrains Mono", monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--fg-mute); }
+  .sec-break .sec-title { font-family: "Inter Tight", sans-serif; font-weight: 700; font-size: clamp(20px, 2.4vw, 30px); letter-spacing: -0.02em; color: var(--fg); }
+  .sec-break-line { height: 1px; background: var(--rule); margin: 20px var(--pad-x) 0; }
+
+  .case-section p.body { max-width: 74ch; margin: 0; color: var(--fg-dim); font-size: 16px; line-height: 1.75; }
+  .case-section p.body + p.body { margin-top: 16px; }
+
+  .imgframe { overflow: hidden; position: relative; }
+  .imgframe img { display: block; width: 100%; height: auto; }
+  .imgframe .cap {
+    position: absolute; top: 12px; left: 12px;
+    font-family: "JetBrains Mono", monospace; font-size: 12px;
+    text-transform: uppercase; letter-spacing: 0.12em; color: var(--fg);
+    border: 1px solid var(--rule); padding: 6px 11px;
+    background: rgba(11,11,12,0.88); backdrop-filter: blur(6px); z-index: 2;
+  }
+
+  /* Quote block */
+  .quote-block {
+    max-width: 760px; margin: 28px 0 0; padding: 32px 36px;
+    border: 1px solid var(--rule); background: var(--bg-2);
+    position: relative;
+  }
+  .quote-block::before {
+    content: "\201C"; position: absolute; top: 6px; left: 18px;
+    font-family: "Inter Tight", sans-serif; font-size: 64px; font-weight: 700;
+    color: var(--accent); opacity: 0.35; line-height: 1;
+  }
+  .quote-block p {
+    margin: 0; color: var(--fg); font-size: clamp(18px, 2vw, 24px);
+    line-height: 1.45; font-weight: 500; letter-spacing: -0.01em;
+    position: relative; z-index: 1;
+  }
+  .quote-block cite {
+    display: block; margin-top: 16px; font-style: normal;
+    font-family: "JetBrains Mono", monospace; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.1em; color: var(--fg-mute);
+  }
+
+  .compare { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 20px; }
+  .cmp { background: var(--bg); padding: 22px; }
+  .cmp .tag { font-family: "JetBrains Mono", monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 8px; }
+  .cmp h4 { font-size: 15px; font-weight: 600; margin: 0 0 10px; letter-spacing: -0.005em; }
+  .cmp ul { margin: 0; padding: 0; list-style: none; color: var(--fg-dim); font-size: 13.5px; line-height: 1.65; }
+  .cmp ul li { padding: 3px 0; }
+  .cmp ul li::before { content: "– "; color: var(--fg-mute); }
+
+  .flow-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 20px; }
+  .flow { background: var(--bg); padding: 20px; }
+  .flow .tag { font-family: "JetBrains Mono", monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--fg-mute); margin-bottom: 8px; }
+  .flow h4 { font-size: 15px; font-weight: 600; margin: 0 0 8px; }
+  .flow p { margin: 0; color: var(--fg-dim); font-size: 13px; line-height: 1.6; }
+
+  /* Highlighted stat band */
+  .stat-band { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--rule); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+  .stat { background: var(--bg); padding: 26px 16px; text-align: center; }
+  .stat .arrow { font-family: "JetBrains Mono", monospace; font-size: 11px; color: var(--fg-mute); margin-bottom: 6px; }
+  .stat .v { font-family: "Inter Tight", sans-serif; font-weight: 700; font-size: clamp(24px, 2.8vw, 34px); letter-spacing: -0.03em; }
+  .stat .v .hl { background: var(--accent); color: var(--accent-ink); padding: 1px 8px; }
+  .stat .k { font-family: "JetBrains Mono", monospace; font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--fg-mute); margin-top: 10px; line-height: 1.4; }
+
+  .prize-banner {
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+    margin-top: 24px; padding: 20px 26px; background: var(--accent); color: var(--accent-ink);
+  }
+  .prize-banner .pb-emoji { font-size: 30px; line-height: 1; }
+  .prize-banner .pb-text { font-family: "Inter Tight", sans-serif; font-weight: 700; font-size: 19px; letter-spacing: -0.01em; }
+  .prize-banner .pb-sub { font-family: "JetBrains Mono", monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.85; margin-top: 2px; }
+
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 8px; }
+  .skill-col { background: var(--bg); padding: 24px 26px; }
+  .skill-col .sk-tag { font-family: "JetBrains Mono", monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 14px; }
+  .skill-col ul { margin: 0; padding: 0 0 0 18px; color: var(--fg-dim); font-size: 14px; line-height: 1.8; }
+  .skill-col li { margin-bottom: 4px; }
+  @media (max-width: 900px) { .skills-grid { grid-template-columns: 1fr; } }
+
+  /* Side-by-side media + text */
+  .split { display: grid; grid-template-columns: 42% 1fr; gap: 32px; align-items: center; margin-top: 20px; }
+  .split.rev { grid-template-columns: 1fr 42%; }
+  .split.rev .split-media { order: 2; }
+  .split.rev .split-text { order: 1; }
+  .split-text p.body { margin: 0; }
+  .split-text p.body + p.body { margin-top: 12px; }
+
+  @media (max-width: 800px) {
+    .split, .split.rev { grid-template-columns: 1fr; }
+    .split.rev .split-media { order: 1; }
+    .split.rev .split-text { order: 2; }
+  }
+
+  .foot-min { padding: 18px var(--pad-x); border-top: 1px solid var(--rule); display: flex; justify-content: space-between; font-family: "JetBrains Mono", monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--fg-mute); }
+
+  @media (max-width: 900px) {
+    .case-meta > div { grid-column: span 6; }
+    .case-pitch .k, .case-pitch .v { grid-column: span 12; }
+    .compare, .flow-row { grid-template-columns: 1fr; }
+    .stat-band { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-left">
+      <a class="brand" href="../index.html" style="text-decoration:none; color:inherit;">SAMIKA GANDHI</a>
+    <a class="navlink" href="../index.html">← Back</a>
+      </div>
+    <div></div>
+    <div class="nav-right">
+      <a class="navlink" href="../index.html#skills">Skills</a>
+      <a class="navlink" href="../resume.html">Resume</a>
+      <a class="navlink" href="../contact.html">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="case-hero">
+  <div class="case-meta">
+    <div>▪ INDEX<strong>D/001</strong></div>
+    <div>▪ YEAR<strong>2024 · Team Project</strong></div>
+    <div>▪ CATEGORY<strong>Design</strong></div>
+    <div>▪ RESULT<strong>🏆 1st Place</strong></div>
+  </div>
+  <h1 class="case-title">The Control Kit. <span style="color: var(--fg-mute); font-weight: 600;">Sling Health TAMU</span></h1>
+
+  <div class="case-pitch">
+    <div class="k">▪ Overview</div>
+    <div class="v">
+      A hands-on training kit that gives providers reusable practice models, checklists, and resources to close the <em>LARC training gap</em>winner of 1st place, competing against 8 other teams.
+    </div>
+  </div>
+</header>
+
+<!-- PRESENTATION PREVIEW CAROUSEL -->
+<div class="deck-preview" style="margin: 0; border-bottom: 1px solid var(--rule); background: var(--bg-2);">
+  <div class="deck-frame">
+    <span class="cap">Presentation preview · Slide <span id="deck-cur">1</span> / <span id="deck-total">24</span></span>
+    <button class="deck-nav deck-prev" type="button" aria-label="Previous slide">‹</button>
+    <button class="deck-nav deck-next" type="button" aria-label="Next slide">›</button>
+    <img id="deck-img" src="assets/the-control-kit/slides/slide-01.jpg" alt="The Control Kit presentation, slide 1 of 24" />
+  </div>
+  <div class="deck-strip" id="deck-strip"></div>
+</div>
+
+<style>
+  .deck-frame { position: relative; width: 100%; aspect-ratio: 16 / 9; max-height: 560px; overflow: hidden; display: flex; align-items: center; justify-content: center; background: var(--bg-2); }
+  .deck-frame img { width: 100%; height: 100%; object-fit: contain; display: block; }
+  .deck-frame .cap { position: absolute; top: 12px; left: 12px; font-family: "JetBrains Mono", monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--fg); border: 1px solid var(--rule); padding: 6px 12px; background: rgba(11,11,12,0.88); backdrop-filter: blur(6px); z-index: 3; }
+  .deck-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border-radius: 50%; background: rgba(11,11,12,0.72); backdrop-filter: blur(6px); border: 1px solid var(--rule); color: var(--fg); font-size: 22px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 3; transition: background 160ms, border-color 160ms; }
+  .deck-nav:hover { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .deck-prev { left: 16px; }
+  .deck-next { right: 16px; }
+  .deck-strip { display: flex; gap: 6px; overflow-x: auto; padding: 12px var(--pad-x); border-top: 1px solid var(--rule); scrollbar-width: thin; }
+  .deck-thumb { flex: 0 0 auto; width: 84px; aspect-ratio: 16/9; border: 1px solid var(--rule); cursor: pointer; opacity: 0.55; transition: opacity 160ms, border-color 160ms; overflow: hidden; background: var(--bg); }
+  .deck-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .deck-thumb.active { opacity: 1; border-color: var(--accent); }
+  .deck-thumb:hover { opacity: 1; }
+  @media (max-width: 720px) {
+    .deck-nav { width: 36px; height: 36px; font-size: 18px; }
+    .deck-thumb { width: 64px; }
+  }
+</style>
+
+<script>
+  (function() {
+    const total = 24;
+    const img = document.getElementById('deck-img');
+    const cur = document.getElementById('deck-cur');
+    const strip = document.getElementById('deck-strip');
+    let i = 1;
+
+    for (let n = 1; n <= total; n++) {
+      const t = document.createElement('div');
+      t.className = 'deck-thumb' + (n === 1 ? ' active' : '');
+      t.innerHTML = '<img src="assets/the-control-kit/slides/slide-' + String(n).padStart(2,'0') + '.jpg" alt="Slide ' + n + ' thumbnail" loading="lazy" />';
+      t.addEventListener('click', () => go(n));
+      strip.appendChild(t);
+    }
+
+    function go(n) {
+      i = ((n - 1 + total) % total) + 1;
+      img.src = 'assets/the-control-kit/slides/slide-' + String(i).padStart(2,'0') + '.jpg';
+      img.alt = 'The Control Kit presentation, slide ' + i + ' of ' + total;
+      cur.textContent = i;
+      strip.querySelectorAll('.deck-thumb').forEach((el, idx) => el.classList.toggle('active', idx === i - 1));
+      const active = strip.querySelector('.deck-thumb.active');
+      if (active) active.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    }
+
+    document.querySelector('.deck-prev').addEventListener('click', () => go(i - 1));
+    document.querySelector('.deck-next').addEventListener('click', () => go(i + 1));
+  })();
+</script>
+
+<!-- SECTION 1: PROBLEM STATEMENT -->
+<div class="sec-break">
+  <div class="sec-num">01</div>
+  <div>
+    <div class="sec-label">Section 1</div>
+    <div class="sec-title">Problem Statement</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section">
+  <p class="body">Lack of awareness and training around Long-Acting Reversible Contraception (LARC) negatively impacts uptake and accessibility, especially in rural, low-income areas. Most patients find IUD insertion "severely painful," yet pain management for gynecological procedures isn't taught in OB/GYN rotations, and providers receive little training on detecting malpositioning.</p>
+
+  <div class="split">
+    <div class="split-media imgframe" style="border: 1px solid var(--rule); background: #fff;">
+      <span class="cap">FIG. · Contraceptive deserts, 2022</span>
+      <img src="assets/the-control-kit/fig-contraceptive-deserts.jpg" alt="Map of the United States showing health centers offering the full range of birth control methods by state and county, highlighting contraceptive deserts." />
+    </div>
+    <div class="split-text">
+      <p class="body">This map, from Power to Decide, shows just how uneven access already is before training even enters the picture: an estimated 19.2 million women in need live in a "contraceptive desert," and over 1.1 million live in a county without a single health center offering the full range of methods. Darker purple counties have more provider access; the pink and tan counties, concentrated heavily across the South and rural Midwest, are where women have the least.</p>
+      <p class="body">Training gaps compound directly on top of this access gap: even where a clinic exists, if the provider isn't confident inserting an IUD or implant, that "access" doesn't actually translate into a patient getting the method she wants.</p>
+    </div>
+  </div>
+
+  <div class="quote-block">
+    <p>Lack of awareness and training surrounding Long Acting Reversible Contraception negatively impacts uptake and accessibility, particularly in rural, low-income areas.</p>
+    <cite>The Control Kit, Problem Statement</cite>
+  </div>
+</section>
+
+<!-- SECTION 2: APPROACH -->
+<div class="sec-break">
+  <div class="sec-num">02</div>
+  <div>
+    <div class="sec-label">Section 2</div>
+    <div class="sec-title">Approach</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section alt">
+  <p class="body">Ran customer discovery across five pain points, access, awareness, misconceptions, education, and comfort, surfacing that clinicians often spend 30–45 minutes per visit just correcting patient misconceptions, and that rural, low-income areas see especially low uptake of birth control implants due to a shortage of trained providers. Fighting misinformation spread on social media came up repeatedly as its own distinct challenge, separate from clinical training gaps.</p>
+
+  <p class="body" style="margin-top: 16px;">To size and prioritize the opportunity, we mapped out who actually needs this and who would adopt it first:</p>
+
+  <div class="compare">
+    <div class="cmp">
+      <div class="tag">Customer base</div>
+      <h4>Who needs this</h4>
+      <ul>
+        <li>Physicians</li>
+        <li>Medical schools</li>
+        <li>Family planning clinics</li>
+        <li>International aid organizations</li>
+        <li>School-based health centers</li>
+      </ul>
+    </div>
+    <div class="cmp">
+      <div class="tag">Early adopters</div>
+      <h4>Who adopts first</h4>
+      <ul>
+        <li>Physicians in rural or low-income areas</li>
+        <li>Medical schools with a rural health focus</li>
+        <li>School health centers with high pregnancy-related dropout rates</li>
+        <li>Primary care physicians</li>
+      </ul>
+    </div>
+  </div>
+
+  <p class="body" style="margin-top: 28px;">We also benchmarked ourselves directly against the existing ways providers currently get LARC training, scoring each option against what actually matters clinically, hands-on learning, reliability, reusability, patient benefit, instant feedback, and staying current with eligibility guidelines.</p>
+
+  <div class="split rev">
+    <div class="split-media imgframe" style="border: 1px solid var(--rule); background: #fff;">
+      <span class="cap">FIG. · Pugh matrix vs. existing training options</span>
+      <img src="assets/the-control-kit/fig-pugh-matrix.jpg" alt="Pugh matrix comparing The Control Kit against an online physician resource, birth control company training, non-OB/GYN residency, and OB/GYN residency training, across seven criteria." />
+    </div>
+    <div class="split-text">
+      <p class="body">The Control Kit scored a +7 total, the highest of any option, and the only one that scored positively across every single criterion. OB/GYN residency training came closest at +3, but even that loses points for not staying up to date and not being reusable across a provider's whole career. Everything else, online physician resources, birth control company training, non-OB/GYN residency, actually scored negative or flat overall, meaning none of the training a typical provider actually has access to is even reliably better than doing nothing.</p>
+    </div>
+  </div>
+
+  <p class="body" style="margin-top: 28px;">With the problem and the competitive gap both mapped out, this is the roadmap we set for actually building and validating the solution:</p>
+
+  <div class="imgframe" style="max-width: 760px; margin-top: 20px; border: 1px solid var(--rule); background: #fff;">
+    <span class="cap">FIG. · Team roadmap</span>
+    <img src="assets/the-control-kit/fig-plan-roadmap.jpg" alt="Roadmap showing six steps: continued customer discovery, development of prototype, finalizing training tools, market discovery, market analysis, and pitching to Texas A&M College of Medicine's Rural Medicine Program." />
+  </div>
+</section>
+
+<!-- SECTION 3: SOLUTION -->
+<div class="sec-break">
+  <div class="sec-num">03</div>
+  <div>
+    <div class="sec-label">Section 3</div>
+    <div class="sec-title">Solution</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section">
+  <p class="body">Designed The Control Kit, reusable insertion/removal practice models (with an agarose-hydrogel-lined uterine cavity to simulate real pressure points), educational pamphlets for patients and providers, and competency checklists, paired with an online resource offering scenario-based practice consistent with updated eligibility guidelines and a forum for addressing misconceptions.</p>
+
+  <div class="imgframe" style="max-width: 900px; margin-top: 20px; border: 1px solid var(--rule); background: #fff;">
+    <span class="cap">FIG. 13 · Training model, front, back, side</span>
+    <img src="assets/the-control-kit/fig-training-materials.jpg" alt="Three CAD renderings of The Control Kit's IUD insertion practice model, shown from the front, back, and side." />
+  </div>
+  <p class="body" style="margin-top: 16px;">The practice model itself is built to be handled repeatedly without wearing out: the uterine cavity is lined with an agarose hydrogel so a provider can actually feel realistic pressure points during insertion, rather than practicing on rigid plastic that doesn't behave anything like real tissue.</p>
+
+  <p class="body" style="margin-top: 24px;"><strong style="color: var(--fg); font-weight: 600;">Unique value proposition:</strong> offering continual and updated practice inserting different types of birth control, with educational materials on each type, not a one-time training session that goes stale the moment guidelines change.</p>
+
+  <p class="body" style="margin-top: 16px;">To get this into providers' hands, we modeled two straightforward revenue paths and a deliberate rollout sequence:</p>
+
+  <div class="flow-row">
+    <div class="flow">
+      <div class="tag">How</div>
+      <h4>One-time purchase</h4>
+      <p>Training kits sold directly to clinics, medical schools, and health centers as a durable, reusable resource.</p>
+    </div>
+    <div class="flow">
+      <div class="tag">How</div>
+      <h4>Subscription</h4>
+      <p>Ongoing access to the online resource, scenario practice and updated eligibility content, kept current over time.</p>
+    </div>
+    <div class="flow">
+      <div class="tag">Where</div>
+      <h4>Urban → rural / global</h4>
+      <p>Launch focused in urban centers first, then expand into rural and international markets where the training gap is widest.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: IMPACT -->
+<div class="sec-break">
+  <div class="sec-num">04</div>
+  <div>
+    <div class="sec-label">Section 4</div>
+    <div class="sec-title">Impact</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section alt">
+  <p class="body">Modeled on published results from similar training interventions, closing the LARC training gap moves real clinical numbers, not just comfort scores:</p>
+
+  <div class="stat-band">
+    <div class="stat">
+      <div class="v">16% <span style="color:var(--fg-mute); font-size: 0.6em;">→</span> <span class="hl">27%</span></div>
+      <div class="k">▪ Provider comfort with IUD insertion, school-based health centers</div>
+    </div>
+    <div class="stat">
+      <div class="v">22.5% <span style="color:var(--fg-mute); font-size: 0.6em;">→</span> <span class="hl">35%</span></div>
+      <div class="k">▪ IUD provision rate, primary care</div>
+    </div>
+    <div class="stat">
+      <div class="v">31.5% <span style="color:var(--fg-mute); font-size: 0.6em;">→</span> <span class="hl">49%</span></div>
+      <div class="k">▪ Implant provision rate, primary care</div>
+    </div>
+    <div class="stat">
+      <div class="v">69% <span style="color:var(--fg-mute); font-size: 0.6em;">→</span> <span class="hl">84%</span></div>
+      <div class="k">▪ Provider knowledge of eligibility guidelines</div>
+    </div>
+  </div>
+
+  <p class="body" style="margin-top: 28px;">Positioned initially for urban clinics, medical schools, and family planning centers, with a rural and global expansion path from there.</p>
+
+  <div class="prize-banner">
+    <div class="pb-emoji">🏆</div>
+    <div>
+      <div class="pb-text">1st Place, $1,000 Prize</div>
+      <div class="pb-sub">Sling Health TAMU · Competed against 8 teams</div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: ABOUT SLING HEALTH TAMU -->
+<div class="sec-break">
+  <div class="sec-num">05</div>
+  <div>
+    <div class="sec-label">Section 5</div>
+    <div class="sec-title">About Sling Health TAMU</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section">
+  <div style="display: grid; grid-template-columns: 1fr 1.3fr; gap: 32px; align-items: center;">
+    <div class="imgframe" style="border: 1px solid var(--rule); background: #fff;">
+      <img src="assets/the-control-kit/sling-logo.jpg" alt="Sling Health TAMU logo, a stylized egg-and-S mark on a purple background." />
+    </div>
+    <div>
+      <p class="body">The Control Kit was built through <strong style="color: var(--fg); font-weight: 600;">Sling Health TAMU</strong>, the Texas A&amp;M chapter of Sling Health, a national, student-run medtech incubator founded in 2013 that has since grown into the country's largest student-oriented med-tech accelerator, with alumni startups going on to raise more than $220 million.</p>
+      <p class="body" style="margin-top: 14px;">The TAMU chapter, launched in 2019, pairs engineering, medical, and business students together in interdisciplinary teams for two full semesters, working directly with clinicians to surface real unmet needs and turn them into functional prototypes, with funding, lab space, and mentorship provided along the way. Every team's cycle ends at Demo Day, presenting finished work to judges, investors, and the public.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6: SKILLS -->
+<div class="sec-break">
+  <div class="sec-num">06</div>
+  <div>
+    <div class="sec-label">Section 6</div>
+    <div class="sec-title">Skills</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section">
+  <div class="skills-grid">
+    <div class="skill-col">
+      <div class="sk-tag">Technical</div>
+      <ul>
+        <li>CAD modeling &amp; prototyping (SolidWorks)</li>
+        <li>Pugh matrix competitive benchmarking</li>
+        <li>Customer discovery &amp; market sizing</li>
+        <li>Biomaterial selection (agarose hydrogel)</li>
+      </ul>
+    </div>
+    <div class="skill-col">
+      <div class="sk-tag">Soft Skills</div>
+      <ul>
+        <li>Cross-functional teamwork under deadline</li>
+        <li>Translating clinical pain points into requirements</li>
+        <li>Persuasive pitching to a judge panel</li>
+        <li>Synthesizing user research into a product decision</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 7: PRESENTATION -->
+<div class="sec-break">
+  <div class="sec-num">07</div>
+  <div>
+    <div class="sec-label">Section 7</div>
+    <div class="sec-title">Presentation</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section alt">
+  <p class="body" style="margin-bottom: 22px;">The full 24-slide presentation, including customer discovery, competitive landscape, and go-to-market plan.</p>
+  <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+    <a href="assets/the-control-kit/The-Control-Kit-Presentation.pdf" target="_blank" rel="noopener" style="display:inline-block; font-family:'JetBrains Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:0.1em; color:var(--accent-ink); background:var(--accent); border:1px solid var(--accent); padding:10px 16px; text-decoration:none;">View Presentation ↗</a>
+    <a href="assets/the-control-kit/The-Control-Kit-Presentation.pptx" download style="display:inline-block; font-family:'JetBrains Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:0.1em; color:var(--accent); border:1px solid var(--accent); padding:10px 16px; text-decoration:none;">Download .pptx ↓</a>
+  </div>
+</section>
+
+<footer class="foot-min">
+  <div>© 2026 S. Gandhi · D/001</div>
+  <div><a href="design.html" style="color: var(--fg-mute); text-decoration: none;">← Back to Design</a></div>
+</footer>
+
+</body>
+</html>

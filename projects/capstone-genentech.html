@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Senior Year Capstone Project @ Genentech | Samika Gandhi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  .case-hero { padding: 40px var(--pad-x) 24px; }
+  .case-meta {
+    display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--grid-gap);
+    font-family: "JetBrains Mono", monospace; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--fg-mute); margin-bottom: 28px;
+  }
+  .case-meta > div { grid-column: span 3; }
+  .case-meta strong { color: var(--fg); font-weight: 500; display: block; margin-top: 4px; font-size: 13px; letter-spacing: 0.02em; }
+  .case-title {
+    font-family: "Inter Tight", sans-serif; font-weight: 700;
+    font-size: clamp(30px, 4.6vw, 60px); line-height: 1.05;
+    letter-spacing: -0.025em; margin: 0 0 20px; text-wrap: balance;
+  }
+  .case-pitch {
+    display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--grid-gap);
+    border-top: 1px solid var(--rule); padding-top: 18px;
+  }
+  .case-pitch .k { grid-column: span 3; font-family: "JetBrains Mono", monospace; font-size: 11px; color: var(--fg-mute); text-transform: uppercase; letter-spacing: 0.08em; }
+  .case-pitch .v { grid-column: span 9; font-size: clamp(18px, 1.8vw, 24px); line-height: 1.4; text-wrap: pretty; }
+  .case-pitch .v em { font-style: normal; background: var(--accent); color: var(--accent-ink); padding: 0 4px; }
+
+  .case-section { padding: 40px var(--pad-x) 56px; }
+  .case-section.alt { background: var(--bg-2); }
+
+  .sec-break { display: flex; align-items: center; gap: 18px; padding: 40px var(--pad-x) 0; }
+  .sec-break .sec-num {
+    font-family: "Inter Tight", sans-serif; font-weight: 700; font-size: 15px;
+    color: var(--accent-ink); background: var(--accent);
+    width: 34px; height: 34px; flex: 0 0 auto;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .sec-break .sec-label { font-family: "JetBrains Mono", monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--fg-mute); }
+  .sec-break .sec-title { font-family: "Inter Tight", sans-serif; font-weight: 700; font-size: clamp(20px, 2.4vw, 30px); letter-spacing: -0.02em; color: var(--fg); }
+  .sec-break-line { height: 1px; background: var(--rule); margin: 20px var(--pad-x) 0; }
+
+  .case-section p.body { max-width: 74ch; margin: 0; color: var(--fg-dim); font-size: 16px; line-height: 1.75; }
+  .case-section p.body + p.body { margin-top: 16px; }
+
+  .imgframe { overflow: hidden; position: relative; }
+  .imgframe img { display: block; width: 100%; height: auto; }
+  .imgframe .cap {
+    position: absolute; top: 12px; left: 12px;
+    font-family: "JetBrains Mono", monospace; font-size: 12px;
+    text-transform: uppercase; letter-spacing: 0.12em; color: var(--fg);
+    border: 1px solid var(--rule); padding: 6px 11px;
+    background: rgba(11,11,12,0.88); backdrop-filter: blur(6px); z-index: 2;
+  }
+
+  /* Constraint cards */
+  .constraint-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 24px; }
+  .constraint { background: var(--bg); padding: 20px; }
+  .constraint .tag { font-family: "JetBrains Mono", monospace; font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 8px; }
+  .constraint .v { font-family: "Inter Tight", sans-serif; font-weight: 700; font-size: 18px; letter-spacing: -0.01em; }
+
+  /* Status banner */
+  .status-banner {
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+    margin-top: 8px; padding: 20px 26px; background: var(--accent); color: var(--accent-ink);
+  }
+  .status-banner .sb-emoji { font-size: 26px; line-height: 1; }
+  .status-banner .sb-text { font-family: "Inter Tight", sans-serif; font-weight: 700; font-size: 18px; letter-spacing: -0.01em; }
+  .status-banner .sb-sub { font-family: "JetBrains Mono", monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.85; margin-top: 2px; }
+
+  /* Vertical timeline */
+  .vtimeline { position: relative; margin-top: 40px; padding-left: 50px; }
+  .vtimeline::before {
+    content: ""; position: absolute; left: 15px; top: 6px; bottom: 6px;
+    width: 2px; background: var(--rule);
+  }
+  .vt-item { position: relative; padding-bottom: 36px; }
+  .vt-item:last-child { padding-bottom: 0; }
+  .vt-dot {
+    position: absolute; left: -50px; top: 0;
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--bg); border: 2px solid var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    font-family: "Inter Tight", sans-serif; font-weight: 700; font-size: 13px; color: var(--accent);
+    z-index: 1;
+  }
+  .vt-item.done .vt-dot { background: var(--accent); color: var(--accent-ink); }
+  .vt-content { padding-top: 4px; }
+  .vt-content h4 { font-size: 16.5px; font-weight: 600; margin: 0 0 4px; letter-spacing: -0.01em; color: var(--fg); }
+  .vt-content .vt-sub { font-family: "JetBrains Mono", monospace; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--fg-mute); }
+
+  .foot-min { padding: 18px var(--pad-x); border-top: 1px solid var(--rule); display: flex; justify-content: space-between; font-family: "JetBrains Mono", monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--fg-mute); }
+
+  @media (max-width: 900px) {
+    .case-meta > div { grid-column: span 6; }
+    .case-pitch .k, .case-pitch .v { grid-column: span 12; }
+    .constraint-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-left"><a class="brand" href="../index.html" style="text-decoration:none; color:inherit;">SAMIKA GANDHI</a><a class="navlink" href="../index.html">← Back</a></div>
+    <div></div>
+    <div class="nav-right">
+      <a class="navlink" href="../index.html#skills">Skills</a>
+      <a class="navlink" href="../resume.html">Resume</a>
+      <a class="navlink" href="../contact.html">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="case-hero">
+  <div class="case-meta">
+    <div>▪ INDEX<strong>D/005</strong></div>
+    <div>▪ YEAR<strong>2026–27 · Capstone</strong></div>
+    <div>▪ CATEGORY<strong>Design</strong></div>
+    <div>▪ SPONSOR<strong>Genentech, a member of the Roche Group</strong></div>
+  </div>
+  <h1 class="case-title">Senior Year Capstone Project @ Genentech.</h1>
+  <div class="case-pitch">
+    <div class="k">▪ Overview</div>
+    <div class="v">
+      Developing a <em>force-dose assist device</em> that reduces subcutaneous and ocular injection forces for high-concentration biologic drug formulations.
+    </div>
+  </div>
+</header>
+
+<div class="imgframe" style="margin: 0; height: 260px; overflow: hidden; border-bottom: 1px solid var(--rule); background: #fff; display:flex; align-items:center; justify-content:center;">
+  <img src="assets/capstone/roche-genentech-logo.png" alt="Roche and Genentech logos" style="width:38%; height:auto; display:block;" />
+</div>
+
+<!-- SECTION 1: PROBLEM STATEMENT -->
+<div class="sec-break">
+  <div class="sec-num">01</div>
+  <div>
+    <div class="sec-label">Section 1</div>
+    <div class="sec-title">Problem Statement</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section">
+  <p class="body">New biologic drug formulations increasingly need to be highly concentrated to enable extended-release dosing, fewer, less frequent injections for the patient. But that concentration comes at a cost: more concentrated biologics are also more viscous, and viscous fluid is fundamentally harder to push through a needle. That tension shows up directly at the point of care, where high injection forces make these next-generation drug solutions genuinely difficult to deliver through the small-gauge needles patients actually use.</p>
+  <p class="body" style="margin-top: 16px;">The goal of this capstone is to design a force-dose assist device, a tool that interfaces with an off-the-shelf syringe, such as the standard 1 mL BD syringe, and physically reduces the force a patient or provider has to apply to complete the injection. Solving this well is what stands between a promising high-concentration formulation and a therapy patients can actually self-administer.</p>
+
+  <div class="constraint-grid">
+    <div class="constraint">
+      <div class="tag">Needle gauge</div>
+      <div class="v">30–34 G</div>
+    </div>
+    <div class="constraint">
+      <div class="tag">Injection speed</div>
+      <div class="v">100 μL / 10 sec</div>
+    </div>
+    <div class="constraint">
+      <div class="tag">Compatibility</div>
+      <div class="v">1 mL BD syringe</div>
+    </div>
+    <div class="constraint">
+      <div class="tag">Use case</div>
+      <div class="v">Multiple-use device</div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: STATUS & PROJECT TIMELINE -->
+<div class="sec-break">
+  <div class="sec-num">02</div>
+  <div>
+    <div class="sec-label">Section 2</div>
+    <div class="sec-title">Status &amp; Project Timeline</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section alt">
+  <div class="status-banner">
+    <div class="sb-emoji">🕒</div>
+    <div>
+      <div class="sb-text">Status: In Progress</div>
+      <div class="sb-sub">Expected completion, May 2027</div>
+    </div>
+  </div>
+
+  <p class="body" style="margin-top: 28px;">This project is being documented as a full Design History File (DHF), following the same 12-section structure used to track the project from team charter through final showcase. Each section below represents a phase of the DHF as the project moves toward completion.</p>
+
+  <div class="vtimeline">
+    <div class="vt-item">
+      <div class="vt-dot">1</div>
+      <div class="vt-content">
+        <div class="vt-sub">Section 1</div>
+        <h4>Charter and Code of Cooperation</h4>
+      </div>
+    </div>
+    <div class="vt-item">
+      <div class="vt-dot">2</div>
+      <div class="vt-content">
+        <div class="vt-sub">Section 2</div>
+        <h4>Initial Problem Statement</h4>
+      </div>
+    </div>
+    <div class="vt-item">
+      <div class="vt-dot">3</div>
+      <div class="vt-content">
+        <div class="vt-sub">Section 3</div>
+        <h4>Defining the Medical and Market Problem</h4>
+      </div>
+    </div>
+    <div class="vt-item">
+      <div class="vt-dot">4</div>
+      <div class="vt-content">
+        <div class="vt-sub">Section 4</div>
+        <h4>Defining the Engineering Problem</h4>
+      </div>
+    </div>
+    <div class="vt-item">
+      <div class="vt-dot">5</div>
+      <div class="vt-content">
+        <div class="vt-sub">Section 5</div>
+        <h4>Generating Concepts and Down Selecting</h4>
+      </div>
+    </div>
+    <div class="vt-item">
+      <div class="vt-dot">6</div>
+      <div class="vt-content">
+        <div class="vt-sub">Section 6</div>
+        <h4>Solution Statement and Defining Subsystems</h4>
+      </div>
+    </div>
+    <div class="vt-item">
+      <div class="vt-dot">7</div>
+      <div class="vt-content">
+        <div class="vt-sub">Section 7</div>
+        <h4>Failure Modes and Effects Analysis</h4>
+      </div>
+    </div>
+    <div class="vt-item">
+      <div class="vt-dot">8</div>
+      <div class="vt-content">
+        <div class="vt-sub">Section 8</div>
+        <h4>Testing Plan (V&amp;V)</h4>
+      </div>
+    </div>
+    <div class="vt-item">
+      <div class="vt-dot">9</div>
+      <div class="vt-content">
+        <div class="vt-sub">Section 9</div>
+        <h4>Regulatory Affairs</h4>
+      </div>
+    </div>
+    <div class="vt-item">
+      <div class="vt-dot">10</div>
+      <div class="vt-content">
+        <div class="vt-sub">Section 10</div>
+        <h4>Ethical Considerations</h4>
+      </div>
+    </div>
+    <div class="vt-item">
+      <div class="vt-dot">11</div>
+      <div class="vt-content">
+        <div class="vt-sub">Section 11</div>
+        <h4>Intellectual Property (IP) and Technology Transfer</h4>
+      </div>
+    </div>
+    <div class="vt-item">
+      <div class="vt-dot">12</div>
+      <div class="vt-content">
+        <div class="vt-sub">Section 12</div>
+        <h4>Engineering Project Showcase Abstract</h4>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot-min">
+  <div>© 2026 S. Gandhi · D/005</div>
+  <div><a href="design.html" style="color: var(--fg-mute); text-decoration: none;">← Back to Design</a></div>
+</footer>
+
+</body>
+</html>

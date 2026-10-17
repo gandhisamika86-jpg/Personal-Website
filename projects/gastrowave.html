@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>GastroWave · National Medical Device Make-a-thon | Samika Gandhi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  .case-hero { padding: 40px var(--pad-x) 24px; }
+  .case-meta {
+    display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--grid-gap);
+    font-family: "JetBrains Mono", monospace; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--fg-mute); margin-bottom: 28px;
+  }
+  .case-meta > div { grid-column: span 3; }
+  .case-meta strong { color: var(--fg); font-weight: 500; display: block; margin-top: 4px; font-size: 13px; letter-spacing: 0.02em; }
+  .case-title {
+    font-family: "Inter Tight", sans-serif; font-weight: 700;
+    font-size: clamp(40px, 7vw, 96px); line-height: 0.95;
+    letter-spacing: -0.03em; margin: 0 0 20px; text-wrap: balance;
+  }
+  .case-pitch {
+    display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--grid-gap);
+    border-top: 1px solid var(--rule); padding-top: 18px;
+  }
+  .case-pitch .k { grid-column: span 3; font-family: "JetBrains Mono", monospace; font-size: 11px; color: var(--fg-mute); text-transform: uppercase; letter-spacing: 0.08em; }
+  .case-pitch .v { grid-column: span 9; font-size: clamp(18px, 1.8vw, 24px); line-height: 1.4; text-wrap: pretty; }
+  .case-pitch .v em { font-style: normal; background: var(--accent); color: var(--accent-ink); padding: 0 4px; }
+
+  .case-section { padding: 40px var(--pad-x) 56px; }
+  .case-section.alt { background: var(--bg-2); }
+
+  .sec-break { display: flex; align-items: center; gap: 18px; padding: 40px var(--pad-x) 0; }
+  .sec-break .sec-num {
+    font-family: "Inter Tight", sans-serif; font-weight: 700; font-size: 15px;
+    color: var(--accent-ink); background: var(--accent);
+    width: 34px; height: 34px; flex: 0 0 auto;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .sec-break .sec-label { font-family: "JetBrains Mono", monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--fg-mute); }
+  .sec-break .sec-title { font-family: "Inter Tight", sans-serif; font-weight: 700; font-size: clamp(20px, 2.4vw, 30px); letter-spacing: -0.02em; color: var(--fg); }
+  .sec-break-line { height: 1px; background: var(--rule); margin: 20px var(--pad-x) 0; }
+
+  .case-section p.body { max-width: 74ch; margin: 0; color: var(--fg-dim); font-size: 16px; line-height: 1.75; }
+  .case-section p.body + p.body { margin-top: 16px; }
+
+  .imgframe { overflow: hidden; position: relative; }
+  .imgframe img { display: block; width: 100%; height: auto; }
+  .imgframe .cap {
+    position: absolute; top: 12px; left: 12px;
+    font-family: "JetBrains Mono", monospace; font-size: 12px;
+    text-transform: uppercase; letter-spacing: 0.12em; color: var(--fg);
+    border: 1px solid var(--rule); padding: 6px 11px;
+    background: rgba(11,11,12,0.88); backdrop-filter: blur(6px); z-index: 2;
+  }
+
+  .compare { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 20px; }
+  .cmp { background: var(--bg); padding: 22px; }
+  .cmp .tag { font-family: "JetBrains Mono", monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 8px; }
+  .cmp h4 { font-size: 15px; font-weight: 600; margin: 0 0 10px; letter-spacing: -0.005em; }
+
+  .stat-band { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 8px; }
+  .skill-col { background: var(--bg); padding: 24px 26px; }
+  .skill-col .sk-tag { font-family: "JetBrains Mono", monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 14px; }
+  .skill-col ul { margin: 0; padding: 0 0 0 18px; color: var(--fg-dim); font-size: 14px; line-height: 1.8; }
+  .skill-col li { margin-bottom: 4px; }
+  @media (max-width: 900px) { .skills-grid { grid-template-columns: 1fr; } }
+  .stat { background: var(--bg); padding: 26px 18px; text-align: center; }
+  .stat .v { font-family: "Inter Tight", sans-serif; font-weight: 700; font-size: clamp(24px, 2.8vw, 34px); letter-spacing: -0.03em; color: var(--accent); }
+  .stat .k { font-family: "JetBrains Mono", monospace; font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--fg-mute); margin-top: 10px; line-height: 1.4; }
+
+  /* Side-by-side media + text */
+  .split { display: grid; grid-template-columns: 42% 1fr; gap: 32px; align-items: center; margin-top: 20px; }
+  .split.rev { grid-template-columns: 1fr 42%; }
+  .split.rev .split-media { order: 2; }
+  .split.rev .split-text { order: 1; }
+  .split-text p.body { margin: 0; }
+  .split-text p.body + p.body { margin-top: 12px; }
+
+  @media (max-width: 800px) {
+    .split, .split.rev { grid-template-columns: 1fr; }
+    .split.rev .split-media { order: 1; }
+    .split.rev .split-text { order: 2; }
+  }
+
+  .foot-min { padding: 18px var(--pad-x); border-top: 1px solid var(--rule); display: flex; justify-content: space-between; font-family: "JetBrains Mono", monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--fg-mute); }
+
+  @media (max-width: 900px) {
+    .case-meta > div { grid-column: span 6; }
+    .case-pitch .k, .case-pitch .v { grid-column: span 12; }
+    .compare, .stat-band { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-left"><a class="brand" href="../index.html" style="text-decoration:none; color:inherit;">SAMIKA GANDHI</a><a class="navlink" href="../index.html">← Back</a></div>
+    <div></div>
+    <div class="nav-right">
+      <a class="navlink" href="../index.html#skills">Skills</a>
+      <a class="navlink" href="../resume.html">Resume</a>
+      <a class="navlink" href="../contact.html">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="case-hero">
+  <div class="case-meta">
+    <div>▪ INDEX<strong>D/002</strong></div>
+    <div>▪ YEAR<strong>2025–26 · Team Project</strong></div>
+    <div>▪ CATEGORY<strong>Design</strong></div>
+    <div>▪ RESULT<strong>Top 12 of 36 Teams</strong></div>
+  </div>
+  <h1 class="case-title">GastroWave. <span style="color: var(--fg-mute); font-weight: 600;">National Medical Device Make-a-thon</span></h1>
+  <div class="case-pitch">
+    <div class="k">▪ Overview</div>
+    <div class="v">
+      A non-invasive gastric stimulator belt for premature infants that reduces GERD by gently mimicking peristalsis, placing <em>top 12 of 36 teams</em> at the National Medical Device Make-a-thon.
+    </div>
+  </div>
+</header>
+
+<div class="deck-preview" style="margin: 0; border-bottom: 1px solid var(--rule); background: var(--bg-2);">
+  <div class="deck-frame">
+    <span class="cap">Presentation preview · Slide <span id="deck-cur">1</span> / <span id="deck-total">40</span></span>
+    <button class="deck-nav deck-prev" type="button" aria-label="Previous slide">‹</button>
+    <button class="deck-nav deck-next" type="button" aria-label="Next slide">›</button>
+    <img id="deck-img" src="assets/gastrowave/slides/slide-01.jpg" alt="GastroWave presentation, slide 1 of 40" />
+  </div>
+  <div class="deck-strip" id="deck-strip"></div>
+</div>
+
+<style>
+  .deck-frame { position: relative; width: 100%; aspect-ratio: 16 / 9; max-height: 560px; overflow: hidden; display: flex; align-items: center; justify-content: center; background: var(--bg-2); }
+  .deck-frame img { width: 100%; height: 100%; object-fit: contain; display: block; }
+  .deck-frame .cap { position: absolute; top: 12px; left: 12px; font-family: "JetBrains Mono", monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--fg); border: 1px solid var(--rule); padding: 6px 12px; background: rgba(11,11,12,0.88); backdrop-filter: blur(6px); z-index: 3; }
+  .deck-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border-radius: 50%; background: rgba(11,11,12,0.72); backdrop-filter: blur(6px); border: 1px solid var(--rule); color: var(--fg); font-size: 22px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 3; transition: background 160ms, border-color 160ms; }
+  .deck-nav:hover { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .deck-prev { left: 16px; }
+  .deck-next { right: 16px; }
+  .deck-strip { display: flex; gap: 6px; overflow-x: auto; padding: 12px var(--pad-x); border-top: 1px solid var(--rule); scrollbar-width: thin; }
+  .deck-thumb { flex: 0 0 auto; width: 84px; aspect-ratio: 16/9; border: 1px solid var(--rule); cursor: pointer; opacity: 0.55; transition: opacity 160ms, border-color 160ms; overflow: hidden; background: var(--bg); }
+  .deck-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .deck-thumb.active { opacity: 1; border-color: var(--accent); }
+  .deck-thumb:hover { opacity: 1; }
+  @media (max-width: 720px) {
+    .deck-nav { width: 36px; height: 36px; font-size: 18px; }
+    .deck-thumb { width: 64px; }
+  }
+</style>
+
+<script>
+  (function() {
+    const total = 40;
+    const img = document.getElementById('deck-img');
+    const cur = document.getElementById('deck-cur');
+    const strip = document.getElementById('deck-strip');
+    let i = 1;
+    for (let n = 1; n <= total; n++) {
+      const t = document.createElement('div');
+      t.className = 'deck-thumb' + (n === 1 ? ' active' : '');
+      t.innerHTML = '<img src="assets/gastrowave/slides/slide-' + String(n).padStart(2,'0') + '.jpg" alt="Slide ' + n + ' thumbnail" loading="lazy" />';
+      t.addEventListener('click', () => go(n));
+      strip.appendChild(t);
+    }
+    function go(n) {
+      i = ((n - 1 + total) % total) + 1;
+      img.src = 'assets/gastrowave/slides/slide-' + String(i).padStart(2,'0') + '.jpg';
+      img.alt = 'GastroWave presentation, slide ' + i + ' of ' + total;
+      cur.textContent = i;
+      strip.querySelectorAll('.deck-thumb').forEach((el, idx) => el.classList.toggle('active', idx === i - 1));
+      const active = strip.querySelector('.deck-thumb.active');
+      if (active) active.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    }
+    document.querySelector('.deck-prev').addEventListener('click', () => go(i - 1));
+    document.querySelector('.deck-next').addEventListener('click', () => go(i + 1));
+  })();
+</script>
+
+<!-- SECTION 1: PROBLEM -->
+<div class="sec-break">
+  <div class="sec-num">01</div>
+  <div>
+    <div class="sec-label">Section 1</div>
+    <div class="sec-title">The Problem</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section">
+  <p class="body">Gastroesophageal Reflux Disease (GERD) is common and serious in premature infants: an immature lower esophageal sphincter and underdeveloped GI motility let stomach contents flow back into the esophagus. In the NICU, frequent reflux episodes drive feeding intolerance, poor weight gain, aspiration risk, and longer hospital stays.</p>
+
+  <div class="split">
+    <div class="split-media imgframe" style="border: 1px solid var(--rule); background: #fff;">
+      <span class="cap">FIG. · Anatomy of reflux</span>
+      <img src="assets/gastrowave/fig-anatomy-reflux.jpg" alt="Diagram of infant reflux anatomy showing the esophagus, lower esophageal sphincter, stomach, and the backward flow of stomach contents." />
+    </div>
+    <div class="split-text">
+      <p class="body">The mechanism comes down to a weak lower esophageal sphincter (LES) combined with high stomach pressure. Premature infants also have incomplete digestive systems, milk stays in the stomach longer, weaker peristalsis is less effective at moving things down, and infants spend most of their time lying flat, all of which push stomach contents back up through the esophagus.</p>
+      <p class="body">The numbers make the scale clear, roughly 1 in 10 preterm infants is diagnosed with GERD, each averaging 2–3 reflux episodes per hour, and every diagnosed case adds about $70,000 to that baby's hospital stay.</p>
+    </div>
+  </div>
+
+  <p class="body" style="margin-top: 24px;"><strong style="color: var(--fg); font-weight: 600;">Problem statement:</strong> to develop a non-invasive gastric stimulator for premature infants that reduces GERD while addressing the invasiveness, inconsistency, and nurse-dependence of current treatments.</p>
+</section>
+
+<!-- SECTION 2: DESIGN -->
+<div class="sec-break">
+  <div class="sec-num">02</div>
+  <div>
+    <div class="sec-label">Section 2</div>
+    <div class="sec-title">Design</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section alt">
+  <p class="body">Four hard constraints shaped every design decision: temperature probes and cardiac leads already live on a NICU infant's abdomen, so the device can't interfere with those readings; nurse workflow is tight, so it can't add a lengthy procedure; and it needs to be wearable for extended periods while activating fully on its own.</p>
+
+  <div class="split rev">
+    <div class="split-media imgframe" style="border: 1px solid var(--rule); background: #fff;">
+      <span class="cap">FIG. · CAD model &amp; features</span>
+      <img src="assets/gastrowave/fig-cad-features.jpg" alt="CAD model of the GastroWave device showing six labeled features: charging port, pressure sensor, fabric belt slots, thermo-polyurethane body, soft pneumatic cells, and pressure relief system." />
+    </div>
+    <div class="split-text">
+      <p class="body">The belt itself runs on a rechargeable lithium-ion battery, uses a pressure sensor to keep applied force within a strict 0.5–1.0 N safety window, and activates automatically if the sensor detects abdominal distension. Soft pneumatic cells generate a clockwise, wave-like motion, mimicking peristalsis and emulating a gentle physical massage, while a pressure relief system prevents any buildup beyond the safe range. The thermo-polyurethane body can be sterilized with ethylene oxide (EtO) between uses.</p>
+    </div>
+  </div>
+
+  <div class="split" style="margin-top: 32px;">
+    <div class="split-media imgframe" style="border: 1px solid var(--rule); background: #fff;">
+      <span class="cap">FIG. · Closed-loop control workflow</span>
+      <img src="assets/gastrowave/fig-workflow.jpg" alt="Flowchart showing the GastroWave's closed-loop control workflow, from pressure sensing through pump activation, pneumatic cell inflation, and automatic safety shutoff." />
+    </div>
+    <div class="split-text">
+      <p class="body">Closed-loop control is what keeps this safe to run unsupervised: the pressure sensor continuously monitors the abdomen, only activates the pump when real distension is detected, and automatically shuts off before crossing into unsafe pressure territory.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: COMPETITION -->
+<div class="sec-break">
+  <div class="sec-num">03</div>
+  <div>
+    <div class="sec-label">Section 3</div>
+    <div class="sec-title">Competition</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section">
+  <p class="body">Current standard of care sits on a severity ladder: burping and upright seating first (the gold standard for mild cases), then feeding modification, then acid-suppressive therapy, with surgery reserved as a rare last resort for the most severe cases. None of these are purpose-built for consistent, hands-off reflux management in the NICU.</p>
+
+  <div class="split rev">
+    <div class="split-media imgframe" style="border: 1px solid var(--rule); background: #fff;">
+      <span class="cap">FIG. · Pugh matrix vs. current solutions</span>
+      <img src="assets/gastrowave/fig-pugh-matrix.jpg" alt="Pugh matrix comparing GastroWave against upright seating and burping, acid-suppressive therapy, and diet modification across six criteria." />
+    </div>
+    <div class="split-text">
+      <p class="body">Scoring GastroWave against those existing options on safety, effectiveness, non-invasiveness, cost, side effects, and ease of use, it's the only option that scores positively across every single category. Acid-suppressive therapy is effective but loses on non-invasiveness, plus real safety and side-effect tradeoffs. Diet modification struggles on both invasiveness and cost. GastroWave is the only approach that doesn't force a tradeoff between safety, effectiveness, and ease of use.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: MARKET -->
+<div class="sec-break">
+  <div class="sec-num">04</div>
+  <div>
+    <div class="sec-label">Section 4</div>
+    <div class="sec-title">Market</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section alt">
+  <p class="body">Target patient population is premature infants under 28 weeks gestation, with hospitals running NICU units as the primary customer, starting in urban U.S. hospitals, then expanding to rural U.S. and global NICUs in low- and middle-income countries.</p>
+
+  <div class="split">
+    <div class="split-media imgframe" style="border: 1px solid var(--rule); background: #fff;">
+      <span class="cap">FIG. · TAM, SAM, SOM</span>
+      <img src="assets/gastrowave/fig-tam-sam-som.jpg" alt="Diagram showing Total Addressable Market of $19.4M for all premature infants with GERD, Serviceable Available Market of $9.7M for NICU-treated infants, and Serviceable Obtainable Market of $630K for first-city rollout." />
+    </div>
+    <div class="split-text">
+      <p class="body">The full addressable market, every premature infant with GERD, at $100 per device, comes out to $19.4M/year. Narrowing to just NICU-treated infants brings that to a $9.7M serviceable market, and a realistic first-year rollout in one city puts the near-term obtainable market at $630K.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: OTHER DESIGNS CONSIDERED -->
+<div class="sec-break">
+  <div class="sec-num">05</div>
+  <div>
+    <div class="sec-label">Section 5</div>
+    <div class="sec-title">Feasibility</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section">
+  <p class="body">Two existing approaches proved the underlying concept works before we ever started designing: a skin-electrode abdomen stimulator that uses non-invasive electrical stimulation to activate abdominal muscles and promote GI motility, and an FDA-approved abdominal TENS stimulation belt using harnesses to maintain infant positioning. GastroWave's contribution is integrating gastric stimulation with real-time pressure feedback control, something neither existing device does.</p>
+
+  <div class="stat-band" style="margin-top: 24px;">
+    <div class="stat"><div class="v">1 in 10</div><div class="k">▪ Preterm infants diagnosed with GERD</div></div>
+    <div class="stat"><div class="v">2–3/hr</div><div class="k">▪ Reflux episodes per hour</div></div>
+    <div class="stat"><div class="v">$70,000</div><div class="k">▪ Added cost per GERD diagnosis</div></div>
+  </div>
+</section>
+
+<!-- SECTION 6: REGULATORY -->
+<div class="sec-break">
+  <div class="sec-num">06</div>
+  <div>
+    <div class="sec-label">Section 6</div>
+    <div class="sec-title">Regulatory Path</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section alt">
+  <p class="body">GastroWave is a Class II device pursuing the De Novo pathway, there's no predicate device similar enough for standard 510(k) clearance, but it isn't high-risk enough to require full pre-market approval. Given the high-risk NICU patient population, the submission has to demonstrate both that no harm is done and that the safety measures actually work, starting with a 513(g) submission to the FDA for classification feedback, using the FDA-approved TENS muscle stimulation belt as an NSE predicate.</p>
+</section>
+
+<!-- SECTION 7: ABOUT THE COMPETITION -->
+<div class="sec-break">
+  <div class="sec-num">07</div>
+  <div>
+    <div class="sec-label">Section 7</div>
+    <div class="sec-title">About the Competition</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section">
+  <div class="split rev">
+    <div class="split-media imgframe" style="border: 1px solid var(--rule); background: #fff;">
+      <img src="assets/gastrowave/mdm-logo.png" alt="National Medical Device Make-a-thon (MDM) logo" />
+    </div>
+    <div class="split-text">
+      <p class="body">The <strong style="color: var(--fg); font-weight: 600;">National Medical Device Make-a-thon (MDM)</strong> is a 48-hour intercollegiate medical device design competition that brings undergraduate teams from across the country to a single host university for a weekend of design, mentorship, and pitching. Teams are given a clinical topic and have the weekend to design a device, build it out, and present to a panel of judges drawn from the medical and healthcare industry, alongside workshops, a career fair, and networking with sponsors along the way.</p>
+      <p class="body" style="margin-top: 16px;">GastroWave competed at the <strong style="color: var(--fg); font-weight: 600;">2025 National MDM</strong>, hosted that year at the University of Oklahoma, against 36 teams from universities across the country, placing in the <strong style="color: var(--fg); font-weight: 600;">top 12</strong>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 8: SKILLS -->
+<div class="sec-break">
+  <div class="sec-num">08</div>
+  <div>
+    <div class="sec-label">Section 8</div>
+    <div class="sec-title">Skills</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section">
+  <div class="skills-grid">
+    <div class="skill-col">
+      <div class="sk-tag">Technical</div>
+      <ul>
+        <li>CAD modeling &amp; closed-loop control design</li>
+        <li>Pugh matrix &amp; TAM/SAM/SOM market sizing</li>
+        <li>FDA regulatory pathway analysis (De Novo)</li>
+        <li>Human anatomy &amp; physiology research</li>
+      </ul>
+    </div>
+    <div class="skill-col">
+      <div class="sk-tag">Soft Skills</div>
+      <ul>
+        <li>Cross-functional teamwork under a 48-hour deadline</li>
+        <li>Translating NICU nurse workflow into design constraints</li>
+        <li>Pitching to a national panel of industry judges</li>
+        <li>Rapid concept iteration under time pressure</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 9: PRESENTATION -->
+<div class="sec-break">
+  <div class="sec-num">09</div>
+  <div>
+    <div class="sec-label">Section 9</div>
+    <div class="sec-title">Presentation</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section">
+  <p class="body" style="margin-bottom: 22px;">The full 40-slide presentation, background, design, competition, regulatory pathway, market analysis, and bill of materials.</p>
+  <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+    <a href="assets/gastrowave/GastroWave-Presentation.pdf" target="_blank" rel="noopener" style="display:inline-block; font-family:'JetBrains Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:0.1em; color:var(--accent-ink); background:var(--accent); border:1px solid var(--accent); padding:10px 16px; text-decoration:none;">View Presentation ↗</a>
+    <a href="assets/gastrowave/GastroWave-Presentation.pptx" download style="display:inline-block; font-family:'JetBrains Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:0.1em; color:var(--accent); border:1px solid var(--accent); padding:10px 16px; text-decoration:none;">Download .pptx ↓</a>
+  </div>
+</section>
+
+<footer class="foot-min">
+  <div>© 2026 S. Gandhi · D/002</div>
+  <div><a href="design.html" style="color: var(--fg-mute); text-decoration: none;">← Back to Design</a></div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Biomechanical Redesign and Validation of Mandibular Fixation Plates | Samika Gandhi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  .case-hero { padding: 40px var(--pad-x) 24px; }
+  .case-meta {
+    display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--grid-gap);
+    font-family: "JetBrains Mono", monospace; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--fg-mute); margin-bottom: 28px;
+  }
+  .case-meta > div { grid-column: span 3; }
+  .case-meta strong { color: var(--fg); font-weight: 500; display: block; margin-top: 4px; font-size: 13px; letter-spacing: 0.02em; }
+  .case-title {
+    font-family: "Inter Tight", sans-serif; font-weight: 700;
+    font-size: clamp(28px, 4.4vw, 56px); line-height: 1.06;
+    letter-spacing: -0.025em; margin: 0 0 20px; text-wrap: balance;
+  }
+  .case-pitch {
+    display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--grid-gap);
+    border-top: 1px solid var(--rule); padding-top: 18px;
+  }
+  .case-pitch .k { grid-column: span 3; font-family: "JetBrains Mono", monospace; font-size: 11px; color: var(--fg-mute); text-transform: uppercase; letter-spacing: 0.08em; }
+  .case-pitch .v { grid-column: span 9; font-size: clamp(18px, 1.8vw, 24px); line-height: 1.4; text-wrap: pretty; }
+  .case-pitch .v em { font-style: normal; background: var(--accent); color: var(--accent-ink); padding: 0 4px; }
+
+  .case-section { padding: 40px var(--pad-x) 56px; }
+  .case-section.alt { background: var(--bg-2); }
+
+  .sec-break { display: flex; align-items: center; gap: 18px; padding: 40px var(--pad-x) 0; }
+  .sec-break .sec-num {
+    font-family: "Inter Tight", sans-serif; font-weight: 700; font-size: 15px;
+    color: var(--accent-ink); background: var(--accent);
+    width: 34px; height: 34px; flex: 0 0 auto;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .sec-break .sec-label { font-family: "JetBrains Mono", monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--fg-mute); }
+  .sec-break .sec-title { font-family: "Inter Tight", sans-serif; font-weight: 700; font-size: clamp(20px, 2.4vw, 30px); letter-spacing: -0.02em; color: var(--fg); }
+  .sec-break-line { height: 1px; background: var(--rule); margin: 20px var(--pad-x) 0; }
+
+  .case-section p.body { max-width: 74ch; margin: 0; color: var(--fg-dim); font-size: 16px; line-height: 1.75; }
+  .case-section p.body + p.body { margin-top: 16px; }
+  .imgframe { overflow: hidden; position: relative; }
+  .imgframe img { display: block; width: 100%; height: auto; }
+  .imgframe .cap {
+    position: absolute; top: 12px; left: 12px;
+    font-family: "JetBrains Mono", monospace; font-size: 12px;
+    text-transform: uppercase; letter-spacing: 0.12em; color: var(--fg);
+    border: 1px solid var(--rule); padding: 6px 11px;
+    background: rgba(11,11,12,0.88); backdrop-filter: blur(6px); z-index: 2;
+  }
+  .compare { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 8px; }
+  .cmp { background: var(--bg); padding: 22px; }
+  .cmp .tag { font-family: "JetBrains Mono", monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--fg-mute); margin-bottom: 8px; }
+  .cmp h4 { font-size: 16px; font-weight: 600; margin: 0 0 10px; letter-spacing: -0.01em; }
+
+  .stat-band { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+  .stat { background: var(--bg); padding: 26px 18px; }
+  .stat .v { font-family: "Inter Tight", sans-serif; font-weight: 700; font-size: clamp(26px, 2.8vw, 36px); letter-spacing: -0.03em; }
+  .stat .k { font-family: "JetBrains Mono", monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--fg-mute); margin-top: 8px; line-height: 1.4; }
+  .foot-min { padding: 18px var(--pad-x); border-top: 1px solid var(--rule); display: flex; justify-content: space-between; font-family: "JetBrains Mono", monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--fg-mute); }
+
+  .two-up { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; margin-top: 24px; }
+  .split { display: grid; grid-template-columns: 1fr 460px; gap: 32px; align-items: center; margin-top: 20px; }
+
+  @media (max-width: 900px) {
+    .case-meta > div { grid-column: span 6; }
+    .case-pitch .k, .case-pitch .v { grid-column: span 12; }
+    .compare, .stat-band, .two-up, .split { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-left"><a class="brand" href="../index.html" style="text-decoration:none; color:inherit;">SAMIKA GANDHI</a><a class="navlink" href="../index.html">← Back</a></div>
+    <div></div>
+    <div class="nav-right">
+      <a class="navlink" href="../index.html#skills">Skills</a>
+      <a class="navlink" href="../resume.html">Resume</a>
+      <a class="navlink" href="../contact.html">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="case-hero">
+  <div class="case-meta">
+    <div>▪ INDEX<strong>V/004</strong></div>
+    <div>▪ YEAR<strong>2025 · Team Project</strong></div>
+    <div>▪ CATEGORY<strong>Development</strong></div>
+    <div>▪ COURSE<strong>BMEN 361 Biomechanics</strong></div>
+  </div>
+  <h1 class="case-title">Biomechanical Redesign and Validation of Mandibular Fixation Plates.</h1>
+  <div class="case-pitch">
+    <div class="k">▪ Overview</div>
+    <div class="v">
+      Redesigned a two-screw mandibular fixation plate using <em>3D static analysis</em>, then mechanically tested the redesigned plate against the baseline to evaluate whether the new design could improve structural strength.
+    </div>
+  </div>
+</header>
+
+<div class="deck-preview" style="margin: 0; border-bottom: 1px solid var(--rule); background: var(--bg-2);">
+  <div class="deck-frame">
+    <span class="cap">Report preview · Page <span id="deck-cur">1</span> / <span id="deck-total">8</span></span>
+    <button class="deck-nav deck-prev" type="button" aria-label="Previous page">‹</button>
+    <button class="deck-nav deck-next" type="button" aria-label="Next page">›</button>
+    <img id="deck-img" src="assets/fixplate/slides/slide-01.jpg" alt="FixPlate report, page 1 of 8" />
+  </div>
+  <div class="deck-strip" id="deck-strip"></div>
+</div>
+
+<style>
+  .deck-frame { position: relative; width: 100%; aspect-ratio: 16/9; max-height: 560px; overflow: hidden; display: flex; align-items: center; justify-content: center; background: var(--bg-2); }
+  .deck-frame img { width: auto; height: 100%; max-width: 100%; object-fit: contain; display: block; }
+  .deck-frame .cap { position: absolute; top: 12px; left: 12px; font-family: "JetBrains Mono", monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--fg); border: 1px solid var(--rule); padding: 6px 12px; background: rgba(11,11,12,0.88); backdrop-filter: blur(6px); z-index: 3; }
+  .deck-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border-radius: 50%; background: rgba(11,11,12,0.72); backdrop-filter: blur(6px); border: 1px solid var(--rule); color: var(--fg); font-size: 22px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 3; transition: background 160ms, border-color 160ms; }
+  .deck-nav:hover { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .deck-prev { left: 16px; } .deck-next { right: 16px; }
+  .deck-strip { display: flex; gap: 6px; overflow-x: auto; padding: 12px var(--pad-x); border-top: 1px solid var(--rule); scrollbar-width: thin; }
+  .deck-thumb { flex: 0 0 auto; width: 60px; aspect-ratio: 0.77; border: 1px solid var(--rule); cursor: pointer; opacity: 0.55; transition: opacity 160ms, border-color 160ms; overflow: hidden; background: var(--bg); }
+  .deck-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .deck-thumb.active { opacity: 1; border-color: var(--accent); }
+  .deck-thumb:hover { opacity: 1; }
+</style>
+
+<script>
+  (function() {
+    const total = 8;
+    const img = document.getElementById('deck-img');
+    const cur = document.getElementById('deck-cur');
+    const strip = document.getElementById('deck-strip');
+    let i = 1;
+    for (let n = 1; n <= total; n++) {
+      const t = document.createElement('div');
+      t.className = 'deck-thumb' + (n === 1 ? ' active' : '');
+      t.innerHTML = '<img src="assets/fixplate/slides/slide-' + String(n).padStart(2,'0') + '.jpg" alt="Page ' + n + ' thumbnail" loading="lazy" />';
+      t.addEventListener('click', () => go(n));
+      strip.appendChild(t);
+    }
+    function go(n) {
+      i = ((n - 1 + total) % total) + 1;
+      img.src = 'assets/fixplate/slides/slide-' + String(i).padStart(2,'0') + '.jpg';
+      cur.textContent = i;
+      strip.querySelectorAll('.deck-thumb').forEach((el, idx) => el.classList.toggle('active', idx === i - 1));
+      const active = strip.querySelector('.deck-thumb.active');
+      if (active) active.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    }
+    document.querySelector('.deck-prev').addEventListener('click', () => go(i - 1));
+    document.querySelector('.deck-next').addEventListener('click', () => go(i + 1));
+  })();
+</script>
+
+<!-- SECTION 1: PROBLEM STATEMENT -->
+<div class="sec-break">
+  <div class="sec-num">01</div>
+  <div>
+    <div class="sec-label">Section 1</div>
+    <div class="sec-title">Problem Statement</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section">
+  <div class="split">
+    <div>
+      <p class="body">The mandible is one of the most commonly fractured bones in facial injuries, because it absorbs large forces during impacts and chewing. Surgeons stabilize these fractures with fixation plates, thin metal plates bridging the break, secured with screws, that need to hold the bone in alignment long enough to heal while still carrying normal jaw loads.</p>
+      <p class="body" style="margin-top: 16px;">The challenge: analyze a basic two-screw plate design using 3D statics, build and mechanically test it, then redesign it, using only two screws, no more, to genuinely improve its fixation strength, and prove that improvement experimentally rather than just theoretically.</p>
+    </div>
+    <div class="imgframe" style="border: 1px solid var(--rule);">
+      <span class="cap">FIG. 0 · Mandible &amp; fixation plate</span>
+      <img src="assets/fixplate/cover.jpg" alt="Diagram of a mandible fracture with a fixation plate, showing the load, lever arm, and fracture line." />
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: APPROACH -->
+<div class="sec-break">
+  <div class="sec-num">02</div>
+  <div>
+    <div class="sec-label">Section 2</div>
+    <div class="sec-title">Approach</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section alt">
+  <p class="body">Started from the mechanics: screw holes act as <em>stress risers</em>they concentrate stress and amplify it locally. The baseline plate placed its two screws only 0.5 cm from the fracture midline, concentrating load right at the weakest point. The fix was almost embarrassingly simple: move the screws farther out, 1 cm from the midline instead of 0.5 cm, so the load spreads more evenly across the strut region between them.</p>
+
+  <div class="compare">
+    <div class="cmp">
+      <div class="tag">Baseline</div>
+      <h4>Screws 0.5 cm from midline</h4>
+      <p style="margin:0; color:var(--fg-dim); font-size:13.5px; line-height:1.6;">Load concentrated right at the weakest point of the strut, a smaller lever arm for distributing force.</p>
+    </div>
+    <div class="cmp">
+      <div class="tag">Redesign</div>
+      <h4>Screws 1 cm from midline</h4>
+      <p style="margin:0; color:var(--fg-dim); font-size:13.5px; line-height:1.6;">Doubled the distance from the fracture midline, increasing the lever arm and spreading load more evenly.</p>
+    </div>
+    <div class="cmp">
+      <div class="tag">Mechanism</div>
+      <h4>Why it matters</h4>
+      <p style="margin:0; color:var(--fg-dim); font-size:13.5px; line-height:1.6;">Screw holes are stress risers, moving them out reduces peak local stress and raises strut stiffness.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: THEORETICAL CALCULATION -->
+<div class="sec-break">
+  <div class="sec-num">03</div>
+  <div>
+    <div class="sec-label">Section 3</div>
+    <div class="sec-title">Theoretical Calculation</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section">
+  <div class="split">
+    <div>
+      <p class="body">Before building anything, both plates were solved as 3D rigid-body-equilibrium problems to predict the screw reaction forces (S1, S2) under a 100 N applied load. Treating the plate as a free body with the origin placed at the fracture point, the moment generated by the applied force was set equal to the sum of the moments generated by the two screw reactions, since the system is in static equilibrium, net force and net moment both have to equal zero.</p>
+      <p class="body" style="margin-top: 16px;">Solving that system of equations for the redesigned geometry (screws at ±1 cm instead of ±0.5 cm from the midline) gave S1 = 225 N and S2 = 125 N, compared to S1 = 400 N and S2 = 300 N for the baseline plate. Moving the screws out was predicted to cut peak screw force nearly in half, which is exactly the kind of load reduction that should translate into a higher failure threshold once the plate is physically tested.</p>
+      <p class="body" style="margin-top: 16px;">The calculation itself works out to three moment equations (about x, y, and z) plus a force-balance equation, solved simultaneously for the two unknown screw reactions. Because the setup is symmetric about the vertical midline, the x- and y-moment equations resolve to zero automatically, leaving a single equation in two unknowns from the z-moment balance combined with the vertical force balance, a system small enough to solve by hand, which is exactly what made it possible to sanity-check the redesign before ever touching aluminum or cardboard.</p>
+    </div>
+    <div class="imgframe" style="border: 1px solid var(--rule); background: #fff;">
+      <span class="cap">FIG. 2 · FBD &amp; screw force calculation</span>
+      <img src="assets/fixplate/fig2-calculations.jpg" alt="Free body diagram and hand calculations solving for screw reaction forces S1 and S2 on the redesigned plate." />
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: BUILD & TEST -->
+<div class="sec-break">
+  <div class="sec-num">04</div>
+  <div>
+    <div class="sec-label">Section 4</div>
+    <div class="sec-title">Build &amp; Test</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section alt">
+  <div class="split">
+    <div>
+      <p class="body" style="margin: 0;">Built both plates from folded aluminum flashing riveted to a cardboard "mandible" with brass fasteners, then clamped each in a cantilever setup and loaded it with incremental 10g masses until failure, defined as 10° or more of angular displacement between the two fracture fragments, a threshold picked because it's clinically meaningful (malocclusion, chewing problems) while still easy to measure by eye with a protractor.</p>
+      <p class="body" style="margin-top: 16px;">Each plate was folded from a single strip of aluminum flashing, doubled over for stiffness, then hole-punched at the marked screw positions and riveted through the cardboard with brass fasteners on both the front and back faces, mirroring how a real bone plate sandwiches a fracture from both sides. The cantilever test setup held the "proximal" fragment fixed in a bench vise while mass was hung from the "distal" fragment via a paperclip hook, letting the fracture gap itself do the work of revealing exactly when the plate could no longer hold the two halves in alignment. Three trials were run per plate design to make sure the failure mass wasn't a fluke.</p>
+    </div>
+    <div class="imgframe" style="border: 1px solid var(--rule); background: var(--bg);">
+      <span class="cap">FIG. 3 · Test setup</span>
+      <img src="assets/fixplate/fig3-test-setup.jpg" alt="Photo of the mandible plate test setup, clamped in a mini bench vise with a mass hook loaded on a paperclip." />
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: RESULTS -->
+<div class="sec-break">
+  <div class="sec-num">05</div>
+  <div>
+    <div class="sec-label">Section 5</div>
+    <div class="sec-title">Results</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section">
+  <p class="body">The redesigned plate didn't just match the theoretical prediction, it beat expectations. Where the baseline plate failed at an average of just 45g, the redesigned plate held together until an average of 111.67g, more than double.</p>
+
+  <div class="imgframe" style="max-width: 700px; margin-top: 24px; border: 1px solid var(--rule); background: var(--bg);">
+    <span class="cap">FIG. 4–6 · Baseline plate, before and after failure</span>
+    <img src="assets/fixplate/fig-baseline-results.jpg" alt="Photos of the baseline mandible plate before testing, mounted in the test rig, and after reaching failure." />
+  </div>
+</section>
+
+<div class="stat-band">
+  <div class="stat"><div class="v">45g</div><div class="k">▪ Baseline plate avg. failure mass</div></div>
+  <div class="stat"><div class="v">111.67g</div><div class="k">▪ Redesigned plate avg. failure mass</div></div>
+  <div class="stat"><div class="v">2.5×</div><div class="k">▪ Improvement in load capacity</div></div>
+</div>
+
+<section class="case-section">
+  <p class="body">The theoretical model called it correctly: lowering S1 and S2 by moving the screws outward increased the lever arm for load distribution, raising strut stiffness and pushing failure to a much higher mass. Simple geometry, a 0.5 cm shift in screw placement, translated directly into a 2.5x improvement in how much force the plate could take before the fracture opened up.</p>
+</section>
+
+<!-- SECTION 6: CLINICAL RELEVANCE -->
+<div class="sec-break">
+  <div class="sec-num">06</div>
+  <div>
+    <div class="sec-label">Section 6</div>
+    <div class="sec-title">Clinical Relevance</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section alt">
+  <p class="body">Screw placement on a bone plate isn't arbitrary, it's a real design lever. A half-centimeter shift changed failure load by more than double in this experiment, which, translated to a real mandible plate, is the difference between a construct that holds during normal chewing and speaking versus one that doesn't. It's also a reminder that smaller screw holes and properly tensioned fasteners matter clinically: oversized holes are bigger stress risers, and a loose fastener can let fracture fragments separate, both real complication risks in actual maxillofacial surgery.</p>
+</section>
+
+<!-- SECTION 7: FULL REPORT -->
+<div class="sec-break">
+  <div class="sec-num">07</div>
+  <div>
+    <div class="sec-label">Section 7</div>
+    <div class="sec-title">Full Report</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section">
+  <p class="body" style="margin-bottom: 22px;">The complete 8-page solution report, FBDs, calculations, procedure, results, and discussion.</p>
+  <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+    <a href="assets/fixplate/FixPlate-Report.pdf" target="_blank" rel="noopener" style="display:inline-block; font-family:'JetBrains Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:0.1em; color:var(--accent-ink); background:var(--accent); border:1px solid var(--accent); padding:10px 16px; text-decoration:none;">View Full Report ↗</a>
+    <a href="assets/fixplate/FixPlate-Report.pdf" download style="display:inline-block; font-family:'JetBrains Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:0.1em; color:var(--accent); border:1px solid var(--accent); padding:10px 16px; text-decoration:none;">Download .pdf ↓</a>
+  </div>
+</section>
+
+<footer class="foot-min">
+  <div>© 2026 S. Gandhi · V/004</div>
+  <div><a href="development.html" style="color: var(--fg-mute); text-decoration: none;">← Back to Development</a></div>
+</footer>
+
+</body>
+</html>
