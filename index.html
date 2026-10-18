@@ -1102,6 +1102,17 @@
     /* (5) Footer chips — already collapse via styles.css, just tighten type */
     .foot .c1, .foot .c2, .foot .c3 { font-size: 11px; }
   }
+
+  .hero-photo-track { display:flex; width:100%; height:100%; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; overscroll-behavior-x:contain; }
+  .hero-photo-track::-webkit-scrollbar { display:none; }
+  .hero-photo-track:focus-visible { outline:2px solid var(--accent); outline-offset:-3px; }
+  .hero-slide { flex:0 0 100%; height:100%; position:relative; scroll-snap-align:start; scroll-snap-stop:always; }
+  .hero-portrait .hero-slide:not(:first-child) img { object-fit:contain; object-position:center; background:var(--bg-2); }
+  .hero-photo-dots { position:absolute; bottom:12px; left:50%; transform:translateX(-50%); display:flex; gap:0; padding:2px 6px; border-radius:24px; background:rgba(0,0,0,.6); z-index:2; }
+  .hero-photo-dots button { width:28px; height:30px; border:0; padding:0; background:transparent; cursor:pointer; display:grid; place-items:center; }
+  .hero-photo-dots button::before { content:""; width:7px; height:7px; border-radius:50%; background:#aaa; }
+  .hero-photo-dots button[aria-current="true"]::before { background:white; width:9px; height:9px; }
+  .hero-photo-dots button:focus-visible { outline:2px solid white; border-radius:50%; }
 </style>
 </head>
 <body>
@@ -1125,9 +1136,15 @@
 <!-- HERO -->
 <section class="page-sec" data-sec="hero">
 <header class="hero-min">
-  <div class="hero-portrait">
-    <img src="assets/portrait.jpg?v=1" alt="Samika" />
-  </div>
+  <div class="hero-portrait" role="region" aria-roledescription="carousel" aria-label="Photos of Samika and her interests">
+<div class="hero-photo-track" tabindex="0" aria-label="Photo gallery. Use left and right arrow keys to browse"><div class="hero-slide" role="group" aria-roledescription="slide" aria-label="1 of 6"><img src="assets/portrait.jpg?v=1" alt="Samika Gandhi headshot"  draggable="false" /></div>
+<div class="hero-slide" role="group" aria-roledescription="slide" aria-label="2 of 6"><img src="assets/hero-photo-1.jpg" alt="Samika exploring a canyon" loading="lazy" draggable="false" /></div>
+<div class="hero-slide" role="group" aria-roledescription="slide" aria-label="3 of 6"><img src="assets/hero-photo-2.jpg" alt="Samika at Texas A&amp;M" loading="lazy" draggable="false" /></div>
+<div class="hero-slide" role="group" aria-roledescription="slide" aria-label="4 of 6"><img src="assets/hero-photo-3.jpg" alt="Samika at Johnson &amp; Johnson" loading="lazy" draggable="false" /></div>
+<div class="hero-slide" role="group" aria-roledescription="slide" aria-label="5 of 6"><img src="assets/hero-photo-4.jpg" alt="Homemade cookies" loading="lazy" draggable="false" /></div>
+<div class="hero-slide" role="group" aria-roledescription="slide" aria-label="6 of 6"><img src="assets/hero-photo-5.jpg" alt="Homemade brownies" loading="lazy" draggable="false" /></div></div>
+<div class="hero-photo-dots" aria-label="Choose a photo"><button type="button" aria-label="Show photo 1: Samika Gandhi headshot" aria-current="true" data-photo="0"></button><button type="button" aria-label="Show photo 2: Samika exploring a canyon" aria-current="false" data-photo="1"></button><button type="button" aria-label="Show photo 3: Samika at Texas A&amp;M" aria-current="false" data-photo="2"></button><button type="button" aria-label="Show photo 4: Samika at Johnson &amp; Johnson" aria-current="false" data-photo="3"></button><button type="button" aria-label="Show photo 5: Homemade cookies" aria-current="false" data-photo="4"></button><button type="button" aria-label="Show photo 6: Homemade brownies" aria-current="false" data-photo="5"></button></div>
+</div>
 
   <h1 class="hero-name-min">Samika Gandhi</h1>
 
@@ -1506,5 +1523,19 @@ applyState();
 try { window.parent.postMessage({ type: '__edit_mode_available' }, '*'); } catch(e){}
 </script>
 
+<script>
+(function(){
+ const track=document.querySelector('.hero-photo-track');
+ const dots=[...document.querySelectorAll('[data-photo]')];
+ if(!track)return;
+ const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
+ let current=0;
+ function go(i){current=(i+dots.length)%dots.length; track.scrollTo({left:current*track.clientWidth,behavior:reduced.matches?'instant':'smooth'});}
+ dots.forEach((dot,i)=>dot.addEventListener('click',()=>go(i)));
+ track.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();go(current+(e.key==='ArrowRight'?1:-1));}});
+ track.addEventListener('scroll',()=>{current=Math.round(track.scrollLeft/track.clientWidth);dots.forEach((dot,i)=>dot.setAttribute('aria-current',String(i===current)));},{passive:true});
+ new ResizeObserver(()=>track.scrollTo({left:current*track.clientWidth,behavior:'instant'})).observe(track);
+})();
+</script>
 </body>
 </html>
