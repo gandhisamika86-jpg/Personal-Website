@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>An Analysis of Tesla's Entry into the U.S. Auto Industry | Samika Gandhi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  .case-hero { padding: 40px var(--pad-x) 24px; }
+  .case-meta {
+    display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--grid-gap);
+    font-family: "JetBrains Mono", monospace; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--fg-mute); margin-bottom: 28px;
+  }
+  .case-meta > div { grid-column: span 3; }
+  .case-meta strong { color: var(--fg); font-weight: 500; display: block; margin-top: 4px; font-size: 13px; letter-spacing: 0.02em; }
+  .case-title {
+    font-family: "Inter Tight", sans-serif; font-weight: 700;
+    font-size: clamp(28px, 4.4vw, 56px); line-height: 1.06;
+    letter-spacing: -0.025em; margin: 0 0 20px; text-wrap: balance;
+  }
+  .case-pitch {
+    display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--grid-gap);
+    border-top: 1px solid var(--rule); padding-top: 18px;
+  }
+  .case-pitch .k { grid-column: span 3; font-family: "JetBrains Mono", monospace; font-size: 11px; color: var(--fg-mute); text-transform: uppercase; letter-spacing: 0.08em; }
+  .case-pitch .v { grid-column: span 9; font-size: clamp(18px, 1.8vw, 24px); line-height: 1.4; text-wrap: pretty; }
+  .case-pitch .v em { font-style: normal; background: var(--accent); color: var(--accent-ink); padding: 0 4px; }
+
+  .case-section { padding: 40px var(--pad-x) 56px; }
+  .case-section.alt { background: var(--bg-2); }
+
+  .sec-break { display: flex; align-items: center; gap: 18px; padding: 40px var(--pad-x) 0; }
+  .sec-break .sec-num {
+    font-family: "Inter Tight", sans-serif; font-weight: 700; font-size: 15px;
+    color: var(--accent-ink); background: var(--accent);
+    width: 34px; height: 34px; flex: 0 0 auto;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .sec-break .sec-label { font-family: "JetBrains Mono", monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--fg-mute); }
+  .sec-break .sec-title { font-family: "Inter Tight", sans-serif; font-weight: 700; font-size: clamp(20px, 2.4vw, 30px); letter-spacing: -0.02em; color: var(--fg); }
+  .sec-break-line { height: 1px; background: var(--rule); margin: 20px var(--pad-x) 0; }
+
+  .case-section p.body { max-width: 74ch; margin: 0; color: var(--fg-dim); font-size: 16px; line-height: 1.75; }
+  .case-section p.body + p.body { margin-top: 16px; }
+  .imgframe { overflow: hidden; position: relative; }
+  .imgframe img { display: block; width: 100%; height: auto; }
+  .imgframe .cap {
+    position: absolute; top: 12px; left: 12px;
+    font-family: "JetBrains Mono", monospace; font-size: 12px;
+    text-transform: uppercase; letter-spacing: 0.12em; color: var(--fg);
+    border: 1px solid var(--rule); padding: 6px 11px;
+    background: rgba(11,11,12,0.88); backdrop-filter: blur(6px); z-index: 2;
+  }
+
+  .step-list { display: flex; flex-direction: column; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 8px; }
+  .step { background: var(--bg); padding: 20px 24px; display: grid; grid-template-columns: 44px 1fr; gap: 18px; align-items: start; }
+  .step-num { font-family: "Inter Tight", sans-serif; font-weight: 700; font-size: 18px; color: var(--accent); }
+  .step h4 { font-family: "JetBrains Mono", monospace; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--fg-mute); margin: 0 0 6px; font-weight: 500; }
+  .step p { margin: 0; color: var(--fg-dim); font-size: 14.5px; line-height: 1.65; }
+
+  .method-block { border: 1px solid var(--rule); margin-top: 22px; }
+  .method-block-head { padding: 16px 22px; border-bottom: 1px solid var(--rule); background: var(--bg-2); display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; }
+  .method-block-head h4 { font-size: 17px; font-weight: 700; margin: 0; letter-spacing: -0.01em; }
+  .method-block-head .tag { font-family: "JetBrains Mono", monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); }
+  .method-block-body { padding: 18px 22px; }
+  .method-block-body p { margin: 0; color: var(--fg-dim); font-size: 14px; line-height: 1.65; }
+
+  table.data-table { width: 100%; border-collapse: collapse; margin-top: 8px; border: 1px solid var(--rule); }
+  table.data-table th, table.data-table td { text-align: left; padding: 11px 16px; border-bottom: 1px solid var(--rule); font-size: 13.5px; }
+  table.data-table th { font-family: "JetBrains Mono", monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--fg-mute); font-weight: 500; background: var(--bg-2); }
+  table.data-table td { color: var(--fg-dim); }
+  table.data-table td.rank1 { color: var(--accent); font-weight: 600; }
+  table.data-table tr:last-child td { border-bottom: none; }
+
+  .stat-band { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--rule); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+  .stat { background: var(--bg); padding: 22px 16px; }
+  .stat .v { font-family: "Inter Tight", sans-serif; font-weight: 700; font-size: clamp(20px, 2.2vw, 28px); letter-spacing: -0.03em; }
+  .stat .k { font-family: "JetBrains Mono", monospace; font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--fg-mute); margin-top: 8px; line-height: 1.4; }
+
+  .two-up { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; margin-top: 24px; }
+  .split { display: grid; grid-template-columns: 1fr 460px; gap: 32px; align-items: center; margin-top: 20px; }
+
+  .foot-min { padding: 18px var(--pad-x); border-top: 1px solid var(--rule); display: flex; justify-content: space-between; font-family: "JetBrains Mono", monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--fg-mute); }
+
+  @media (max-width: 900px) {
+    .case-meta > div { grid-column: span 6; }
+    .case-pitch .k, .case-pitch .v { grid-column: span 12; }
+    .stat-band { grid-template-columns: repeat(2, 1fr); }
+    .two-up { grid-template-columns: 1fr; }
+    .split { grid-template-columns: 1fr; }
+    table.data-table { font-size: 12px; }
+    table.data-table th, table.data-table td { padding: 8px 10px; }
+  }
+</style>
+</head>
+<body><nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-left"><a class="brand" href="../index.html" style="text-decoration:none; color:inherit;">SAMIKA GANDHI</a><a class="navlink" href="strategy-operations.html">← Back</a></div>
+    <div></div>
+    <div class="nav-right">
+      <a class="navlink" href="../index.html#skills">Skills</a>
+      <a class="navlink" href="../resume.html">Resume</a>
+      <a class="navlink" href="../contact.html">Contact</a>
+    </div>
+  </div>
+</nav>
+<style>
+.section-nav{display:flex;flex-wrap:wrap;gap:18px;padding:18px var(--pad-x);border-block:1px solid var(--rule)}
+.section-nav a{color:var(--fg-dim);text-decoration:none;font-size:13px}
+
+.analysis-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px 48px;margin-top:28px;align-items:start}
+.analysis-point{min-width:0}
+.case-section .analysis-point h3{margin:0 0 12px}
+.analysis-point p.body{max-width:none}
+@media(max-width:900px){.analysis-grid{grid-template-columns:1fr;gap:28px}}
+
+.case-section h3{font-size:23px;letter-spacing:-.02em;margin:32px 0 12px;max-width:45ch}
+.case-section h3:first-child{margin-top:0}.case-section li{max-width:74ch;line-height:1.75;color:var(--fg-dim);margin-bottom:14px}
+[id]{scroll-margin-top:90px}.source-note{color:var(--fg-mute);line-height:1.6;font-size:13px;max-width:80ch;margin-top:24px}
+</style>
+<style>
+.case-analysis-row{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:40px;align-items:start}
+.case-analysis-row.no-exhibit{grid-template-columns:1fr}
+.case-analysis-row p.body{max-width:none}
+.case-analysis-row.no-exhibit p.body{max-width:100ch}
+.case-exhibit{margin:0 0 24px;min-width:0}
+.case-exhibit img{display:block;width:100%;height:auto;background:#fff}
+.case-exhibit a{display:block;border:1px solid var(--rule)}
+.case-exhibit a:focus-visible,.case-action:focus-visible{outline:2px solid var(--accent);outline-offset:5px}
+.case-exhibit figcaption{font-size:12px;line-height:1.5;color:var(--fg-mute);margin-top:10px}
+.case-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:24px}
+.case-action{display:inline-flex;align-items:center;gap:12px;padding:14px 22px;border:1px solid var(--accent);color:var(--accent);font-size:16px;font-weight:600;text-decoration:underline;text-underline-offset:4px}
+.case-context{margin-top:20px!important;font-size:14px!important}
+@media(max-width:900px){.case-analysis-row{grid-template-columns:1fr;gap:24px}}
+</style>
+<header class="case-hero" id="overview">
+<div class="case-meta"><div>▪ CATEGORY<strong>Strategy &amp; Operations</strong></div><div>▪ FORMAT<strong>Individual Case Analysis</strong></div><div>▪ SOURCE<strong>MIT Sloan Case Study</strong></div><div>▪ CASE PUBLISHED<strong>May 2019</strong></div></div>
+<h1 class="case-title">An Analysis of Tesla’s Entry into the U.S. Auto Industry</h1>
+<div class="case-pitch"><div class="k">▪ Overview</div><div class="v">Evaluating whether Tesla could survive and thrive through <em>market positioning, vertical integration, direct sales, and innovation.</em></div></div>
+</header>
+<nav class="section-nav" aria-label="Case study sections"><a href="#background">Background</a><a href="#analysis">Analysis</a><a href="#mobility">Charging &amp; Shared Mobility</a><a href="#financials">Financial Outlook</a></nav>
+<div class="sec-break" id="background"><div class="sec-num">01</div><h2 class="sec-title">Background</h2></div><div class="sec-break-line"></div>
+<section class="case-section"><p class="body">In mid-2018, electric vehicles, autonomous driving, and shared mobility were beginning to reshape the U.S. auto industry. As Tesla worked to scale the Model 3, its ambitions were accompanied by production pressures and rapid cash consumption. The case asks whether the company’s strategy and execution could support a lasting position in a changing industry.</p>
+<p class="body">This analysis by Samika Gandhi responds to <cite>Tesla’s Entry into the U.S. Auto Industry</cite>, an MIT Sloan case study by Donald Sull and Cate Reavis, published May 1, 2019.</p>
+<p class="body case-context">The response below is presented in the case’s historical context. Figures, forecasts, and assessments reflect the submitted assignment.</p>
+<div class="case-actions"><a class="case-action" href="https://mitsloan.mit.edu/teaching-resources-library/teslas-entry-u-s-auto-industry" target="_blank" rel="noopener noreferrer">Source <span aria-hidden="true">↗</span></a><a class="case-action" href="assets/tesla/Grad-Student-Assignment.pdf" target="_blank" rel="noopener noreferrer">Read Original Analysis <span aria-hidden="true">↗</span></a></div></section>
+<div class="sec-break" id="analysis"><div class="sec-num">02</div><h2 class="sec-title">Could Tesla not only survive but also thrive in the automotive industry over the next few years?</h2></div><div class="sec-break-line"></div>
+<section class="case-section"><p class="body">I think there are a number of reasons to believe that Tesla can survive and thrive in the automotive industry in the next few years.</p></section>
+<section class="case-section alt" id="pricing"><div class="case-analysis-row"><div><h3>Pricing and Market Entry</h3><p class="body">First, given how compelling Tesla’s pricing and marketing strategy was, it would have positioned the company to thrive. To be specific, Musk’s idea of first introducing a high-end luxury product to market the brand as a premium one and then introducing a more affordable version of the product to sell more was phenomenal. He did this by first launching the Roadster in 2012, which retailed for $100,000 and sold 2,500 units. Then he introduced the Model S, which was also a luxury car and whose sales exceeded the combined sales of the BMW 6 and 7 Series and the Mercedes-Benz CLS and S-Class. This was followed by the Model X, which retailed for $81,000, and then finally the Model 3, which cost about $27,500 after the $7,500 federal credit. According to Image 0, this was close to the average price of a car in the U.S. in July 2018. This move attracted 500,000 presale orders, with each order requiring a $1,000 deposit.</p></div><div><figure class="case-exhibit"><a href="assets/tesla/figure-0.webp" target="_blank" rel="noopener" aria-label="Open Exhibit 2 — Prices of cars in the U.S. market, July 2018 at full size"><img src="assets/tesla/figure-0.webp" alt="Exhibit 2 — Prices of cars in the U.S. market, July 2018" loading="lazy"></a><figcaption>Exhibit 2 — Prices of cars in the U.S. market, July 2018 · Select image to enlarge</figcaption></figure></div></div></section>
+<section class="case-section" id="engineering"><div class="case-analysis-row no-exhibit"><div><h3>Engineering and Vertical Integration</h3><p class="body">Next, although the production stress for Tesla was intense, under Musk’s leadership, the company achieved an engineering feat that would have helped it thrive. For example, the Model 3 had 8,000 fewer components than its previous models. Unlike traditional car manufacturers, Tesla produced 80% of its parts in-house, reducing supply chain dependencies. Ford Motors followed this strategy of vertical integration in the 1920s, helping the company thrive in an era when automobiles were a relatively foreign concept. Another factor was that lithium-ion batteries, the most expensive part of a car, accounted for 33% of the final cost and witnessed a sharp drop in price, costing about $100 per kWh by the end of the year for Tesla. On the other hand, GM spent $145 per kWh. There was also a sharp drop in manufacturing time. According to Musk, the company had been able to reduce its battery-pack manufacturing time from 7 hours to less than 17 minutes.</p></div></div></section>
+<section class="case-section alt" id="sales"><div class="case-analysis-row"><div><h3>Direct Sales and Revenue</h3><p class="body">Another reason I believe that Tesla would have been able to thrive is its unique revenue strategies. First, by eliminating middlemen and car dealerships and having its own showrooms (26 in the U.S. and D.C.), Tesla made it really easy for potential customers to buy a car. This saved customers the trouble of going to numerous dealerships to inquire about prices, bargain, and potentially fall for the bad, flashy deals that dealers offered. This was a great move because more millennials were buying their first cars during this time. According to J.D. Power, millennials accounted for 40% of new car owners in 2020. Millennials were known to be a more practical generation that preferred buying cars online to save themselves the trouble of bargaining with employees and to buy a car that was less of a headache because of its low-maintenance nature. For employees, it was a win-win situation, too, because they did not have to depend on commissions and received monthly salaries. Also, according to Exhibit 6a and 6b, vehicle sales accounted for the highest percentage of revenue and profit and Tesla could have benefitted from 100% of it instead of sharing its revenue and profit with middlemen.</p></div><div><figure class="case-exhibit"><a href="assets/tesla/figure-1.webp" target="_blank" rel="noopener" aria-label="Open Exhibit 6a — Car market value chain: share of revenue, 2015–2030 at full size"><img src="assets/tesla/figure-1.webp" alt="Exhibit 6a — Car market value chain: share of revenue, 2015–2030" loading="lazy"></a><figcaption>Exhibit 6a — Car market value chain: share of revenue, 2015–2030 · Select image to enlarge</figcaption></figure></div></div></section>
+<section class="case-section" id="mobility"><div class="case-analysis-row"><div><h3>Charging and Shared Mobility</h3><p class="body">Next, Tesla successfully solved “range anxiety” by introducing an extensive network of 1,300 charging stations and 1,100 Superchargers. Musk said he was open to having other car manufacturers share the facilities as long as they shared the cost of usage. The Supercharger offered 170 miles of range for $0.24 per kWh within 30 minutes, compared with the Nissan LEAF, which offered drivers 75–100 miles of range in 30 minutes. As of the May 2018 earnings call, Musk mentioned that a Tesla-based autonomous ride-sharing system was under development and would soon be approved by regulatory bodies. This would benefit Tesla by somewhere between $2 billion and $6 billion in revenue, and a car owner by $6,900 a year. An additional factor that would benefit Tesla was the relatively lower cost of autonomous-vehicle R&amp;D because, while other companies made acquisitions and investments (Uber and Waymo used Toyotas and Fiat Chryslers, and Apple equipped Lexuses), Tesla used its own fleets. As shown in Exhibit 6b, shared mobility was expected to have the largest percentage of profits after vehicle sales.</p></div><div><figure class="case-exhibit"><a href="assets/tesla/figure-2.webp" target="_blank" rel="noopener" aria-label="Open Exhibit 6b — Car market value chain: share of profits, 2015–2030 at full size"><img src="assets/tesla/figure-2.webp" alt="Exhibit 6b — Car market value chain: share of profits, 2015–2030" loading="lazy"></a><figcaption>Exhibit 6b — Car market value chain: share of profits, 2015–2030 · Select image to enlarge</figcaption></figure></div></div></section>
+<section class="case-section alt" id="customers"><div class="case-analysis-row"><div><h3>Customer Priorities and Product Quality</h3><p class="body">Furthermore, millennials have identified safety, efficiency, quality, warranty, and comfort as their top five automotive priorities as shown in Exhibit 9, alongside some technology features such as Bluetooth and navigation and Tesla fulfills all those requirements. According to the U.S. News &amp; World Report 2017 luxury car rankings (out of a 10-point scale) as shown in Figure 1, the average vehicle scored 8.8 from critics and 8.7 overall, wherein Tesla Model X earned a 9.1 in both categories, and the Model S achieved a 9.6 critical score and a 9.4 overall score. Consequently, with millennials representing the largest demographic of consumers, Tesla is well-positioned to remain a market favorite and continue to thrive.</p></div><div><figure class="case-exhibit"><a href="assets/tesla/figure-3.webp" target="_blank" rel="noopener" aria-label="Open Exhibit 9 — Car-purchasing decisions survey at full size"><img src="assets/tesla/figure-3.webp" alt="Exhibit 9 — Car-purchasing decisions survey" loading="lazy"></a><figcaption>Exhibit 9 — Car-purchasing decisions survey · Select image to enlarge</figcaption></figure><figure class="case-exhibit"><a href="assets/tesla/figure-4.webp" target="_blank" rel="noopener" aria-label="Open Figure 1 — Third-party evaluations of 2017 luxury cars at full size"><img src="assets/tesla/figure-4.webp" alt="Figure 1 — Third-party evaluations of 2017 luxury cars" loading="lazy"></a><figcaption>Figure 1 — Third-party evaluations of 2017 luxury cars · Select image to enlarge</figcaption></figure></div></div></section>
+<section class="case-section" id="financials"><div class="case-analysis-row no-exhibit"><div><h3>Financial Outlook</h3><p class="body">Finally, regarding Tesla’s financials, I agree with Musk's belief that "almost any new technology initially has high unit cost before it can be optimized and this is no less true for electric cars." Looking at Tesla’s financial data, Tesla experienced a history of poor financial performance before Q3 of 2018. However, from Q3 of 2018 until Q2 of 2019, it generated positive cash flow except one quarter. Although this sum of positive cashflow is inadequate to make up for negative cash flow prior to Q3 of 2018, I believe if Tesla maintains this strategy of innovative engineering and marketing, it can have an impressive financial performance.</p></div></div></section>
+<footer class="foot-min"><span>© 2026 S. Gandhi</span><a href="strategy-operations.html" style="color:inherit">← Back to Strategy &amp; Operations</a></footer></body></html>
