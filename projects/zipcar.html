@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Zipcar: Leadership, Hiring &amp; Startup Strategy | Samika Gandhi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  .case-hero { padding: 40px var(--pad-x) 24px; }
+  .case-meta {
+    display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--grid-gap);
+    font-family: "JetBrains Mono", monospace; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--fg-mute); margin-bottom: 28px;
+  }
+  .case-meta > div { grid-column: span 3; }
+  .case-meta strong { color: var(--fg); font-weight: 500; display: block; margin-top: 4px; font-size: 13px; letter-spacing: 0.02em; }
+  .case-title {
+    font-family: "Inter Tight", sans-serif; font-weight: 700;
+    font-size: clamp(28px, 4.4vw, 56px); line-height: 1.06;
+    letter-spacing: -0.025em; margin: 0 0 20px; text-wrap: balance;
+  }
+  .case-pitch {
+    display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--grid-gap);
+    border-top: 1px solid var(--rule); padding-top: 18px;
+  }
+  .case-pitch .k { grid-column: span 3; font-family: "JetBrains Mono", monospace; font-size: 11px; color: var(--fg-mute); text-transform: uppercase; letter-spacing: 0.08em; }
+  .case-pitch .v { grid-column: span 9; font-size: clamp(18px, 1.8vw, 24px); line-height: 1.4; text-wrap: pretty; }
+  .case-pitch .v em { font-style: normal; background: var(--accent); color: var(--accent-ink); padding: 0 4px; }
+
+  .case-section { padding: 40px var(--pad-x) 56px; }
+  .case-section.alt { background: var(--bg-2); }
+
+  .sec-break { display: flex; align-items: center; gap: 18px; padding: 40px var(--pad-x) 0; }
+  .sec-break .sec-num {
+    font-family: "Inter Tight", sans-serif; font-weight: 700; font-size: 15px;
+    color: var(--accent-ink); background: var(--accent);
+    width: 34px; height: 34px; flex: 0 0 auto;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .sec-break .sec-label { font-family: "JetBrains Mono", monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--fg-mute); }
+  .sec-break .sec-title { font-family: "Inter Tight", sans-serif; font-weight: 700; font-size: clamp(20px, 2.4vw, 30px); letter-spacing: -0.02em; color: var(--fg); }
+  .sec-break-line { height: 1px; background: var(--rule); margin: 20px var(--pad-x) 0; }
+
+  .case-section p.body { max-width: 74ch; margin: 0; color: var(--fg-dim); font-size: 16px; line-height: 1.75; }
+  .case-section p.body + p.body { margin-top: 16px; }
+  .imgframe { overflow: hidden; position: relative; }
+  .imgframe img { display: block; width: 100%; height: auto; }
+  .imgframe .cap {
+    position: absolute; top: 12px; left: 12px;
+    font-family: "JetBrains Mono", monospace; font-size: 12px;
+    text-transform: uppercase; letter-spacing: 0.12em; color: var(--fg);
+    border: 1px solid var(--rule); padding: 6px 11px;
+    background: rgba(11,11,12,0.88); backdrop-filter: blur(6px); z-index: 2;
+  }
+
+  .step-list { display: flex; flex-direction: column; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 8px; }
+  .step { background: var(--bg); padding: 20px 24px; display: grid; grid-template-columns: 44px 1fr; gap: 18px; align-items: start; }
+  .step-num { font-family: "Inter Tight", sans-serif; font-weight: 700; font-size: 18px; color: var(--accent); }
+  .step h4 { font-family: "JetBrains Mono", monospace; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--fg-mute); margin: 0 0 6px; font-weight: 500; }
+  .step p { margin: 0; color: var(--fg-dim); font-size: 14.5px; line-height: 1.65; }
+
+  .method-block { border: 1px solid var(--rule); margin-top: 22px; }
+  .method-block-head { padding: 16px 22px; border-bottom: 1px solid var(--rule); background: var(--bg-2); display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; }
+  .method-block-head h4 { font-size: 17px; font-weight: 700; margin: 0; letter-spacing: -0.01em; }
+  .method-block-head .tag { font-family: "JetBrains Mono", monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); }
+  .method-block-body { padding: 18px 22px; }
+  .method-block-body p { margin: 0; color: var(--fg-dim); font-size: 14px; line-height: 1.65; }
+
+  table.data-table { width: 100%; border-collapse: collapse; margin-top: 8px; border: 1px solid var(--rule); }
+  table.data-table th, table.data-table td { text-align: left; padding: 11px 16px; border-bottom: 1px solid var(--rule); font-size: 13.5px; }
+  table.data-table th { font-family: "JetBrains Mono", monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--fg-mute); font-weight: 500; background: var(--bg-2); }
+  table.data-table td { color: var(--fg-dim); }
+  table.data-table td.rank1 { color: var(--accent); font-weight: 600; }
+  table.data-table tr:last-child td { border-bottom: none; }
+
+  .stat-band { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--rule); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+  .stat { background: var(--bg); padding: 22px 16px; }
+  .stat .v { font-family: "Inter Tight", sans-serif; font-weight: 700; font-size: clamp(20px, 2.2vw, 28px); letter-spacing: -0.03em; }
+  .stat .k { font-family: "JetBrains Mono", monospace; font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--fg-mute); margin-top: 8px; line-height: 1.4; }
+
+  .two-up { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; margin-top: 24px; }
+  .split { display: grid; grid-template-columns: 1fr 460px; gap: 32px; align-items: center; margin-top: 20px; }
+
+  .foot-min { padding: 18px var(--pad-x); border-top: 1px solid var(--rule); display: flex; justify-content: space-between; font-family: "JetBrains Mono", monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--fg-mute); }
+
+  @media (max-width: 900px) {
+    .case-meta > div { grid-column: span 6; }
+    .case-pitch .k, .case-pitch .v { grid-column: span 12; }
+    .stat-band { grid-template-columns: repeat(2, 1fr); }
+    .two-up { grid-template-columns: 1fr; }
+    .split { grid-template-columns: 1fr; }
+    table.data-table { font-size: 12px; }
+    table.data-table th, table.data-table td { padding: 8px 10px; }
+  }
+</style>
+</head>
+<body><nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-left"><a class="brand" href="../index.html" style="text-decoration:none; color:inherit;">SAMIKA GANDHI</a><a class="navlink" href="strategy-operations.html">← Back</a></div>
+    <div></div>
+    <div class="nav-right">
+      <a class="navlink" href="../index.html#skills">Skills</a>
+      <a class="navlink" href="../resume.html">Resume</a>
+      <a class="navlink" href="../contact.html">Contact</a>
+    </div>
+  </div>
+</nav>
+<style>
+.section-nav{display:flex;flex-wrap:wrap;gap:18px;padding:18px var(--pad-x);border-block:1px solid var(--rule)}
+.section-nav a{color:var(--fg-dim);text-decoration:none;font-size:13px}
+.case-section h3{font-size:23px;letter-spacing:-.02em;margin:32px 0 12px;max-width:45ch}
+.case-section h3:first-child{margin-top:0}.case-section li{max-width:74ch;line-height:1.75;color:var(--fg-dim);margin-bottom:14px}
+[id]{scroll-margin-top:90px}.source-note{color:var(--fg-mute);line-height:1.6;font-size:13px;max-width:80ch;margin-top:24px}
+</style>
+<header class="case-hero" id="overview">
+<div class="case-meta"><div>▪ CATEGORY<strong>Strategy &amp; Operations</strong></div><div>▪ FORMAT<strong>Individual Case Analysis</strong></div><div>▪ COURSE<strong>MTDE 313 / 613</strong></div><div>▪ YEAR<strong>Fall 2026</strong></div></div>
+<h1 class="case-title">Zipcar: Leadership, Hiring &amp; Startup Strategy</h1>
+<div class="case-pitch"><div class="k">▪ Overview</div><div class="v">An analysis of Robin Chase’s leadership and Keefer Welsh’s fit as president of Zipcar, exploring <em>resourcefulness, stakeholder communication, and hiring for a startup’s actual needs.</em></div></div>
+<p class="source-note">Analysis by Samika Gandhi. Based on <cite>Robin Chase, Zipcar, and an Inconvenient Discovery</cite> by Deborah Ancona and Cate Reavis, MIT Sloan Management, July 25, 2014 (case 14-153). The assessments below present my interpretation of the case.</p>
+</header>
+<nav class="section-nav" aria-label="Case study sections"><a href="#overview">Overview</a><a href="#questions">Analysis Questions</a><a href="#welsh">The Hiring Decision</a><a href="#chase">Chase as a Leader</a><a href="#flaws">Leadership Limitations</a></nav>
+<div class="sec-break" id="questions"><div class="sec-num">01</div><h2 class="sec-title">Analysis Questions</h2></div><div class="sec-break-line"></div>
+<section class="case-section"><p class="body">My response addresses two questions: why Keefer Welsh was the wrong hire for Zipcar, and how Robin Chase’s strengths and weaknesses shaped her leadership.</p></section>
+<div class="sec-break" id="welsh"><div class="sec-num">02</div><h2 class="sec-title">Why Keefer Welsh Was the Wrong Hire</h2></div><div class="sec-break-line"></div>
+<section class="case-section alt"><p class="body">Keefer Welsh was a poor choice for president of ZipCar. Two failures stand out: an industry mismatch and a lack of fit with the company’s actual needs.</p><h3>Industry Mismatch</h3><p class="body">Welsh came from hospitality, an industry that spends heavily to keep clients happy and returning to the same ambience and luxury every time. That mindset clashes with a startup, where frugality is essential and every unnecessary expense threatens survival. The board appears to have valued polish and experience over whether his habits fit a company with no money to spare.</p>
+<h3>The Wrong Person for the Role</h3><p class="body">Welsh had no experience in car-sharing or in anything close to technology, and he had no clear vision for where to take ZipCar. According to Chase, he was hired largely because the board doubted that a female CEO could keep up. Welsh was the wrong person, at the wrong time, for the wrong company.</p></section>
+<div class="sec-break" id="chase"><div class="sec-num">03</div><h2 class="sec-title">Robin Chase as a Leader</h2></div><div class="sec-break-line"></div>
+<section class="case-section"><p class="body">Robin Chase is an exceptional leader. She combines persistence, resourcefulness, strategic hiring, clear communication, and honest emotional transparency, though she also has a few notable flaws.</p><h3>Persistence</h3><p class="body">Chase was relentlessly persistent. People told her that car-sharing would never work and pointed to a long history of failures, yet she chose to tune out the noise and keep going. She networked heavily with stakeholders across Boston, including parking lot owners, environmental policymakers, and investors. Many of those connections were dead ends, but she kept at it, and that persistence is how she found the owner of Communauto in Montreal and, later, her investors, even amid the dot-com bust.</p>
+<h3>Resourcefulness and Strategic Team-Building</h3><p class="body">Chase was both frugal and strategic in building her team. She brought in her brother as business developer, her husband to build the technology, and her next-door neighbor Stephen to run operations. Stephen’s background as a nurse assistant and restaurant worker made him well suited to operations, and he, along with Larry, was paid hourly to conserve cash. Larry, an engineer by training and a cyclist by hobby, was given a task most people would find mundane, moving cars between locations, which matched two things he loved. She also drew on her husband’s electrical engineering expertise to build exactly the technology she envisioned. When necessary, she was willing to make hard calls, such as removing her co-founder Danielson because of her part-time commitment to the venture.</p>
+<h3>Vision</h3><p class="body">Chase had a novel vision: pairing wireless technology with car-sharing. This became one of ZipCar’s key differentiators and was central to the company surviving in the industry.</p>
+<h3>Communication and Stakeholder Management</h3><p class="body">Chase’s ability to communicate may be her most distinctive strength. She made win-win pitches that stakeholders found hard to refuse. For example, she told Volkswagen that her business was not a threat but a test drive for customers before they committed to buying a car. She also sent regular email updates to customers on the company’s progress. This made customers feel valued, since a senior executive was reaching out to them, and part of a broader community. It also gave her direct feedback: she learned that customers disliked the two-tiered pricing model and changed it accordingly.</p>
+<h3>Emotional Transparency</h3><p class="body">Chase was open about the emotional weight of leading. When she discovered that a modeling error meant the company was earning only half the expected revenue, she locked herself in the bedroom of her home, where the team worked, and cried for two hours. This gave her team a genuine signal of the stakes and of what she was going through.</p>
+<h3>Problem-Solving</h3><p class="body">Chase’s other traits come together in her problem-solving. When choosing a company name, she narrowed her options to three and asked random people on the street which one stuck in their memory, allowing her to choose with confidence. When she realized her pricing model had been miscalculated, she identified the metric that was working, daily revenue, and raised it by 20% to close the gap. Because she communicated openly with customers, she was able to retain them through the change.</p></section>
+<div class="sec-break" id="flaws"><div class="sec-num">04</div><h2 class="sec-title">Leadership Limitations</h2></div><div class="sec-break-line"></div>
+<section class="case-section alt"><p class="body">Chase also had clear weaknesses:</p><ul><li><strong>Perfectionism:</strong> She spent too much time trying to build the perfect pricing model before launch. When the wireless unlocking technology was still a month from being ready, she refused to delay the launch, though by her own admission, a delay of a couple of months would not have hurt the business in the long run.</li><li><strong>Difficulty maintaining relationships:</strong> Beyond the conflict with Danielson, Chase herself was pushed off the board, which reflects a weakness in sustaining key relationships.</li></ul></section>
+<footer class="foot-min"><span>© 2026 S. Gandhi</span><a href="strategy-operations.html" style="color:inherit">← Back to Strategy &amp; Operations</a></footer></body></html>
