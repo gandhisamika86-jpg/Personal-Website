@@ -17,11 +17,10 @@
 <path d="M399 126L438 134L417 167" fill="none" stroke="#FF4A1C" stroke-width="9" stroke-linecap="square" stroke-linejoin="miter"/>
 <g transform="rotate(38 432 190)">
   <path d="M432 70C480 112 480 233 432 300C384 233 384 112 432 70Z" fill="#EDEBE6" stroke="#FF4A1C" stroke-width="7"/>
-  <circle cx="432" cy="158" r="25" fill="#0F1A2E" stroke="#FF4A1C" stroke-width="7"/>
+  <circle cx="432" cy="158" r="25" fill="#0B0B0C" stroke="#FF4A1C" stroke-width="7"/>
   <path d="M393 235L352 286L399 275" fill="#FF4A1C"/>
   <path d="M471 235L512 286L465 275" fill="#FF4A1C"/>
   <path d="M415 292L432 350L449 292" fill="#FF4A1C"/>
   <path d="M422 303L432 331L442 303" fill="#FFD0C4"/>
 </g>
-<text x="88" y="438" fill="#A7A29A" font-family="monospace" font-size="17" letter-spacing="3">BUILD · TEST · LEARN · GROW</text>
 </svg>
