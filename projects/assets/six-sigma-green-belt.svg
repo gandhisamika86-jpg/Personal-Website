@@ -5,8 +5,6 @@
 <g transform="translate(320 240)">
   <circle r="132" fill="none" stroke="#2A2A2C" stroke-width="3"/>
   <circle r="104" fill="#111113" stroke="#2F8F57" stroke-width="7"/>
-  <path d="M-116 48 A126 126 0 0 0 112 58" fill="none" stroke="#FF4A1C" stroke-width="8" stroke-linecap="round"/>
-  <path d="M98 40 L116 59 L91 68" fill="none" stroke="#FF4A1C" stroke-width="8" stroke-linecap="square" stroke-linejoin="miter"/>
   <text x="-10" y="35" text-anchor="middle" fill="#EDEBE6" font-family="Inter Tight,Arial,sans-serif" font-size="128" font-weight="700" letter-spacing="-10">6σ</text>
   <circle cx="-104" cy="-78" r="7" fill="#2F8F57"/>
   <circle cx="0" cy="-132" r="7" fill="#2F8F57"/>
