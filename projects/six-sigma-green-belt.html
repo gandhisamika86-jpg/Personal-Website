@@ -116,11 +116,13 @@
     <figure class="case-exhibit"><a href="assets/enseal/cp-cpk-definition.png" target="_blank" rel="noopener"><img src="assets/enseal/cp-cpk-definition.png" alt="Reference slide explaining the difference between Cp and Cpk" loading="lazy"></a><figcaption>Cp and Cpk reference diagram · Select image to enlarge.</figcaption></figure>
     <div class="capability-copy">
       <h3>What Cp and Cpk Measure</h3>
-      <h4>Cp · Potential Capability</h4>
-      <p>Cp compares the width of the specification limits with the natural spread of the process. It shows whether the knife-length variation could fit within the specifications if the process were perfectly centered, but it does not indicate where the process mean is located.</p>
-      <h4>Cpk · Actual Capability</h4>
-      <p>Cpk accounts for both process spread and how close the mean is to the nearest specification limit. Cpk is always less than or equal to Cp; a large difference between them indicates that the process is off-center.</p>
-      <p class="process-note">For this project, Cp would show whether knife-length variation is sufficiently narrow, while Cpk would show whether that variation is also centered within the allowable limits.</p>
+      <h4>Cp · Process Capability Ratio</h4>
+      <p>Cp compares the spread of the process data with the distance between the upper and lower specification limits. A larger ratio is better because it means the process spread, represented by 6σ, is smaller relative to the available specification range.</p>
+      <p><strong>Formula:</strong> Cp = (USL − LSL) / 6σ</p>
+      <h4>Cpk · Process Capability Index</h4>
+      <p>Cpk evaluates both the spread and centering of the process data. It measures the distance from the process mean to both the USL and LSL, then uses whichever standardized distance is smaller because that is the specification limit the process is closest to.</p>
+      <p><strong>Formula:</strong> Cpk = min[(USL − μ) / 3σ, (μ − LSL) / 3σ]</p>
+      <p class="process-note">USL is the upper specification limit, LSL is the lower specification limit, μ is the process mean, and σ is the process standard deviation.</p>
     </div>
   </div>
 </section>
