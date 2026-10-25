@@ -117,10 +117,10 @@
     <div class="capability-copy">
       <h3>What Cp and Cpk Measure</h3>
       <h4>Cp · Process Capability Ratio</h4>
-      <p>Cp compares the spread of the process data with the distance between the upper and lower specification limits. A larger ratio is better because it means the process spread, represented by 6σ, is smaller relative to the available specification range.</p>
+      <p>Cp compares the width of the specifications (USL − LSL) with the width of the process (6σ). It ignores where the process is centered; a larger ratio is better because the process spread is smaller relative to the specification range.</p>
       <p><strong>Formula:</strong> Cp = (USL − LSL) / 6σ</p>
       <h4>Cpk · Process Capability Index</h4>
-      <p>Cpk evaluates both the spread and centering of the process data. It measures the distance from the process mean to both the USL and LSL, then uses whichever standardized distance is smaller because that is the specification limit the process is closest to.</p>
+      <p>Cpk measures the distance from the process mean to the nearest specification limit relative to the one-sided process spread (3σ). Because it uses whichever limit is closer, it accounts for both process spread and centering.</p>
       <p><strong>Formula:</strong> Cpk = min[(USL − μ) / 3σ, (μ − LSL) / 3σ]</p>
       <p class="process-note">USL is the upper specification limit, LSL is the lower specification limit, μ is the process mean, and σ is the process standard deviation.</p>
     </div>
