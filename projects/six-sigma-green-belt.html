@@ -24,7 +24,7 @@
 <body>
 <nav class="nav"><div class="nav-inner"><div class="nav-left"><a class="brand" href="../index.html" style="text-decoration:none;color:inherit">SAMIKA GANDHI</a><a class="navlink" href="strategy-operations.html">← Back</a></div><div></div><div class="nav-right"><a class="navlink" href="../index.html#skills">Skills</a><a class="navlink" href="../resume.html">Resume</a><a class="navlink" href="../contact.html">Contact</a></div></div></nav>
 <header class="case-hero" id="overview"><div class="case-meta"><div>▪ CATEGORY<strong>Strategy &amp; Operations</strong></div><div>▪ FORMAT<strong>Fictional DMAIC Case</strong></div><div>▪ METHOD<strong>Six Sigma</strong></div><div>▪ LEVEL<strong>Green Belt Project</strong></div></div><h1 class="case-title">Six Sigma Green Belt Project: Improving Cut Consistency</h1><div class="case-pitch"><div class="k">▪ Overview</div><div class="v">A fictional quality-improvement project addressing incomplete-cut complaints by reducing <em>manufacturing variation in knife length.</em></div></div></header>
-<nav class="section-nav" aria-label="Project sections"><a href="#overview">Overview</a><a href="#disclaimer">Disclaimer</a><a href="#device">Device Background</a><a href="#workflow">Device Workflow</a><a href="#define">Define</a><a href="#measure">Measure</a><a href="#analyze">Analyze</a></nav>
+<nav class="section-nav" aria-label="Project sections"><a href="#overview">Overview</a><a href="#disclaimer">Disclaimer</a><a href="#device">Device Background</a><a href="#workflow">Device Workflow</a><a href="#define">Define</a><a href="#measure">Measure</a><a href="#analyze">Analyze</a><a href="#improve">Improve</a><a href="#control">Control</a></nav>
 <div class="sec-break" id="disclaimer"><div class="sec-num">01</div><h2 class="sec-title">Fictional Project Disclaimer</h2></div><div class="sec-break-line"></div>
 <section class="case-section"><div class="disclaimer"><div class="disclaimer-label">Important Context</div><p>This is a completely fictional, educational Six Sigma scenario created for my portfolio. I use the ENSEAL X1 product name only because I am familiar with the type of device and its publicly available information. The complaint trend, manufacturing setting, dimensional issue, root-cause conclusion, data, and any future analysis are invented. This project is not advertising, does not represent the actual performance of the product, and does not disclose confidential or proprietary information from Ethicon, Johnson &amp; Johnson, or any other organization.</p></div></section>
 <div class="sec-break" id="device"><div class="sec-num">02</div><h2 class="sec-title">Device Background</h2></div><div class="sec-break-line"></div>
@@ -157,33 +157,8 @@
   </div>
 </section>
 <div class="sec-break" id="analyze"><div class="sec-num">06</div><h2 class="sec-title">Analyze Phase</h2></div><div class="sec-break-line"></div>
-
-<section class="case-section alt">
-  <div class="phase-heading"><div class="part-label">Part 01</div><div><h3>Analyzing Low Cp with the 5 Whys</h3></div></div>
-  <p class="analysis-lead">The low Cp indicates that the knife-length process has too much variation for the available specification width. I used the 5 Whys to move from the observed dimensional spread to a potential process root cause.</p>
-  <div class="five-whys" aria-label="Five Whys analysis for low Cp">
-    <article class="why-step"><div class="why-number">Why 01</div><div><h4>Why is Cp low?</h4><p>The knife-length measurements have a wide process spread relative to the specification limits.</p></div></article>
-    <article class="why-step"><div class="why-number">Why 02</div><div><h4>Why is the process spread wide?</h4><p>The cutting operation does not produce a consistent knife length from one unit to the next.</p></div></article>
-    <article class="why-step"><div class="why-number">Why 03</div><div><h4>Why is the cutting operation inconsistent?</h4><p>The knife blank does not seat at the same position in the cutting fixture during every cycle.</p></div></article>
-    <article class="why-step"><div class="why-number">Why 04</div><div><h4>Why does the seating position change?</h4><p>The fixture locator and stop wear over time, allowing small changes in the blank position.</p></div></article>
-    <article class="why-step"><div class="why-number">Why 05</div><div><h4>Why is fixture wear not controlled?</h4><p>The preventive-maintenance plan and control plan do not define a routine inspection, replacement limit, or verification check for the locator and stop.</p></div></article>
-  </div>
-  <div class="analysis-conclusion"><h4>Potential Root Cause</h4><p>Uncontrolled fixture wear, combined with the absence of a standardized verification interval, may be increasing knife-length variation. I would confirm this by comparing fixture condition and dimensional spread across machines, shifts, and maintenance intervals before implementing corrective action.</p></div>
-</section>
-
-<section class="case-section">
-  <div class="phase-heading"><div class="part-label">Part 02</div><div><h3>Analyzing Low Cpk with a Fishbone Analysis</h3></div></div>
-  <p class="analysis-lead">The low Cpk indicates that the process mean is too close to the nearest specification limit. I used the six fishbone categories below to organize potential causes of the off-center process.</p>
-  <div class="fishbone-grid" aria-label="Fishbone analysis for low Cpk">
-    <article class="fishbone-card"><h4>People</h4><ul><li>Different setup techniques between operators</li><li>Inconsistent offset adjustments</li><li>Uneven training on the target dimension</li></ul></article>
-    <article class="fishbone-card"><h4>Machine</h4><ul><li>Fixture or locator drift</li><li>Cutting-tool wear</li><li>Backlash or movement in the cutting mechanism</li></ul></article>
-    <article class="fishbone-card"><h4>Method</h4><ul><li>Setup target is not centered between USL and LSL</li><li>No standard first-piece adjustment method</li><li>Offsets are changed without a defined reaction plan</li></ul></article>
-    <article class="fishbone-card"><h4>Material</h4><ul><li>Variation in blank dimensions</li><li>Differences in material hardness</li><li>Lot-to-lot variation affecting the cut</li></ul></article>
-    <article class="fishbone-card"><h4>Measurement</h4><ul><li>Operator-to-operator measurement bias</li><li>Inconsistent datum placement</li><li>Calibration or resolution limitations</li></ul></article>
-    <article class="fishbone-card"><h4>Environment</h4><ul><li>Temperature-related dimensional change</li><li>Debris at the fixture seating surface</li><li>Shift-to-shift differences in operating conditions</li></ul></article>
-  </div>
-  <div class="analysis-conclusion"><h4>Priority for Investigation</h4><p>Because the MSA was conditionally acceptable, I would first prioritize the Machine and Method branches—particularly fixture drift, setup offsets, and the lack of a centered setup target. I would stratify the data by machine, operator, shift, material lot, and time since maintenance to determine which factor is shifting the process mean toward the nearest specification limit.</p></div>
-</section>
+<div class="sec-break" id="improve"><div class="sec-num">07</div><h2 class="sec-title">Improve Phase</h2></div><div class="sec-break-line"></div>
+<div class="sec-break" id="control"><div class="sec-num">08</div><h2 class="sec-title">Control Phase</h2></div><div class="sec-break-line"></div>
 <footer class="foot-min"><span>© 2026 S. Gandhi</span><a href="strategy-operations.html" style="color:inherit">← Back to Strategy &amp; Operations</a></footer>
 </body>
 </html>
