@@ -1,17 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-labelledby="title desc">
-<title id="title">Six Sigma Green Belt project icon</title>
-<desc id="desc">A green belt surrounding a sigma symbol and process improvement chart.</desc>
+<title id="title">Six Sigma process capability icon</title>
+<desc id="desc">A minimal six sigma mark representing process capability and continuous improvement.</desc>
 <rect width="640" height="480" fill="#0B0B0C"/>
-<g transform="translate(320 228)">
-  <circle r="128" fill="none" stroke="#2A2A2C" stroke-width="2"/>
-  <path d="M-146-30H146V30H-146Z" fill="#2F8F57"/>
-  <path d="M-38-30H38V30H-38Z" fill="#246E43" stroke="#EDEBE6" stroke-width="3"/>
-  <path d="M-15-14H15V14H-15Z" fill="#0B0B0C" stroke="#EDEBE6" stroke-width="3"/>
-  <text x="0" y="-60" text-anchor="middle" fill="#EDEBE6" font-family="Georgia,serif" font-size="118" font-weight="700">Σ</text>
-  <g transform="translate(-90 62)" fill="none" stroke="#FF4A1C" stroke-width="8" stroke-linecap="square" stroke-linejoin="miter">
-    <path d="M0 70V38H35V70M55 70V12H90V70M110 70V-28H145V70"/>
-    <path d="M5 10L66-18L120-58L162-94"/>
-    <path d="M140-96H165V-71"/>
-  </g>
+<g transform="translate(320 240)">
+  <circle r="132" fill="none" stroke="#2A2A2C" stroke-width="3"/>
+  <circle r="104" fill="#111113" stroke="#2F8F57" stroke-width="7"/>
+  <path d="M-116 48 A126 126 0 0 0 112 58" fill="none" stroke="#FF4A1C" stroke-width="8" stroke-linecap="round"/>
+  <path d="M98 40 L116 59 L91 68" fill="none" stroke="#FF4A1C" stroke-width="8" stroke-linecap="square" stroke-linejoin="miter"/>
+  <text x="-10" y="35" text-anchor="middle" fill="#EDEBE6" font-family="Inter Tight,Arial,sans-serif" font-size="128" font-weight="700" letter-spacing="-10">6σ</text>
+  <circle cx="-104" cy="-78" r="7" fill="#2F8F57"/>
+  <circle cx="0" cy="-132" r="7" fill="#2F8F57"/>
+  <circle cx="104" cy="-78" r="7" fill="#2F8F57"/>
 </g>
 </svg>
