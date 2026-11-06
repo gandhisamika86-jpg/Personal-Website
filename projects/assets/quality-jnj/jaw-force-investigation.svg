@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+<title id="title">Tissue sealer jaw-force complaint investigation</title>
+<desc id="desc">A stylized tissue sealer with force sensors testing porcine tissue, alongside a process-capability result greater than 1.67.</desc>
+<rect width="1600" height="900" fill="#0B0B0C"/>
+<text x="82" y="108" fill="#EDEBE6" font-family="Arial,sans-serif" font-size="40" font-weight="700">COMPLAINT INVESTIGATION</text>
+<text x="84" y="148" fill="#8B8B90" font-family="monospace" font-size="18" letter-spacing="2">TISSUE SEALER · JAW-FORCE CAPABILITY</text>
+<rect x="82" y="205" width="850" height="600" rx="8" fill="#111113" stroke="#343438" stroke-width="2"/>
+<g transform="translate(160 315)">
+<path d="M60 190 C245 110 430 86 640 118" fill="none" stroke="#D8D8DC" stroke-width="34" stroke-linecap="round"/>
+<path d="M60 250 C245 330 430 354 640 322" fill="none" stroke="#D8D8DC" stroke-width="34" stroke-linecap="round"/>
+<path d="M640 118 L710 153 L650 198" fill="none" stroke="#D8D8DC" stroke-width="28" stroke-linejoin="round"/>
+<path d="M640 322 L710 287 L650 242" fill="none" stroke="#D8D8DC" stroke-width="28" stroke-linejoin="round"/>
+<rect x="572" y="154" width="78" height="40" rx="5" fill="#2F8F57"/>
+<rect x="572" y="246" width="78" height="40" rx="5" fill="#2F8F57"/>
+<text x="611" y="180" text-anchor="middle" fill="#07120B" font-family="monospace" font-size="14" font-weight="700">FORCE</text>
+<text x="611" y="272" text-anchor="middle" fill="#07120B" font-family="monospace" font-size="14" font-weight="700">FORCE</text>
+<path d="M708 178 C770 188 770 252 708 262" fill="#B66E68" stroke="#E2A29D" stroke-width="3"/>
+<text x="708" y="386" text-anchor="middle" fill="#8B8B90" font-family="monospace" font-size="16">PORCINE TISSUE</text>
+<line x1="610" y1="150" x2="610" y2="92" stroke="#2F8F57" stroke-width="3"/>
+<text x="610" y="68" text-anchor="middle" fill="#2F8F57" font-family="monospace" font-size="16">CLIP-ON FORCE SENSORS</text>
+</g>
+<rect x="980" y="205" width="538" height="600" rx="8" fill="#111113" stroke="#343438" stroke-width="2"/>
+<g font-family="monospace">
+<text x="1030" y="270" fill="#8B8B90" font-size="17" letter-spacing="2">TEST DESIGN</text>
+<text x="1030" y="330" fill="#EDEBE6" font-size="26" font-weight="700">30</text><text x="1100" y="330" fill="#C7C7CB" font-size="18">DEVICES</text>
+<text x="1030" y="380" fill="#EDEBE6" font-size="26" font-weight="700">5</text><text x="1100" y="380" fill="#C7C7CB" font-size="18">OPERATORS</text>
+<text x="1030" y="430" fill="#EDEBE6" font-size="26" font-weight="700">2</text><text x="1100" y="430" fill="#C7C7CB" font-size="18">TRIALS / DEVICE</text>
+<line x1="1030" y1="470" x2="1465" y2="470" stroke="#343438" stroke-width="2"/>
+<text x="1030" y="525" fill="#8B8B90" font-size="17" letter-spacing="2">MINITAB CAPABILITY</text>
+<text x="1030" y="610" fill="#2F8F57" font-size="64" font-weight="700">Cp / Cpk &gt; 1.67</text>
+<text x="1030" y="665" fill="#C7C7CB" font-size="18">WITHIN LSL / USL</text>
+<rect x="1030" y="710" width="435" height="48" fill="#2F8F57"/>
+<text x="1248" y="741" text-anchor="middle" fill="#07120B" font-size="16" font-weight="700">TRIGGER MECHANISM ELIMINATED</text>
+</g>
+</svg>
