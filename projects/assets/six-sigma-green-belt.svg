@@ -1,13 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-labelledby="title desc">
-<title id="title">Six Sigma process capability icon</title>
-<desc id="desc">A minimal six sigma mark representing process capability and continuous improvement.</desc>
-<rect width="640" height="480" fill="#0B0B0C"/>
-<g transform="translate(320 240)">
-  <circle r="132" fill="none" stroke="#2A2A2C" stroke-width="3"/>
-  <circle r="104" fill="#111113" stroke="#2F8F57" stroke-width="7"/>
-  <text x="-10" y="35" text-anchor="middle" fill="#EDEBE6" font-family="Inter Tight,Arial,sans-serif" font-size="128" font-weight="700" letter-spacing="-10">6σ</text>
-  <circle cx="-104" cy="-78" r="7" fill="#2F8F57"/>
-  <circle cx="0" cy="-132" r="7" fill="#2F8F57"/>
-  <circle cx="104" cy="-78" r="7" fill="#2F8F57"/>
-</g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-labelledby="title desc"><title id="title">Six Sigma process capability icon</title><desc id="desc">A minimal six sigma mark representing process capability and continuous improvement.</desc><rect width="640" height="480" fill="#0B0B0C"/><g transform="translate(320 240)"><circle r="132" fill="none" stroke="#2A2A2C" stroke-width="3"/><circle r="104" fill="#111113" stroke="#2F8F57" stroke-width="7"/><text x="-10" y="35" text-anchor="middle" fill="#EDEBE6" font-family="Inter Tight,Arial,sans-serif" font-size="128" font-weight="700" letter-spacing="-10">6σ</text><circle cx="-104" cy="-78" r="7" fill="#2F8F57"/><circle cx="0" cy="-132" r="7" fill="#2F8F57"/><circle cx="104" cy="-78" r="7" fill="#2F8F57"/></g></svg>
