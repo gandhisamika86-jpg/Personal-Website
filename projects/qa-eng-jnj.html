@@ -96,6 +96,22 @@
   .desc-step p { margin: 0; color: var(--fg-dim); font-size: 15.5px; line-height: 1.75; max-width: 68ch; }
   .desc-step p + p { margin-top: 10px; }
 
+  .kanban-context { margin-top: 28px; border-left: 4px solid var(--accent); padding: 17px 20px; background: var(--bg); }
+  .kanban-context h3 { margin: 0 0 7px; font-size: 20px; color: var(--fg); }
+  .kanban-context p { margin: 0; color: var(--fg-dim); font-size: 14px; line-height: 1.65; max-width: 90ch; }
+  .kanban-flow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin-top: 24px; background: var(--rule); border: 1px solid var(--rule); }
+  .kanban-state { background: var(--bg); padding: 20px; border-top: 5px solid var(--state-color); }
+  .kanban-state .state-label { font-family: "JetBrains Mono", monospace; font-size: 10px; text-transform: uppercase; letter-spacing: .1em; color: var(--state-color); }
+  .kanban-state h4 { margin: 9px 0 7px; font-size: 17px; color: var(--fg); }
+  .kanban-state p { margin: 0; color: var(--fg-dim); font-size: 13px; line-height: 1.6; }
+  .kanban-cadence { display: grid; grid-template-columns: 150px 1fr; gap: 20px; padding: 18px 20px; border: 1px solid var(--rule); border-top: 0; background: var(--bg); }
+  .kanban-cadence strong { color: var(--accent); font-family: "JetBrains Mono", monospace; font-size: 12px; text-transform: uppercase; letter-spacing: .08em; }
+  .kanban-cadence span { color: var(--fg-dim); font-size: 14px; line-height: 1.55; }
+  .kanban-tradeoffs { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin-top: 24px; background: var(--rule); border: 1px solid var(--rule); }
+  .kanban-tradeoff { background: var(--bg); padding: 20px; }
+  .kanban-tradeoff h4 { margin: 0 0 8px; font-size: 17px; color: var(--fg); }
+  .kanban-tradeoff p { margin: 0; color: var(--fg-dim); font-size: 14px; line-height: 1.65; }
+
   .stat-band { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--rule); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
   .stat { background: var(--bg); padding: 26px 18px; text-align: center; }
   .stat .v { font-family: "Inter Tight", sans-serif; font-weight: 700; font-size: clamp(22px, 2.6vw, 32px); letter-spacing: -0.03em; }
@@ -114,6 +130,8 @@
     .desc-step { grid-template-columns: 48px 1fr; }
     .desc-step .ds-num { font-size: 26px; }
     .stat-band { grid-template-columns: repeat(2, 1fr); }
+    .kanban-flow, .kanban-tradeoffs { grid-template-columns: 1fr; }
+    .kanban-cadence { grid-template-columns: 1fr; gap: 8px; }
   }
 </style>
 </head>
@@ -358,7 +376,84 @@
 <div class="sec-break-line"></div>
 
 <section class="case-section alt">
-  <p class="body">NPD components moved among R&amp;D laboratories, supply-chain inventory, and packaging without a shared tracking system. I developed a Kanban workflow that gave each team visibility into component location and status, reducing duplicate component orders by 32% per month.</p>
+  <div class="desc-steps" style="margin-top: 0;">
+    <div class="desc-step">
+      <div>
+        <div class="ds-num">01</div>
+        <span class="ds-tag">Situation</span>
+      </div>
+      <div>
+        <div class="sta-label">Situation</div>
+        <h4>Shared Inventory Created Shortages and Duplicate Orders</h4>
+        <p>Multiple R&amp;D teams worked in a large shared laboratory. When a team needed a component, a team member contacted the inventory group, which then issued the requested quantity.</p>
+        <p>Demand was not always visible across teams. If one team unexpectedly used a large quantity, another team could be left without enough stock. Reordering was tedious and created delays, while separate teams sometimes ordered the same component independently and purchased more than the laboratory needed.</p>
+      </div>
+    </div>
+
+    <div class="desc-step">
+      <div>
+        <div class="ds-num">02</div>
+        <span class="ds-tag">Task</span>
+      </div>
+      <div>
+        <div class="sta-label">Task</div>
+        <h4>Improve Inventory Control and Reduce Waste</h4>
+        <p>My task was to create a simpler inventory-control system that improved component visibility, reduced duplicate orders, prevented avoidable shortages, and lowered unnecessary spending without requiring expensive software.</p>
+      </div>
+    </div>
+
+    <div class="desc-step" style="grid-column: 1 / -1;">
+      <div>
+        <div class="ds-num">03</div>
+        <span class="ds-tag">Action</span>
+      </div>
+      <div>
+        <div class="sta-label">Action</div>
+        <h4>Develop a Team-Based Visual Kanban System</h4>
+        <p>I interviewed teams across the manufacturing line, software, and supply chain to understand how they managed material flow. Through those conversations, I identified Kanban as a practical approach for the R&amp;D laboratory.</p>
+        <p>I proposed giving each team a dedicated rack with labeled component bins. Every bin would include a card listing the component name, identification number, specifications, and other essential information. Green, yellow, and red card queues would visually communicate inventory status and replenishment priority.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="kanban-context">
+    <h3>What Is Kanban?</h3>
+    <p>Kanban is a visual inventory and workflow-management method developed by Toyota and now widely used in manufacturing. It uses visible signals—such as cards and color-coded queues—to communicate demand and trigger replenishment without relying on a complex software system.</p>
+  </div>
+
+  <div class="kanban-flow" aria-label="Proposed three-color Kanban inventory workflow">
+    <article class="kanban-state" style="--state-color:#3FA66A;">
+      <div class="state-label">Green</div>
+      <h4>Sufficient Stock</h4>
+      <p>The card remains with the component bin while the available quantity is sufficient for normal team demand.</p>
+    </article>
+    <article class="kanban-state" style="--state-color:#D6A72C;">
+      <div class="state-label">Yellow</div>
+      <h4>Quantity Check</h4>
+      <p>If a user is unsure whether the remaining inventory will cover upcoming demand, the card moves to the yellow queue for review.</p>
+    </article>
+    <article class="kanban-state" style="--state-color:#D8564F;">
+      <div class="state-label">Red</div>
+      <h4>Replenishment Needed</h4>
+      <p>Before withdrawing a quantity that pushes stock below the reorder level, the user places the card in the red queue to signal urgent replenishment.</p>
+    </article>
+  </div>
+  <div class="kanban-cadence">
+    <strong>Every Four Hours</strong>
+    <span>The inventory team collects the yellow and red cards, replenishes the corresponding bins, and returns each card to its component location.</span>
+  </div>
+
+  <div class="kanban-tradeoffs">
+    <article class="kanban-tradeoff">
+      <h4>Benefits</h4>
+      <p>Each team becomes accountable for its assigned components and inventory budget, encouraging more deliberate ordering. The visual system also reduces hidden demand, unnecessary purchases, and duplicate orders; the proposed workflow reduced duplicate component orders by 32% per month.</p>
+    </article>
+    <article class="kanban-tradeoff">
+      <h4>Limitation</h4>
+      <p>If a team consumes an unusually large quantity before replenishment, it may still need to wait for new stock or request a temporary transfer from another team.</p>
+    </article>
+  </div>
+
   <div class="tag-row">
     <span class="tag-pill">CAPA</span>
     <span class="tag-pill">Gage R&amp;R</span>
