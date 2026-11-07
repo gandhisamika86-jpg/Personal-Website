@@ -411,7 +411,7 @@
         <div class="sta-label">Action</div>
         <h4>Develop a Team-Based Visual Kanban System</h4>
         <p>I interviewed teams across the manufacturing line, software, and supply chain to understand how they managed material flow. Through those conversations, I identified Kanban as a practical approach for the R&amp;D laboratory.</p>
-        <p>I proposed giving each team a dedicated rack with labeled component bins. Every bin would include a card listing the component name, identification number, specifications, and other essential information. Green, yellow, and red card queues would visually communicate inventory status and replenishment priority.</p>
+        <p>I proposed giving each team a dedicated rack with labeled component bins. Every bin would include a card listing the component name, identification number, specifications, and other essential information. Every bin would be replenished during the regular inventory route, regardless of color. Green, yellow, and red card queues would instead communicate how quickly a replacement order was needed: green for healthy stock, yellow for inventory approaching the red level, and red for urgent low stock.</p>
       </div>
     </div>
   </div>
@@ -424,23 +424,23 @@
   <div class="kanban-flow" aria-label="Proposed three-color Kanban inventory workflow">
     <article class="kanban-state" style="--state-color:#3FA66A;">
       <div class="state-label">Green</div>
-      <h4>Sufficient Stock</h4>
-      <p>The card remains with the component bin while the available quantity is sufficient for normal team demand.</p>
+      <h4>Healthy Stock</h4>
+      <p>The bin is still replenished during the regular inventory route. Green simply indicates that the remaining quantity is healthy and no urgent replacement order is needed.</p>
     </article>
     <article class="kanban-state" style="--state-color:#D6A72C;">
       <div class="state-label">Yellow</div>
-      <h4>Quantity Check</h4>
-      <p>If a user is unsure whether the remaining inventory will cover upcoming demand, the card moves to the yellow queue for review.</p>
+      <h4>Approaching Red</h4>
+      <p>The bin is replenished as usual, but yellow warns the inventory team that stock is trending toward the red level and additional units should be ordered soon.</p>
     </article>
     <article class="kanban-state" style="--state-color:#D8564F;">
       <div class="state-label">Red</div>
-      <h4>Replenishment Needed</h4>
-      <p>Before withdrawing a quantity that pushes stock below the reorder level, the user places the card in the red queue to signal urgent replenishment.</p>
+      <h4>Urgent Low Stock</h4>
+      <p>The bin is replenished during the same route, while red signals that the available quantity is low and the replacement order requires immediate attention.</p>
     </article>
   </div>
   <div class="kanban-cadence">
     <strong>Every Four Hours</strong>
-    <span>The inventory team collects the yellow and red cards, replenishes the corresponding bins, and returns each card to its component location.</span>
+    <span>The inventory team checks and replenishes every component bin, regardless of whether its card is green, yellow, or red. The color only indicates the urgency of placing the next replacement order.</span>
   </div>
 
   <div class="kanban-tradeoffs">
@@ -450,7 +450,7 @@
     </article>
     <article class="kanban-tradeoff">
       <h4>Limitation</h4>
-      <p>If a team consumes an unusually large quantity before replenishment, it may still need to wait for new stock or request a temporary transfer from another team.</p>
+      <p>If a team consumes components in bulk, inventory can fall faster than the ordering and replenishment cycle can respond, creating a delay. When usage is spaced out, the regular replenishment cadence should allow inventory to keep pace with demand.</p>
     </article>
   </div>
 
