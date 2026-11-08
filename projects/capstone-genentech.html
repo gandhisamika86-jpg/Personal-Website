@@ -73,26 +73,53 @@
   .status-banner .sb-text { font-family: "Inter Tight", sans-serif; font-weight: 700; font-size: 18px; letter-spacing: -0.01em; }
   .status-banner .sb-sub { font-family: "JetBrains Mono", monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.85; margin-top: 2px; }
 
-  /* Vertical timeline */
-  .vtimeline { position: relative; margin-top: 40px; padding-left: 50px; }
-  .vtimeline::before {
-    content: ""; position: absolute; left: 15px; top: 6px; bottom: 6px;
-    width: 2px; background: var(--rule);
+  /* Horizontal timeline */
+  .vtimeline {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(12, minmax(190px, 1fr));
+    gap: 0;
+    margin-top: 40px;
+    padding: 0 0 18px;
+    overflow-x: auto;
+    scrollbar-width: thin;
   }
-  .vt-item { position: relative; padding-bottom: 36px; }
-  .vt-item:last-child { padding-bottom: 0; }
+  .vtimeline::before {
+    content: "";
+    position: absolute;
+    left: 16px;
+    right: 16px;
+    top: 15px;
+    height: 2px;
+    background: var(--rule);
+  }
+  .vt-item {
+    position: relative;
+    min-width: 190px;
+    padding: 48px 22px 0 0;
+  }
   .vt-dot {
-    position: absolute; left: -50px; top: 0;
-    width: 32px; height: 32px; border-radius: 50%;
-    background: var(--bg); border: 2px solid var(--accent);
-    display: flex; align-items: center; justify-content: center;
-    font-family: "Inter Tight", sans-serif; font-weight: 700; font-size: 13px; color: var(--accent);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--bg-2);
+    border: 2px solid var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Inter Tight", sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--accent);
     z-index: 1;
   }
   .vt-item.done .vt-dot { background: var(--accent); color: var(--accent-ink); }
-  .vt-content { padding-top: 4px; }
-  .vt-content h4 { font-size: 16.5px; font-weight: 600; margin: 0 0 4px; letter-spacing: -0.01em; color: var(--fg); }
-  .vt-content .vt-sub { font-family: "JetBrains Mono", monospace; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--fg-mute); }
+  .vt-content { padding-top: 0; }
+  .vt-content h4 { font-size: 15px; font-weight: 600; margin: 5px 0 0; line-height: 1.35; letter-spacing: -0.01em; color: var(--fg); }
+  .vt-content .vt-sub { font-family: "JetBrains Mono", monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--fg-mute); }
 
   .foot-min { padding: 18px var(--pad-x); border-top: 1px solid var(--rule); display: flex; justify-content: space-between; font-family: "JetBrains Mono", monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--fg-mute); }
 
@@ -148,8 +175,7 @@
 <div class="sec-break-line"></div>
 
 <section class="case-section">
-  <p class="body">New biologic drug formulations increasingly need to be highly concentrated to enable extended-release dosing, fewer, less frequent injections for the patient. But that concentration comes at a cost: more concentrated biologics are also more viscous, and viscous fluid is fundamentally harder to push through a needle. That tension shows up directly at the point of care, where high injection forces make these next-generation drug solutions genuinely difficult to deliver through the small-gauge needles patients actually use.</p>
-  <p class="body" style="margin-top: 16px;">The goal of this capstone is to design a force-dose assist device, a tool that interfaces with an off-the-shelf syringe, such as the standard 1 mL BD syringe, and physically reduces the force a patient or provider has to apply to complete the injection. Solving this well is what stands between a promising high-concentration formulation and a therapy patients can actually self-administer.</p>
+  <p class="body">As increasingly concentrated biologic formulations for intravitreal injections become more prevalent, the solutions also become more viscous. Due to the viscosity, injection forces during an administered dosage using standard off-the-shelf syringes increase, resulting in increased injection difficulty. There is a need for a device that can reliably integrate with syringes to reduce injection forces and ensure optimal injection form.</p>
 
   <div class="constraint-grid">
     <div class="constraint">
