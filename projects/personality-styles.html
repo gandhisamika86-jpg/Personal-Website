@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>TBD | Samika Gandhi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  .case-hero{padding:40px var(--pad-x) 24px}.case-meta{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--grid-gap);font-family:"JetBrains Mono",monospace;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--fg-mute);margin-bottom:28px}.case-meta>div{grid-column:span 3}.case-meta strong{color:var(--fg);font-weight:500;display:block;margin-top:4px;font-size:13px;letter-spacing:.02em}.case-title{font-family:"Inter Tight",sans-serif;font-weight:700;font-size:clamp(42px,7vw,88px);line-height:1;letter-spacing:-.04em;margin:0 0 24px}.case-pitch{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--grid-gap);border-top:1px solid var(--rule);padding-top:18px}.case-pitch .k{grid-column:span 3;font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--fg-mute);text-transform:uppercase;letter-spacing:.08em}.case-pitch .v{grid-column:span 9;font-size:clamp(18px,1.8vw,24px);line-height:1.4;text-wrap:pretty}.case-pitch em{font-style:normal;background:var(--accent);color:var(--accent-ink);padding:0 4px}
+  .section-nav{display:flex;flex-wrap:wrap;gap:18px;padding:18px var(--pad-x);border-block:1px solid var(--rule)}.section-nav a{color:var(--fg-dim);font-size:13px}.section-nav a:hover{color:var(--accent)}[id]{scroll-margin-top:90px}
+  .sec-break{display:flex;align-items:center;gap:18px;padding:40px var(--pad-x) 0}.sec-num{font-family:"Inter Tight",sans-serif;font-weight:700;font-size:15px;color:var(--accent-ink);background:var(--accent);width:34px;height:34px;flex:0 0 auto;display:flex;align-items:center;justify-content:center}.sec-title{font-family:"Inter Tight",sans-serif;font-weight:700;font-size:clamp(22px,2.8vw,34px);letter-spacing:-.02em;color:var(--fg);margin:0}.sec-break-line{height:1px;background:var(--rule);margin:20px var(--pad-x) 0}
+  .case-section{padding:40px var(--pad-x) 56px}.case-section.alt{background:var(--bg-2)}.body{max-width:82ch;margin:0;color:var(--fg-dim);font-size:16px;line-height:1.75}.body+.body{margin-top:16px}
+  .lesson-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(320px,.95fr);gap:42px;align-items:start}.lesson-copy h3,.driver-copy h3{font-size:clamp(25px,3vw,36px);margin:0 0 14px}.lesson-quote{margin:24px 0 0;border-left:4px solid var(--accent);padding:12px 0 12px 22px;font-family:"Inter Tight",sans-serif;font-size:clamp(20px,2.2vw,29px);line-height:1.4;color:var(--fg);max-width:34ch}
+  .framework-figure{margin:0;background:#fff;border:1px solid var(--rule);padding:18px}.framework-figure img{display:block;width:100%;height:auto;max-width:560px;margin:auto}.framework-figure figcaption{padding-top:12px;color:#4b4b50;font-family:"JetBrains Mono",monospace;font-size:10px;line-height:1.6;text-transform:uppercase;letter-spacing:.06em}.framework-figure a{color:inherit;text-decoration:underline;text-underline-offset:3px}
+  .style-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule)}.style-card{background:var(--bg);padding:22px;border-top:5px solid var(--style-color)}.style-card .style-label{font-family:"JetBrains Mono",monospace;color:var(--style-color);font-size:10px;text-transform:uppercase;letter-spacing:.1em}.style-card h3{font-size:21px;margin:12px 0 8px}.style-card p{margin:0;color:var(--fg-dim);font-size:13px;line-height:1.6}
+  .cross-note{margin-top:28px;border:1px solid var(--rule);display:grid;grid-template-columns:190px 1fr;gap:28px;padding:24px}.cross-note .label{font-family:"JetBrains Mono",monospace;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--accent)}.cross-note p{margin:0;color:var(--fg-dim);font-size:15px;line-height:1.7}
+  .driver-grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:42px;align-items:start}.driver-points{border:1px solid var(--rule)}.driver-point{display:grid;grid-template-columns:42px 1fr;gap:14px;padding:17px 18px;border-bottom:1px solid var(--rule)}.driver-point:last-child{border-bottom:0}.driver-point .n{font-family:"JetBrains Mono",monospace;color:var(--accent);font-size:11px}.driver-point h4{font-size:16px;margin:0 0 4px}.driver-point p{margin:0;color:var(--fg-dim);font-size:13px;line-height:1.55}
+  .opinion-note{margin-top:22px;border-left:4px solid var(--accent);padding:16px 20px;background:rgba(255,74,28,.045)}.opinion-note h4{margin:0 0 6px;font-size:18px}.opinion-note p{margin:0;color:var(--fg-dim);font-size:14px;line-height:1.65}
+  .takeaway{max-width:36ch;margin:0;font-family:"Inter Tight",sans-serif;font-weight:500;font-size:clamp(25px,3.5vw,44px);line-height:1.28;letter-spacing:-.02em;color:var(--fg)}
+  .foot-min{padding:18px var(--pad-x);border-top:1px solid var(--rule);display:flex;justify-content:space-between;font-family:"JetBrains Mono",monospace;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--fg-mute)}
+  @media(max-width:1000px){.style-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:800px){.case-meta>div{grid-column:span 6}.case-pitch .k,.case-pitch .v{grid-column:span 12}.lesson-grid,.driver-grid{grid-template-columns:1fr}.cross-note{grid-template-columns:1fr;gap:10px}}@media(max-width:560px){.style-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="nav-inner"><div class="nav-left"><a class="brand" href="../index.html" style="text-decoration:none;color:inherit">SAMIKA GANDHI</a><a class="navlink" href="strategy-operations.html">← Back</a></div><div></div><div class="nav-right"><a class="navlink" href="../index.html#skills">Skills</a><a class="navlink" href="../resume.html">Resume</a><a class="navlink" href="../contact.html">Contact</a></div></div></nav>
+
+<header class="case-hero" id="overview">
+  <div class="case-meta">
+    <div>▪ CATEGORY<strong>Strategy &amp; Operations</strong></div>
+    <div>▪ COURSE<strong>MTDE 313/613</strong></div>
+    <div>▪ FORMAT<strong>Leadership Reflection</strong></div>
+    <div>▪ GUEST SPEAKER<strong>Mr. Joe Small</strong></div>
+  </div>
+  <h1 class="case-title">TBD</h1>
+  <div class="case-pitch"><div class="k">▪ Core Idea</div><div class="v">The “secret sauce” to working with different people is understanding how they prefer to communicate—and being <em>versatile enough to meet them there.</em></div></div>
+</header>
+
+<nav class="section-nav" aria-label="Project sections"><a href="#overview">Overview</a><a href="#styles">Four Styles</a><a href="#collaboration">Cross-Style Collaboration</a><a href="#driver">Driver Example</a><a href="#takeaway">Takeaway</a></nav>
+
+<div class="sec-break"><div class="sec-num">01</div><h2 class="sec-title">The Lesson</h2></div><div class="sec-break-line"></div>
+<section class="case-section">
+  <div class="lesson-grid">
+    <div class="lesson-copy">
+      <h3>Flex the Approach, Not the Message</h3>
+      <p class="body">During MTDE 313/613, guest speaker Mr. Joe Small explained that one of the most important skills in working with different people is recognizing their personality and communication style. The value is not in labeling people; it is in understanding how they prefer to receive information and adapting the way I approach them.</p>
+      <p class="body">That versatility can make technical discussions, project decisions, and disagreements more productive. I may communicate naturally in one style, but effective collaboration requires me to recognize when another person needs a different pace, level of detail, or tone.</p>
+      <blockquote class="lesson-quote">Understanding another person’s style helps me communicate the same idea in the way they are most likely to hear it.</blockquote>
+    </div>
+    <figure class="framework-figure">
+      <img src="https://i.pinimg.com/originals/9d/54/ca/9d54ca933640666c0d7eb471c937e65b.jpg" alt="Four-quadrant personality chart showing Driver, Expressive, Analytical, and Amiable styles" loading="lazy">
+      <figcaption>Four personality types graphic · Image hosted on <a href="https://i.pinimg.com/originals/9d/54/ca/9d54ca933640666c0d7eb471c937e65b.jpg" target="_blank" rel="noopener noreferrer">Pinterest</a> and discovered through <a href="https://www.bing.com/images/search?q=four+personality+types+on+a+graph" target="_blank" rel="noopener noreferrer">Bing Images</a>.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<div class="sec-break" id="styles"><div class="sec-num">02</div><h2 class="sec-title">Four Communication Styles</h2></div><div class="sec-break-line"></div>
+<section class="case-section alt">
+  <div class="style-grid">
+    <article class="style-card" style="--style-color:#d8564f"><div class="style-label">Results &amp; Action</div><h3>Driver</h3><p>Direct, decisive, fast-moving, and focused on outcomes, efficiency, and control.</p></article>
+    <article class="style-card" style="--style-color:#3978c5"><div class="style-label">Energy &amp; Vision</div><h3>Expressive</h3><p>Enthusiastic, persuasive, people-oriented, and motivated by ideas, interaction, and the big picture.</p></article>
+    <article class="style-card" style="--style-color:#3f8b60"><div class="style-label">Facts &amp; Logic</div><h3>Analytical</h3><p>Precise, deliberate, cautious, and focused on evidence, structure, accuracy, and clear reasoning.</p></article>
+    <article class="style-card" style="--style-color:#c59a22"><div class="style-label">Trust &amp; Support</div><h3>Amiable</h3><p>Patient, cooperative, relationship-oriented, and focused on agreement, stability, and supporting others.</p></article>
+  </div>
+</section>
+
+<div class="sec-break" id="collaboration"><div class="sec-num">03</div><h2 class="sec-title">Cross-Style Collaboration</h2></div><div class="sec-break-line"></div>
+<section class="case-section">
+  <p class="body">The quadrants do not define who can or cannot work together. A Driver can collaborate effectively with an Amiable, Expressive, or Analytical colleague when both people recognize their differences and adjust how they communicate. Cross-quadrant pairings can be especially complementary: one person may create momentum while another builds trust, brings energy, or protects the quality of the decision.</p>
+  <div class="cross-note"><div class="label">The Practical Goal</div><p>Instead of expecting everyone to communicate like me, I should identify what the other person values—speed, enthusiasm, evidence, or reassurance—and frame the conversation accordingly. The objective is not to change my conclusion; it is to make the reasoning accessible to the person receiving it.</p></div>
+</section>
+
+<div class="sec-break" id="driver"><div class="sec-num">04</div><h2 class="sec-title">Example: Communicating with a Driver</h2></div><div class="sec-break-line"></div>
+<section class="case-section alt">
+  <div class="driver-grid">
+    <div class="driver-copy">
+      <h3>Concise, Supportive, and Decision-Oriented</h3>
+      <p class="body">If I am speaking with someone who has a Driver style, I should respect their preference for speed and results. That means leading with the conclusion, keeping my points concise, explaining the decision required, and showing that I am prepared to support and execute the chosen direction.</p>
+      <div class="opinion-note"><h4>Flexibility Does Not Mean Silence</h4><p>I should still put my opinions on the table. The difference is in delivery: I would state my view calmly, briefly, and with supporting evidence—more as a clear recommendation than a confrontation. Adapting my tone does not weaken my point; it increases the chance that the point is considered.</p></div>
+    </div>
+    <div class="driver-points">
+      <article class="driver-point"><div class="n">01</div><div><h4>Lead with the answer</h4><p>Start with the outcome, recommendation, or decision needed before providing background.</p></div></article>
+      <article class="driver-point"><div class="n">02</div><div><h4>Use concise points</h4><p>Remove unnecessary detail and organize the discussion around results, risks, and next actions.</p></div></article>
+      <article class="driver-point"><div class="n">03</div><div><h4>Respect decision ownership</h4><p>Be supportive of the final decision and show willingness to move quickly once the direction is set.</p></div></article>
+      <article class="driver-point"><div class="n">04</div><div><h4>Offer disagreement constructively</h4><p>Present an alternative softly but clearly, using evidence and a recommended path rather than an emotional challenge.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<div class="sec-break" id="takeaway"><div class="sec-num">05</div><h2 class="sec-title">My Takeaway</h2></div><div class="sec-break-line"></div>
+<section class="case-section"><p class="takeaway">Versatility is not becoming a different person. It is learning how to make my ideas understandable, useful, and actionable for different people.</p></section>
+
+<footer class="foot-min"><span>© 2026 S. Gandhi</span><a href="strategy-operations.html" style="color:inherit">← Back to Strategy &amp; Operations</a></footer>
+</body>
+</html>
