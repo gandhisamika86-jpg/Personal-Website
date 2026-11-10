@@ -121,12 +121,85 @@
   .vt-content h4 { font-size: 15px; font-weight: 600; margin: 5px 0 0; line-height: 1.35; letter-spacing: -0.01em; color: var(--fg); }
   .vt-content .vt-sub { font-family: "JetBrains Mono", monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--fg-mute); }
 
+  /* DHF supporting highlights */
+  .dhf-highlights {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    margin-top: 24px;
+    border: 1px solid var(--rule);
+    background: var(--rule);
+  }
+  .dhf-highlight { background: var(--bg); padding: 22px; }
+  .dhf-highlight .eyebrow {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .dhf-highlight h4 {
+    margin: 0 0 8px;
+    font-family: "Inter Tight", sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--fg);
+  }
+  .dhf-highlight p {
+    margin: 0;
+    color: var(--fg-dim);
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  .interview-roles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+  }
+  .interview-roles span {
+    border: 1px solid var(--rule);
+    padding: 6px 9px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    color: var(--fg-dim);
+  }
+  .needs-wrap { margin-top: 24px; overflow-x: auto; border: 1px solid var(--rule); }
+  .needs-table { width: 100%; min-width: 700px; border-collapse: collapse; }
+  .needs-table th,
+  .needs-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--rule);
+    text-align: left;
+    vertical-align: top;
+  }
+  .needs-table tr:last-child td { border-bottom: 0; }
+  .needs-table th {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--fg-mute);
+    background: var(--bg-2);
+  }
+  .needs-table td:first-child {
+    width: 23%;
+    font-family: "Inter Tight", sans-serif;
+    font-weight: 600;
+    color: var(--fg);
+  }
+  .needs-table td:last-child { color: var(--fg-dim); line-height: 1.55; }
+  .needs-table ul { margin: 0; padding-left: 18px; }
+  .needs-table li + li { margin-top: 5px; }
+
   .foot-min { padding: 18px var(--pad-x); border-top: 1px solid var(--rule); display: flex; justify-content: space-between; font-family: "JetBrains Mono", monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--fg-mute); }
 
   @media (max-width: 900px) {
     .case-meta > div { grid-column: span 6; }
     .case-pitch .k, .case-pitch .v { grid-column: span 12; }
     .constraint-grid { grid-template-columns: 1fr 1fr; }
+    .dhf-highlights { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -303,6 +376,90 @@
         <h4>Engineering Project Showcase Abstract</h4>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- SECTION 3: DHF 3 -->
+<div class="sec-break">
+  <div class="sec-num">03</div>
+  <div>
+    <div class="sec-label">DHF 3</div>
+    <div class="sec-title">Defining the Medical &amp; Market Problem</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section">
+  <div class="dhf-highlights">
+    <div class="dhf-highlight">
+      <div class="eyebrow">Research</div>
+      <h4>Literature Search</h4>
+      <p>Reviewed clinical and technical literature to understand injection-force drivers and current intravitreal workflows.</p>
+    </div>
+    <div class="dhf-highlight">
+      <div class="eyebrow">Landscape</div>
+      <h4>Patent Search</h4>
+      <p>Reviewed existing force-assist mechanisms and emerging technologies to identify design gaps and limitations.</p>
+    </div>
+    <div class="dhf-highlight">
+      <div class="eyebrow">Voice of Customer</div>
+      <h4>Stakeholder Interviews</h4>
+      <p>Spoke with healthcare professionals who prepare or administer injections.</p>
+      <div class="interview-roles">
+        <span>Medical Assistant</span>
+        <span>Dentist</span>
+        <span>Ophthalmologist</span>
+        <span>EMT Technician</span>
+        <span>Physician Assistant</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: DHF 4 -->
+<div class="sec-break">
+  <div class="sec-num">04</div>
+  <div>
+    <div class="sec-label">DHF 4</div>
+    <div class="sec-title">Defining the Engineering Problem</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section alt">
+  <p class="body">Research and stakeholder feedback were translated into the following engineering needs.</p>
+
+  <div class="needs-wrap">
+    <table class="needs-table">
+      <thead>
+        <tr>
+          <th>Need Category</th>
+          <th>Specific Need</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Compatibility</td>
+          <td><ul><li>Support an injection rate of 0.01 mL/min with a 32G needle</li><li>Work with off-the-shelf 1 mL syringes</li></ul></td>
+        </tr>
+        <tr>
+          <td>Safety</td>
+          <td><ul><li>Must not increase silicone oil particulates</li><li>Must be sterilizable</li></ul></td>
+        </tr>
+        <tr>
+          <td>Cost</td>
+          <td><ul><li>Must be affordable</li><li>Must be eligible for insurance reimbursement</li></ul></td>
+        </tr>
+        <tr>
+          <td>Performance</td>
+          <td><ul><li>Must reduce injection force</li><li>Must be usable one-handedly and prioritize patient comfort</li></ul></td>
+        </tr>
+        <tr>
+          <td>Ease of Use</td>
+          <td><ul><li>Must not make the procedure more difficult</li><li>Must improve syringe and needle stability</li></ul></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </section>
 
