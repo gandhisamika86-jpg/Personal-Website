@@ -193,6 +193,70 @@
   .needs-table ul { margin: 0; padding-left: 18px; }
   .needs-table li + li { margin-top: 5px; }
 
+  /* DHF 5 concept selection */
+  .dhf5-intro { max-width: 78ch; }
+  .dhf5-media {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    margin-top: 24px;
+    border: 1px solid var(--rule);
+    background: var(--rule);
+  }
+  .dhf5-media figure { margin: 0; background: var(--bg); }
+  .dhf5-visual {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    background: #fff;
+  }
+  .dhf5-media img.dhf5-visual { object-position: center bottom; }
+  .dhf5-media figcaption {
+    padding: 10px 14px;
+    border-top: 1px solid var(--rule);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--fg-mute);
+  }
+  .dhf5-details {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 1px;
+    margin-top: 1px;
+    border: 1px solid var(--rule);
+    background: var(--rule);
+  }
+  .dhf5-card { background: var(--bg); padding: 20px; }
+  .dhf5-card .eyebrow {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .dhf5-card p,
+  .dhf5-card ul {
+    margin: 0;
+    color: var(--fg-dim);
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  .dhf5-card ul { padding-left: 18px; }
+  .dhf5-card li + li { margin-top: 5px; }
+  .dhf5-equation {
+    display: inline-block;
+    margin: 8px 0;
+    padding: 5px 8px;
+    border: 1px solid var(--rule);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    color: var(--fg);
+  }
+
   .foot-min { padding: 18px var(--pad-x); border-top: 1px solid var(--rule); display: flex; justify-content: space-between; font-family: "JetBrains Mono", monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--fg-mute); }
 
   @media (max-width: 900px) {
@@ -200,6 +264,7 @@
     .case-pitch .k, .case-pitch .v { grid-column: span 12; }
     .constraint-grid { grid-template-columns: 1fr 1fr; }
     .dhf-highlights { grid-template-columns: 1fr; }
+    .dhf5-media, .dhf5-details { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -460,6 +525,53 @@
         </tr>
       </tbody>
     </table>
+  </div>
+</section>
+
+<!-- SECTION 5: DHF 5 -->
+<div class="sec-break">
+  <div class="sec-num">05</div>
+  <div>
+    <div class="sec-label">DHF 5</div>
+    <div class="sec-title">Concept Generation &amp; Down-Selection</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section">
+  <p class="body dhf5-intro">We considered multiple concepts and evaluated them against the project needs using a Pugh matrix. The selected concept was a <strong style="color:var(--fg); font-weight:600;">Scott Russell linkage</strong>.</p>
+
+  <div class="dhf5-media">
+    <figure>
+      <video class="dhf5-visual" controls muted loop playsinline preload="metadata">
+        <source src="assets/capstone/scott-russell-linkage.mp4" type="video/mp4" />
+      </video>
+      <figcaption>Scott Russell linkage motion study</figcaption>
+    </figure>
+    <figure>
+      <img class="dhf5-visual" src="assets/capstone/scott-russell-model.webp" alt="CAD views of the selected Scott Russell linkage device concept" />
+      <figcaption>Improved 3D model based on the selected concept</figcaption>
+    </figure>
+  </div>
+
+  <div class="dhf5-details">
+    <div class="dhf5-card">
+      <div class="eyebrow">Physics</div>
+      <p>The linkage converts the applied input into horizontal output force.</p>
+      <div class="dhf5-equation">F₂ₓ = cot(θ)F₁ · Fₓ = F₂ₓ − fμ</div>
+      <p>As the linkage angle decreases, mechanical advantage increases. In the proof of concept, effective output exceeded the applied force at approximately 37.85°.</p>
+    </div>
+    <div class="dhf5-card">
+      <div class="eyebrow">Pros</div>
+      <ul>
+        <li>Provides mechanical advantage to support injection</li>
+        <li>Inexpensive to manufacture</li>
+      </ul>
+    </div>
+    <div class="dhf5-card">
+      <div class="eyebrow">Limitation</div>
+      <p>Provides more assistance near the end of the injection than at the beginning.</p>
+    </div>
   </div>
 </section>
 
