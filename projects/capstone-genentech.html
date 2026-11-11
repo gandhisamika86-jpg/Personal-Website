@@ -67,7 +67,11 @@
   /* Status banner */
   .status-banner {
     display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
-    margin-top: 8px; padding: 20px 26px; background: var(--accent); color: var(--accent-ink);
+    margin-top: 8px; padding: 20px 26px;
+    background: var(--bg);
+    color: var(--fg);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--accent);
   }
   .status-banner .sb-emoji { font-size: 26px; line-height: 1; }
   .status-banner .sb-text { font-family: "Inter Tight", sans-serif; font-weight: 700; font-size: 18px; letter-spacing: -0.01em; }
@@ -211,7 +215,11 @@
     object-fit: cover;
     background: #fff;
   }
-  .dhf5-media img.dhf5-visual { object-position: center bottom; }
+  .dhf5-media img.dhf5-visual {
+    object-fit: contain;
+    object-position: center;
+    padding: 8px;
+  }
   .dhf5-media figcaption {
     padding: 10px 14px;
     border-top: 1px solid var(--rule);
@@ -297,6 +305,54 @@
     min-height: 480px;
     border: 0;
     background: #fff;
+  }
+  .dhf7-pdf { height: 360px; min-height: 320px; }
+  .component-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 22px;
+    border: 1px solid var(--rule);
+  }
+  .component-table th,
+  .component-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--rule);
+    text-align: left;
+    vertical-align: top;
+  }
+  .component-table tr:last-child td { border-bottom: 0; }
+  .component-table th {
+    background: var(--bg-2);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--fg-mute);
+  }
+  .component-table td:first-child {
+    width: 31%;
+    font-weight: 600;
+    color: var(--fg);
+  }
+  .component-table td:last-child {
+    color: var(--fg-dim);
+    line-height: 1.5;
+  }
+  .workflow-figure {
+    margin: 24px 0 0;
+    border: 1px solid var(--rule);
+    background: #fff;
+  }
+  .workflow-figure img { display: block; width: 100%; height: auto; }
+  .workflow-figure figcaption {
+    padding: 10px 14px;
+    border-top: 1px solid var(--rule);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--fg-mute);
+    background: var(--bg);
   }
 
   .foot-min { padding: 18px var(--pad-x); border-top: 1px solid var(--rule); display: flex; justify-content: space-between; font-family: "JetBrains Mono", monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--fg-mute); }
@@ -628,16 +684,28 @@
 <div class="sec-break-line"></div>
 
 <section class="case-section alt">
-  <p class="body">The complete solution definition and subsystem documentation is included below.</p>
-  <div class="dhf-doc">
-    <div class="dhf-doc-head">
-      <span>Scrollable document · 10 pages</span>
-      <a href="assets/capstone/dhf-6.pdf" target="_blank" rel="noopener">Open PDF ↗</a>
-    </div>
-    <object class="dhf-pdf" data="assets/capstone/dhf-6.pdf#view=FitH" type="application/pdf">
-      <p style="padding:20px; color:var(--fg-dim);">PDF preview unavailable. <a href="assets/capstone/dhf-6.pdf" target="_blank" rel="noopener" style="color:var(--accent);">Open DHF 6</a>.</p>
-    </object>
-  </div>
+  <p class="body">The selected concept was divided into eight functional components.</p>
+
+  <table class="component-table">
+    <thead>
+      <tr><th>Component</th><th>Function</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Commercial Syringe</td><td>Provides the standard 1 mL Luer-lock syringe and 32G needle interface.</td></tr>
+      <tr><td>Fixed Frame Mount</td><td>Anchors the linkage and stabilizes the syringe and needle.</td></tr>
+      <tr><td>Driving Lever Arm</td><td>Receives the clinician’s one-handed thumb input.</td></tr>
+      <tr><td>Scott Russell Coupler Link</td><td>Converts the applied input into axial plunger-driving force.</td></tr>
+      <tr><td>Output Slider</td><td>Contacts and advances the syringe plunger.</td></tr>
+      <tr><td>Linear Guide Rail</td><td>Constrains the slider to one axis while maintaining alignment and limiting travel.</td></tr>
+      <tr><td>Sterilizable Housing</td><td>Encloses the mechanism and supports validated sterilization.</td></tr>
+      <tr><td>Tapered Needle</td><td>Guides medication flow into the standard 32G lumen.</td></tr>
+    </tbody>
+  </table>
+
+  <figure class="workflow-figure">
+    <img src="assets/capstone/dhf6-subcomponent-workflow.webp" alt="Subcomponent workflow showing the primary force and fluid pathway and supporting device components" />
+    <figcaption>Subcomponent workflow · black arrows show the primary force and fluid pathway</figcaption>
+  </figure>
 </section>
 
 <!-- SECTION 7: DHF 7 -->
@@ -657,7 +725,7 @@
       <span>Scrollable document · 4 pages</span>
       <a href="assets/capstone/dhf-7.pdf" target="_blank" rel="noopener">Open PDF ↗</a>
     </div>
-    <object class="dhf-pdf" data="assets/capstone/dhf-7.pdf#view=FitH" type="application/pdf">
+    <object class="dhf-pdf dhf7-pdf" data="assets/capstone/dhf-7.pdf#view=FitH" type="application/pdf">
       <p style="padding:20px; color:var(--fg-dim);">PDF preview unavailable. <a href="assets/capstone/dhf-7.pdf" target="_blank" rel="noopener" style="color:var(--accent);">Open DHF 7</a>.</p>
     </object>
   </div>
