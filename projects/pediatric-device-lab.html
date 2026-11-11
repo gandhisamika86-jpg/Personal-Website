@@ -120,8 +120,16 @@
   .result-card .value { margin-top: 8px; font-family: "Inter Tight", sans-serif; font-size: 24px; font-weight: 700; color: var(--fg); }
   .result-card p { margin: 8px 0 0; color: var(--fg-dim); font-size: 13px; line-height: 1.55; }
   .result-note { max-width: 80ch; margin: 24px 0 0; color: var(--fg-dim); font-size: 14px; line-height: 1.7; }
+  .download-actions { display: flex; gap: 10px; flex: 0 0 auto; flex-wrap: wrap; }
+  .download-link.secondary { color: var(--fg); background: transparent; border: 1px solid var(--rule); }
+  .analysis-chart { max-width: 820px; margin: 28px auto 0; border: 1px solid var(--rule); background: #f5f5f3; }
+  .analysis-chart img { display: block; width: 100%; height: auto; }
+  .chart-caption { padding: 12px 16px; color: var(--fg-dim); font-size: 12.5px; line-height: 1.55; border-top: 1px solid var(--rule); }
+  .force-chart-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; max-width: 980px; margin: 18px auto 0; }
+  .force-chart-card { margin: 0; border: 1px solid var(--rule); background: #fff; }
+  .force-chart-card img { display: block; width: 100%; height: auto; }
   @media (max-width: 760px) {
-    .pilot-gallery, .lesson-grid, .result-grid { grid-template-columns: 1fr; }
+    .pilot-gallery, .lesson-grid, .result-grid, .force-chart-grid { grid-template-columns: 1fr; }
     .pilot-photo img { height: auto; }
     .download-card { align-items: flex-start; flex-direction: column; }
   }
@@ -314,45 +322,18 @@
   <div class="download-card">
     <div>
       <strong>Python Puncture-Force Data Analysis</strong>
-      <span>Download the complete nine-page analysis containing the Python workflow, filtered force-displacement plots, run-level results, and grouped statistics.</span>
+      <span>Open the complete nine-page analysis in a browser tab or save a copy containing the Python workflow, filtered force-displacement plots, run-level results, and grouped statistics.</span>
     </div>
-    <a class="download-link" href="assets/pediatric-lab/Chiba-Puncture-Data-Analysis.pdf" download>Download PDF ↓</a>
+    <div class="download-actions">
+      <a class="download-link" href="assets/pediatric-lab/Chiba-Puncture-Data-Analysis.pdf" target="_blank" rel="noopener">Open PDF ↗</a>
+      <a class="download-link secondary" href="assets/pediatric-lab/Chiba-Puncture-Data-Analysis.pdf" download>Download PDF ↓</a>
+    </div>
   </div>
 </section>
 
-<!-- SECTION 5: FINAL STUDY -->
+<!-- SECTION 5: PILOT RESULTS -->
 <div class="sec-break">
   <div class="sec-num">05</div>
-  <div>
-    <div class="sec-label">Section 5</div>
-    <div class="sec-title">Final Study Using Rabbit Hearts</div>
-  </div>
-</div>
-<div class="sec-break-line"></div>
-
-<section class="case-section">
-  <p class="body">The parameters established during the chicken-heart pilot study will then be applied to rabbit hearts. Rabbit cardiac anatomy and physiology are more similar to the human heart than those of chicken hearts, making rabbit hearts the more representative model for the final study of left-ventricle and right-atrium puncture resistance.</p>
-
-  <div class="status-banner">
-    <div class="sb-emoji">🕒</div>
-    <div>
-      <div class="sb-text">Status: In Progress</div>
-      <div class="sb-sub">Expected completion, May 2027</div>
-    </div>
-  </div>
-
-  <div class="tag-row">
-    <span class="tag-pill">Fetal Cardiac Modeling</span>
-    <span class="tag-pill">Tissue-Mimicking Materials</span>
-    <span class="tag-pill">Ultrasound Guidance Simulation</span>
-    <span class="tag-pill">Catheter-Based Intervention</span>
-  </div>
-</section>
-
-
-<!-- SECTION 6: PILOT RESULTS -->
-<div class="sec-break">
-  <div class="sec-num">06</div>
   <div>
     <div class="sec-label">Pilot Data Analysis</div>
     <div class="sec-title">Results</div>
@@ -360,8 +341,24 @@
 </div>
 <div class="sec-break-line"></div>
 
-<section class="case-section alt">
+<section class="case-section">
   <p class="body">Python was used to process eight force-displacement runs, compare raw minima with Gaussian-filtered and 100-point moving-average estimates, and summarize the pilot measurements by anatomical group.</p>
+
+  <figure class="analysis-chart">
+    <img src="assets/pediatric-lab/lv-ra-comparison.webp" alt="Bar chart comparing mean peak compression magnitude for the left ventricle and right atrium groups, with standard-deviation error bars." />
+    <figcaption class="chart-caption">Pilot comparison using the 100-point moving-average results. Bars show mean peak compression magnitude and error bars show one standard deviation.</figcaption>
+  </figure>
+
+  <div class="force-chart-grid">
+    <figure class="force-chart-card">
+      <img src="assets/pediatric-lab/lv6-force-curve.webp" alt="Force-displacement chart for left-ventricle test run LV6 showing raw load and two smoothed curves." />
+      <figcaption class="chart-caption"><strong>Representative LV run.</strong> LV6 force-displacement curve with raw, Gaussian-filtered, and moving-average signals.</figcaption>
+    </figure>
+    <figure class="force-chart-card">
+      <img src="assets/pediatric-lab/ra1-force-curve.webp" alt="Force-displacement chart for right-atrium test run RA1 showing raw load and two smoothed curves." />
+      <figcaption class="chart-caption"><strong>Representative RA run.</strong> RA1 force-displacement curve with raw, Gaussian-filtered, and moving-average signals.</figcaption>
+    </figure>
+  </div>
 
   <div class="result-grid">
     <div class="result-card">
@@ -383,6 +380,37 @@
 
   <p class="result-note">The Gaussian and moving-average methods produced nearly identical grouped results, supporting the stability of the smoothing approach. In this preliminary dataset, the right-atrium group showed an approximately 34% higher mean smoothed peak force than the left-ventricle group. LV5 was excluded from grouped statistics because its near-zero response did not represent a valid puncture signal. These pilot findings are being used to refine the fixture, alignment checks, test speed, starting distance, and anatomical sampling plan for the rabbit-heart study; the small exploratory sample is not treated as a final physiological comparison.</p>
 </section>
+
+
+<!-- SECTION 6: FINAL STUDY -->
+<div class="sec-break">
+  <div class="sec-num">06</div>
+  <div>
+    <div class="sec-label">Section 6</div>
+    <div class="sec-title">Final Study Using Rabbit Hearts</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section alt">
+  <p class="body">The parameters established during the chicken-heart pilot study will then be applied to rabbit hearts. Rabbit cardiac anatomy and physiology are more similar to the human heart than those of chicken hearts, making rabbit hearts the more representative model for the final study of left-ventricle and right-atrium puncture resistance.</p>
+
+  <div class="status-banner">
+    <div class="sb-emoji">🕒</div>
+    <div>
+      <div class="sb-text">Status: In Progress</div>
+      <div class="sb-sub">Expected completion, May 2027</div>
+    </div>
+  </div>
+
+  <div class="tag-row">
+    <span class="tag-pill">Fetal Cardiac Modeling</span>
+    <span class="tag-pill">Tissue-Mimicking Materials</span>
+    <span class="tag-pill">Ultrasound Guidance Simulation</span>
+    <span class="tag-pill">Catheter-Based Intervention</span>
+  </div>
+</section>
+
 
 <footer class="foot-min">
   <div>© 2026 S. Gandhi · D/006</div>
