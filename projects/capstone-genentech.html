@@ -257,6 +257,48 @@
     color: var(--fg);
   }
 
+  /* Embedded DHF documents */
+  .dhf-doc {
+    margin-top: 22px;
+    border: 1px solid var(--rule);
+    background: var(--bg);
+  }
+  .dhf-doc-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 13px 16px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .dhf-doc-head span {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--fg-mute);
+  }
+  .dhf-doc-head a {
+    flex: 0 0 auto;
+    border: 1px solid var(--accent);
+    padding: 6px 10px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .dhf-doc-head a:hover { background: var(--accent); color: var(--accent-ink); }
+  .dhf-pdf {
+    display: block;
+    width: 100%;
+    height: min(72vh, 640px);
+    min-height: 480px;
+    border: 0;
+    background: #fff;
+  }
+
   .foot-min { padding: 18px var(--pad-x); border-top: 1px solid var(--rule); display: flex; justify-content: space-between; font-family: "JetBrains Mono", monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--fg-mute); }
 
   @media (max-width: 900px) {
@@ -572,6 +614,52 @@
       <div class="eyebrow">Limitation</div>
       <p>Provides more assistance near the end of the injection than at the beginning.</p>
     </div>
+  </div>
+</section>
+
+<!-- SECTION 6: DHF 6 -->
+<div class="sec-break">
+  <div class="sec-num">06</div>
+  <div>
+    <div class="sec-label">DHF 6</div>
+    <div class="sec-title">Solution Statement &amp; Subsystems</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section alt">
+  <p class="body">The complete solution definition and subsystem documentation is included below.</p>
+  <div class="dhf-doc">
+    <div class="dhf-doc-head">
+      <span>Scrollable document · 10 pages</span>
+      <a href="assets/capstone/dhf-6.pdf" target="_blank" rel="noopener">Open PDF ↗</a>
+    </div>
+    <object class="dhf-pdf" data="assets/capstone/dhf-6.pdf#view=FitH" type="application/pdf">
+      <p style="padding:20px; color:var(--fg-dim);">PDF preview unavailable. <a href="assets/capstone/dhf-6.pdf" target="_blank" rel="noopener" style="color:var(--accent);">Open DHF 6</a>.</p>
+    </object>
+  </div>
+</section>
+
+<!-- SECTION 7: DHF 7 -->
+<div class="sec-break">
+  <div class="sec-num">07</div>
+  <div>
+    <div class="sec-label">DHF 7</div>
+    <div class="sec-title">Design Failure Modes &amp; Effects Analysis</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section">
+  <p class="body">The full design FMEA and recommended risk mitigations are included below.</p>
+  <div class="dhf-doc">
+    <div class="dhf-doc-head">
+      <span>Scrollable document · 4 pages</span>
+      <a href="assets/capstone/dhf-7.pdf" target="_blank" rel="noopener">Open PDF ↗</a>
+    </div>
+    <object class="dhf-pdf" data="assets/capstone/dhf-7.pdf#view=FitH" type="application/pdf">
+      <p style="padding:20px; color:var(--fg-dim);">PDF preview unavailable. <a href="assets/capstone/dhf-7.pdf" target="_blank" rel="noopener" style="color:var(--accent);">Open DHF 7</a>.</p>
+    </object>
   </div>
 </section>
 
