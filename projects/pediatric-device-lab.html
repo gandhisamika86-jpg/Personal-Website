@@ -100,6 +100,32 @@
     .case-pitch .k, .case-pitch .v { grid-column: span 12; }
     .solution-grid { grid-template-columns: 1fr; }
   }
+
+  /* Pilot study */
+  .pilot-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 28px; }
+  .pilot-photo { border: 1px solid var(--rule); background: var(--bg); overflow: hidden; }
+  .pilot-photo img { width: 100%; height: 520px; object-fit: cover; display: block; }
+  .pilot-caption { padding: 13px 16px; color: var(--fg-dim); font-size: 13px; line-height: 1.5; border-top: 1px solid var(--rule); }
+  .lesson-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; margin-top: 30px; background: var(--rule); border: 1px solid var(--rule); }
+  .lesson { background: var(--bg); padding: 20px; }
+  .lesson strong { display: block; margin-bottom: 7px; color: var(--fg); font-size: 15px; }
+  .lesson span { color: var(--fg-dim); font-size: 13.5px; line-height: 1.6; }
+  .download-card { display: flex; justify-content: space-between; align-items: center; gap: 20px; margin-top: 28px; padding: 20px 22px; border: 1px solid var(--rule); background: var(--bg); }
+  .download-card strong { display: block; font-size: 16px; margin-bottom: 5px; }
+  .download-card span { color: var(--fg-dim); font-size: 13px; line-height: 1.5; }
+  .download-link { flex: 0 0 auto; font-family: "JetBrains Mono", monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; text-decoration: none; color: var(--accent-ink); background: var(--accent); padding: 11px 15px; }
+  .result-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin-top: 26px; border: 1px solid var(--rule); background: var(--rule); }
+  .result-card { background: var(--bg); padding: 22px; }
+  .result-card .metric { font-family: "JetBrains Mono", monospace; font-size: 10px; color: var(--fg-mute); text-transform: uppercase; letter-spacing: 0.09em; }
+  .result-card .value { margin-top: 8px; font-family: "Inter Tight", sans-serif; font-size: 24px; font-weight: 700; color: var(--fg); }
+  .result-card p { margin: 8px 0 0; color: var(--fg-dim); font-size: 13px; line-height: 1.55; }
+  .result-note { max-width: 80ch; margin: 24px 0 0; color: var(--fg-dim); font-size: 14px; line-height: 1.7; }
+  @media (max-width: 760px) {
+    .pilot-gallery, .lesson-grid, .result-grid { grid-template-columns: 1fr; }
+    .pilot-photo img { height: auto; }
+    .download-card { align-items: flex-start; flex-direction: column; }
+  }
+
 </style>
 </head>
 <body>
@@ -263,7 +289,35 @@
 <div class="sec-break-line"></div>
 
 <section class="case-section alt">
-  <p class="body">To develop and refine the test parameters, we will first conduct a pilot study using chicken hearts. Their ready availability, including from grocery stores, makes them a practical model for learning how to prepare specimens, identify the test locations, and establish a repeatable puncture-testing workflow.</p>
+  <p class="body">To develop and refine the test parameters, we first conducted a pilot study using chicken hearts. Their ready availability, including from grocery stores, made them a practical model for establishing a repeatable puncture-testing workflow before progressing to rabbit hearts.</p>
+
+  <div class="pilot-gallery">
+    <figure class="pilot-photo">
+      <img src="assets/pediatric-lab/pilot-test-fixture-original.jpg" alt="Initial chicken-heart puncture test setup on the mechanical testing system using a clear acrylic specimen holder." />
+      <figcaption class="pilot-caption"><strong>Initial setup.</strong> The exposed acrylic holder helped establish the basic needle-to-sample workflow and revealed opportunities to improve specimen constraint and alignment.</figcaption>
+    </figure>
+    <figure class="pilot-photo">
+      <img src="assets/pediatric-lab/pilot-test-fixture-redesigned.jpg" alt="Redesigned enclosed fixture holding a chicken-heart tissue specimen beneath the puncture needle." />
+      <figcaption class="pilot-caption"><strong>Redesigned fixture.</strong> The enclosed holder better constrained the tissue while providing a centralized access opening for the needle.</figcaption>
+    </figure>
+  </div>
+
+  <div class="lesson-grid">
+    <div class="lesson"><strong>Needle and cannula control</strong><span>Keep the needle seated inside the cannula during setup to preserve the intended configuration and reduce unintended needle movement.</span></div>
+    <div class="lesson"><strong>Verify 90-degree alignment</strong><span>Confirm that the needle is perpendicular to the tissue before every run so insertion angle does not become an uncontrolled source of variability.</span></div>
+    <div class="lesson"><strong>Standardize test speed</strong><span>Use a consistent insertion speed across samples because puncture response can change with loading rate.</span></div>
+    <div class="lesson"><strong>Control the initial gap</strong><span>Set a repeatable distance between the needle tip and sample surface so each run begins from the same starting condition.</span></div>
+    <div class="lesson"><strong>Redesign the test fixture</strong><span>Improve tissue constraint and needle access to reduce specimen motion and make the puncture workflow more repeatable.</span></div>
+    <div class="lesson"><strong>Identify the anatomy</strong><span>Learn to distinguish the left ventricle and right atrium so samples are taken from the intended anatomical location.</span></div>
+  </div>
+
+  <div class="download-card">
+    <div>
+      <strong>Python Puncture-Force Data Analysis</strong>
+      <span>Download the complete nine-page analysis containing the Python workflow, filtered force-displacement plots, run-level results, and grouped statistics.</span>
+    </div>
+    <a class="download-link" href="assets/pediatric-lab/Chiba-Puncture-Data-Analysis.pdf" download>Download PDF ↓</a>
+  </div>
 </section>
 
 <!-- SECTION 5: FINAL STUDY -->
@@ -293,6 +347,41 @@
     <span class="tag-pill">Ultrasound Guidance Simulation</span>
     <span class="tag-pill">Catheter-Based Intervention</span>
   </div>
+</section>
+
+
+<!-- SECTION 6: PILOT RESULTS -->
+<div class="sec-break">
+  <div class="sec-num">06</div>
+  <div>
+    <div class="sec-label">Pilot Data Analysis</div>
+    <div class="sec-title">Results</div>
+  </div>
+</div>
+<div class="sec-break-line"></div>
+
+<section class="case-section alt">
+  <p class="body">Python was used to process eight force-displacement runs, compare raw minima with Gaussian-filtered and 100-point moving-average estimates, and summarize the pilot measurements by anatomical group.</p>
+
+  <div class="result-grid">
+    <div class="result-card">
+      <div class="metric">Left Ventricle Group</div>
+      <div class="value">0.290 ± 0.037 N</div>
+      <p>Mean peak compression magnitude using the 100-point moving average for LV2, LV4, and LV6.</p>
+    </div>
+    <div class="result-card">
+      <div class="metric">Right Atrium Group</div>
+      <div class="value">0.390 ± 0.144 N</div>
+      <p>Mean peak compression magnitude using the 100-point moving average for RA1, RA2, and RA.</p>
+    </div>
+    <div class="result-card">
+      <div class="metric">Whole-Heart LV Run</div>
+      <div class="value">0.491 N</div>
+      <p>Smoothed peak compression magnitude from the whole-heart left-ventricle test run.</p>
+    </div>
+  </div>
+
+  <p class="result-note">The Gaussian and moving-average methods produced nearly identical grouped results, supporting the stability of the smoothing approach. In this preliminary dataset, the right-atrium group showed an approximately 34% higher mean smoothed peak force than the left-ventricle group. LV5 was excluded from grouped statistics because its near-zero response did not represent a valid puncture signal. These pilot findings are being used to refine the fixture, alignment checks, test speed, starting distance, and anatomical sampling plan for the rabbit-heart study; the small exploratory sample is not treated as a final physiological comparison.</p>
 </section>
 
 <footer class="foot-min">
